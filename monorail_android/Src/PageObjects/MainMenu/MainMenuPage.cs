@@ -1,0 +1,56 @@
+using monorail_android.Commons;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Android;
+using SeleniumExtras.PageObjects;
+
+namespace monorail_android.PageObjects.MainMenu
+{
+    public class MainMenuPage
+    {
+        [FindsBy(How = How.Id, Using = "lbl_ask_question")]
+        private IWebElement _askQuestionNavItem;
+
+        [FindsBy(How = How.Id, Using = "buttonGiving")]
+        private IWebElement _givingNavItem;
+
+        [FindsBy(How = How.Id, Using = "lbl_logout")]
+        private IWebElement _logOutNavItem;
+
+        [FindsBy(How = How.Id, Using = "lbl_more_info")]
+        private IWebElement _moreInfoNavItem;
+
+        [FindsBy(How = How.Id, Using = "progressIndicator")]
+        private IWebElement _progressIndicator;
+
+        [FindsBy(How = How.Id, Using = "toggleImage")]
+        private IWebElement _sideMenu;
+
+        public MainMenuPage(AndroidDriver<IWebElement> driver)
+        {
+            PageFactory.InitElements(driver, this);
+        }
+
+        public MainMenuPage ClickLogOut()
+        {
+            WaitUntilMainMenuIsLoaded();
+            Scroll.ScrollFromTo(_givingNavItem, _moreInfoNavItem);
+            _logOutNavItem.Click();
+            return this;
+        }
+
+        public MainMenuPage ClickSideMenu()
+        {
+            Waits.ElementToBeNotVisible(_progressIndicator);
+            Waits.ElementToBeClickable(_sideMenu);
+            _sideMenu.Click();
+            return this;
+        }
+
+        private void WaitUntilMainMenuIsLoaded()
+        {
+            Waits.ElementToBeClickable(_sideMenu);
+            Waits.ElementToBeVisible(_givingNavItem);
+            Waits.ElementToBeVisible(_moreInfoNavItem);
+        }
+    }
+}
