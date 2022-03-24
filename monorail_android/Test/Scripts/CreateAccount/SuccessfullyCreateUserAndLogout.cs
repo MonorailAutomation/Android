@@ -78,7 +78,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
             logOutBottomUp
                 .ClickYesButton();
         }
-        
+
         [Test]
         public void CreateUserWithEmailMessageVerificationTest()
         {

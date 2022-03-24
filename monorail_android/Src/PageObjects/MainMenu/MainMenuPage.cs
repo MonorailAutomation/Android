@@ -33,7 +33,7 @@ namespace monorail_android.PageObjects.MainMenu
         public MainMenuPage ClickLogOut()
         {
             WaitUntilMainMenuIsLoaded();
-            Scroll.ScrollFromTo(_givingNavItem, _moreInfoNavItem);
+            Scroll.ScrollFromToElement(_givingNavItem, _moreInfoNavItem);
             _logOutNavItem.Click();
             return this;
         }

@@ -6,7 +6,9 @@
       &lt;TestId&gt;NUnit3x::8E05DCE4-DC6D-4B65-BE05-90FB1417756B::.NETCoreApp,Version=v3.1::monorail_android.Test.Scripts.CreateAccount.CreateUserAndLogout&lt;/TestId&gt;
       &lt;TestId&gt;NUnit3x::8E05DCE4-DC6D-4B65-BE05-90FB1417756B::.NETCoreApp,Version=v3.1::monorail_android.Test.Scripts.CreateAccount.SuccessfullyCreateUserAndLogout.CreateUserWithTextMessageVerificationTest&lt;/TestId&gt;
       &lt;TestId&gt;NUnit3x::8E05DCE4-DC6D-4B65-BE05-90FB1417756B::.NETCoreApp,Version=v3.1::monorail_android.Test.Scripts.CreateAccount.SuccessfullyCreateUserAndLogout.CreateUserWithEmailMessageVerificationTest&lt;/TestId&gt;
+      &lt;TestId&gt;NUnit3x::8E05DCE4-DC6D-4B65-BE05-90FB1417756B::.NETCoreApp,Version=v3.1::monorail_android.Test.Scripts.Money.Spend.Q2SpendOnboarding.Q2SpendOnboardingTest&lt;/TestId&gt;
     &lt;/TestAncestor&gt;
     &lt;ProjectFile&gt;8E05DCE4-DC6D-4B65-BE05-90FB1417756B/d:Test/d:Scripts/d:Login/f:LoginAndLogout.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;8E05DCE4-DC6D-4B65-BE05-90FB1417756B/d:Test/d:Scripts/d:Money/d:Spend/f:Q2SpendOnboarding.cs&lt;/ProjectFile&gt;
   &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

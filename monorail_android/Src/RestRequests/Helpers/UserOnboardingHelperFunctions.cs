@@ -1,0 +1,22 @@
+using System;
+using static monorail_android.Commons.Constants;
+using static monorail_android.RestRequests.Register;
+using static monorail_android.RestRequests.Token;
+using static monorail_android.RestRequests.RegisterVerify;
+using static monorail_android.RestRequests.TermsOfUse;
+
+namespace monorail_android.RestRequests.Helpers
+{
+    public static class UserOnboardingHelperFunctions
+    {
+        public static void RegisterUser(string username)
+        {
+            PostRegister(username, ValidPhoneNumber, ValidDateOfBirthYmd);
+            var token = GenerateToken(username);
+            PostRegisterVerify(token);
+            var termsOfUseId = GetTermsOfUseId(token);
+            PostTermsOfUse(token, termsOfUseId);
+            Console.WriteLine(username + " was created successfully");
+        }
+    }
+}

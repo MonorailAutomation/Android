@@ -30,7 +30,7 @@ namespace monorail_android.PageObjects.CreateAccount
             _textMessageOption.Click();
             return this;
         }
-        
+
         public VerifyYourAccountMethodPage ClickEmailOption()
         {
             WaitUntilMethodPageIsLoaded();
