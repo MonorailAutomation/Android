@@ -6,10 +6,16 @@ namespace monorail_android.Commons
 {
     public static class Scroll
     {
-        public static void ScrollFromTo(IWebElement element1, IWebElement element2)
+        public static void ScrollFromToElement(IWebElement element1, IWebElement element2)
         {
             var ta = new TouchAction(Driver);
             ta.Press(element2).Wait(1000).MoveTo(element1).Release().Perform();
+        }
+
+        public static void ScrollFromToCoordinates(int firstPointX, int firstPointY, int secondPointX, int secondPointY)
+        {
+            var ta = new TouchAction(Driver);
+            ta.Press(secondPointX, secondPointY).Wait(1000).MoveTo(firstPointX, firstPointY).Release().Perform();
         }
     }
 }

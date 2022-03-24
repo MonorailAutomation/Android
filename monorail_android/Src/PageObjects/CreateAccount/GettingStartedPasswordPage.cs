@@ -39,7 +39,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
-        private void WaitUntilPasswordPageIsLoaded()
+        private static void WaitUntilPasswordPageIsLoaded()
         {
             Waits.ElementToBeVisible(
                 Driver.FindElementByXPath("//*[contains(@text, '" + NumberConditionLabelText + "')]"));
