@@ -55,7 +55,7 @@ namespace monorail_android.PageObjects.Money.Spend
             return this;
         }
 
-        private void WaitUntilEmptySpendPageIsLoaded()
+        public void WaitUntilEmptySpendPageIsLoaded()
         {
             var count = 0;
             const int maxTries = 3;

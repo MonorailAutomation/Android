@@ -1,3 +1,4 @@
+using System;
 using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
@@ -19,6 +20,9 @@ namespace monorail_android.PageObjects.MainMenu
         [FindsBy(How = How.Id, Using = "lbl_more_info")]
         private IWebElement _moreInfoNavItem;
 
+        [FindsBy(How = How.Id, Using = "lbl_my_connected_account")]
+        private IWebElement _myConnectedAccountNavItem;
+
         [FindsBy(How = How.Id, Using = "progressIndicator")]
         private IWebElement _progressIndicator;
 
@@ -38,6 +42,13 @@ namespace monorail_android.PageObjects.MainMenu
             return this;
         }
 
+        public MainMenuPage ClickMyConnectedAccount()
+        {
+            WaitUntilMainMenuIsLoaded();
+            _myConnectedAccountNavItem.Click();
+            return this;
+        }
+
         public MainMenuPage ClickSideMenu()
         {
             Waits.ElementToBeNotVisible(_progressIndicator);
@@ -48,9 +59,20 @@ namespace monorail_android.PageObjects.MainMenu
 
         private void WaitUntilMainMenuIsLoaded()
         {
-            Waits.ElementToBeClickable(_sideMenu);
-            Waits.ElementToBeVisible(_givingNavItem);
-            Waits.ElementToBeVisible(_moreInfoNavItem);
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Waits.ElementToBeClickable(_sideMenu);
+                    Waits.ElementToBeVisible(_givingNavItem);
+                    Waits.ElementToBeVisible(_moreInfoNavItem);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
         }
     }
 }

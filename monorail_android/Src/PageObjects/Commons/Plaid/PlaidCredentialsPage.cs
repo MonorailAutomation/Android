@@ -3,6 +3,7 @@ using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Commons.Constants;
 
 namespace monorail_android.PageObjects.Commons.Plaid
 {
@@ -25,8 +26,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
         public PlaidCredentialsPage PassCredentials()
         {
             WaitUntilPlaidCredentialsPageIsLoaded();
-            _usernameInput.SendKeys("user_good");
-            _passwordInput.SendKeys("pass_good");
+            _usernameInput.SendKeys(PlaidUsername);
+            _passwordInput.SendKeys(PlaidPassword);
             return this;
         }
 
