@@ -18,5 +18,15 @@ namespace monorail_android.RestRequests.Helpers
             PostTermsOfUse(token, termsOfUseId);
             Console.WriteLine(username + " was created successfully");
         }
+        
+        public static void RegisterUser(string username, string dateOfBirth)
+        {
+            PostRegister(username, ValidPhoneNumber, dateOfBirth);
+            var token = GenerateToken(username);
+            PostRegisterVerify(token);
+            var termsOfUseId = GetTermsOfUseId(token);
+            PostTermsOfUse(token, termsOfUseId);
+            Console.WriteLine(username + " was created successfully");
+        }
     }
 }

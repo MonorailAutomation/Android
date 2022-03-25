@@ -1,6 +1,5 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
-using monorail_android.PageObjects.Commons.Plaid;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
@@ -8,6 +7,7 @@ using NUnit.Framework;
 using static monorail_android.Commons.RandomGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
+using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 
 namespace monorail_android.Test.Scripts.Money.Spend
 {
@@ -29,11 +29,6 @@ namespace monorail_android.Test.Scripts.Money.Spend
             var residentialAddressPage = new ResidentialAddressPage(Driver);
             var politicalExposureQuestionPage = new PoliticalExposureQuestionPage(Driver);
             var linkAnAccountPage = new LinkAnAccountPage(Driver);
-            var plaidStartPage = new PlaidStartPage(Driver);
-            var plaidSelectYourBankPage = new PlaidSelectYourBankPage(Driver);
-            var plaidCredentialsPage = new PlaidCredentialsPage(Driver);
-            var plaidAccountPage = new PlaidAccountPage(Driver);
-            var plaidSuccessScreen = new PlaidSuccessScreen(Driver);
             var electronicDeliveryConsentPage = new ElectronicDeliveryConsentPage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
@@ -78,22 +73,7 @@ namespace monorail_android.Test.Scripts.Money.Spend
             linkAnAccountPage
                 .ClickLinkYourAccountButton();
 
-            plaidStartPage
-                .ClickContinueButton();
-
-            plaidSelectYourBankPage
-                .ClickBank("Chase");
-
-            plaidCredentialsPage
-                .PassCredentials()
-                .ClickSubmitButton();
-
-            plaidAccountPage
-                .SelectPrimaryAccount("Checking")
-                .ClickContinueButton();
-
-            plaidSuccessScreen
-                .ClickContinueButton();
+            ConnectPlaid();
 
             electronicDeliveryConsentPage
                 .ScrollToTheBottomOfPage()
