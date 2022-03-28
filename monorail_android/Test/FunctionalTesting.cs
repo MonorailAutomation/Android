@@ -12,7 +12,7 @@ namespace monorail_android.Test
     public class FunctionalTesting
     {
         public static AndroidDriver<IWebElement> Driver;
-        private static WebDriverWait _wait;
+        public static WebDriverWait Wait;
 
         [SetUp]
         public void BeforeAll()
@@ -29,8 +29,8 @@ namespace monorail_android.Test
 
             Driver = new AndroidDriver<IWebElement>(new Uri("http://localhost:4723/wd/hub"), capabilities,
                 FromSeconds(600));
-            Driver.Manage().Timeouts().ImplicitWait = FromSeconds(80);
-            _wait = new WebDriverWait(Driver, FromSeconds(45));
+            Driver.Manage().Timeouts().ImplicitWait = FromSeconds(45);
+            Wait = new WebDriverWait(Driver, FromSeconds(30));
         }
 
         [TearDown]

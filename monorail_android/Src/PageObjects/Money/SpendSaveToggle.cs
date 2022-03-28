@@ -1,18 +1,19 @@
 using System;
-using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
+
 namespace monorail_android.PageObjects.Money
 {
     public class SpendSaveToggle
     {
-        [FindsBy(How = How.Id, Using = "labelSpend")]
-        private IWebElement _spendButton;
-        
         [FindsBy(How = How.Id, Using = "labelSave")]
         private IWebElement _saveButton;
+
+        [FindsBy(How = How.Id, Using = "labelSpend")]
+        private IWebElement _spendButton;
 
         public SpendSaveToggle(AndroidDriver<IWebElement> driver)
         {
@@ -21,16 +22,18 @@ namespace monorail_android.PageObjects.Money
 
         public SpendSaveToggle ClickSpendButton()
         {
+            WaitUntilSpendSaveToggleIsLoaded();
             _spendButton.Click();
             return this;
         }
-        
+
         public SpendSaveToggle ClickSaveButton()
         {
+            WaitUntilSpendSaveToggleIsLoaded();
             _saveButton.Click();
             return this;
         }
-        
+
         public void WaitUntilSpendSaveToggleIsLoaded()
         {
             var count = 0;
@@ -38,8 +41,8 @@ namespace monorail_android.PageObjects.Money
             while (true)
                 try
                 {
-                    Waits.ElementToBeClickable(_saveButton);
-                    Waits.ElementToBeClickable(_spendButton);
+                    Wait.Until(ElementToBeClickable(_saveButton));
+                    Wait.Until(ElementToBeClickable(_spendButton));
                     break;
                 }
                 catch (Exception e)
