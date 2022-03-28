@@ -16,7 +16,12 @@ namespace monorail_android.Commons
         public const string ValidDateOfBirthYmd = "1991-01-01";
         public const string ValidDateOfBirthDmy = "01-01-1991";
         public const string ValidPhoneNumber = "9419252121";
-        
+
+        public const string Q2RejectedDateOfBirthYmd = "1990-01-01";
+        public const string Q2RejectedSsn = "555555555";
+        public const string Q2RejectedManualReviewFirstName = "Jane";
+        public const string Q2RejectedManualReviewLastName = "Doe";
+
         public const string PlaidUsername = "user_good";
         public const string PlaidPassword = "pass_good";
     }

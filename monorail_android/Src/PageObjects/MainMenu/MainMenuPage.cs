@@ -3,6 +3,8 @@ using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.MainMenu
 {
@@ -51,8 +53,7 @@ namespace monorail_android.PageObjects.MainMenu
 
         public MainMenuPage ClickSideMenu()
         {
-            Waits.ElementToBeNotVisible(_progressIndicator);
-            Waits.ElementToBeClickable(_sideMenu);
+            Wait.Until(ElementToBeClickable(_sideMenu));
             _sideMenu.Click();
             return this;
         }
@@ -64,9 +65,8 @@ namespace monorail_android.PageObjects.MainMenu
             while (true)
                 try
                 {
-                    Waits.ElementToBeClickable(_sideMenu);
-                    Waits.ElementToBeVisible(_givingNavItem);
-                    Waits.ElementToBeVisible(_moreInfoNavItem);
+                    Wait.Until(ElementToBeVisible(_givingNavItem));
+                    Wait.Until(ElementToBeVisible(_moreInfoNavItem));
                     break;
                 }
                 catch (Exception e)
