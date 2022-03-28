@@ -24,5 +24,21 @@ namespace monorail_android.Commons
 
         public const string PlaidUsername = "user_good";
         public const string PlaidPassword = "pass_good";
+
+        public const string WishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
+
+        public const string WishlistItemUrl =
+            "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
+
+        public const string WishlistItemDescription =
+            "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target.";
+
+        public const string WishlistItemPrice = "5";
+
+        public const string WishlistItemImage =
+            "http://res.cloudinary.com/vimvest/image/upload/v1638872284/bwoewueguczgkumwg6kl.jpg";
+
+        public const string WishlistItemFavicon =
+            "http://res.cloudinary.com/vimvest/image/upload/v1638879350/frwhkhmtv3oszhm0hfrs.jpg";
     }
 }
