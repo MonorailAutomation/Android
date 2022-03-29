@@ -1,8 +1,9 @@
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Wishlist
 {
@@ -35,14 +36,25 @@ namespace monorail_android.PageObjects.Wishlist
 
         public MainWishlistPage WaitUntilEmptyMainWishlistPageIsLoaded()
         {
-            Waits.ElementToBeNotVisible(_progressIndicator);
-            Waits.ElementToBeClickable(_howItWorksButton);
-            Waits.ElementToBeClickable(_addAnItemButton);
-            Waits.ElementToBeVisible(_emptyScreenMessageHeader);
-            Waits.ElementToBeVisible(_emptyScreenMessage);
+            Wait.Until(ElementToBeNotVisible(_progressIndicator));
+            Wait.Until(ElementToBeClickable(_howItWorksButton));
+            Wait.Until(ElementToBeClickable(_addAnItemButton));
+            Wait.Until(ElementToBeVisible(_emptyScreenMessageHeader));
+            Wait.Until(ElementToBeVisible(_emptyScreenMessage));
 
             _emptyScreenMessageHeader.Text.Should().Contain(EmptyScreenMessageHeaderText);
             _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageText);
+            return this;
+        }
+
+        public MainWishlistPage ClickWishlistItem(string wishlistItemName)
+        {
+            var wishlistItemSelector = "//*[contains(@text, '" + wishlistItemName + "')]";
+            var wishlistItemElement = Driver.FindElementByXPath(wishlistItemSelector);
+
+            Wait.Until(ElementToBeNotVisible(_progressIndicator));
+            Wait.Until(ElementToBeVisible(wishlistItemElement));
+            wishlistItemElement.Click();
             return this;
         }
     }

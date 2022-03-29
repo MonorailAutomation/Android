@@ -43,7 +43,7 @@ namespace monorail_android.PageObjects.Money.Save
 
         [FindsBy(How = How.Id, Using = "text3")]
         private IWebElement _emptyScreenThirdBulletPoint;
-        
+
         [FindsBy(How = How.Id, Using = "buttonGetStarted")]
         private IWebElement _getStartedButton;
 
@@ -55,7 +55,7 @@ namespace monorail_android.PageObjects.Money.Save
 
         [FindsBy(How = How.Id, Using = "progressIndicator")]
         private IWebElement _progressIndicator;
-        
+
         [FindsBy(How = How.Id, Using = "labelSelect")]
         private IWebElement _selectYourTracksHeader;
 

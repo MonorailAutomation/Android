@@ -1,28 +1,28 @@
+using System.Threading;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
-using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.RandomGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
-namespace monorail_android.Test.Scripts.Money.Spend
+namespace monorail_android.Test.Scripts.Wishlist
 {
-    internal class Q2SpendOnboarding : FunctionalTesting
+    internal class WishlistOnboarding : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+23.271221";
+        private const string UsernamePrefix = "autotests.mono+22.032822";
         private const string UsernameSuffix = "@gmail.com";
 
         [Test]
-        public void Q2SpendOnboardingTest()
+        public void WishlistOnboardingThroughFundYourWishlistButtonSuccessful()
         {
             var loginPage = new LoginPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
-            var bottomMenu = new BottomNavigation(Driver);
-            var mainSpendPage = new MainSpendPage(Driver);
+            var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
             var firstNameLastNamePage = new FirstNameLastNamePage(Driver);
             var ssnPage = new SsnPage(Driver);
@@ -31,25 +31,28 @@ namespace monorail_android.Test.Scripts.Money.Spend
             var linkAnAccountPage = new LinkAnAccountPage(Driver);
             var electronicDeliveryConsentPage = new ElectronicDeliveryConsentPage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
+            var wishlistAddCashPage = new WishlistAddCashPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
             RegisterUser(username);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            Thread.Sleep(20000); // wait for Wishlist Item to be correctly added
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             mainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+                .ClickWishlistItem(WishlistItemName);
 
-            bottomMenu
-                .ClickMoneyNavButton();
-
-            mainSpendPage
-                .ClickOpenYourCheckingAccountButton();
+            wishlistItemDetailsPage
+                .WaitUntilWishlistItemDetailsPageForNotReadyToBuyStateIsLoaded()
+                .ClickFundYourWishlistButton();
 
             personalInformationPage
                 .ClickGetStartedButton();
@@ -82,6 +85,14 @@ namespace monorail_android.Test.Scripts.Money.Spend
             termsAndConditionsPage
                 .ScrollToTheBottomOfPage()
                 .ClickAgreeAndFinishButton();
+
+            wishlistAddCashPage
+                .WaitUntilWishlistAddCashPageIsLoaded()
+                .ClickBackButton();
+
+            wishlistItemDetailsPage
+                .WaitUntilWishlistItemDetailsPageForNotReadyToBuyStateIsLoaded()
+                .ClickBackButton();
 
             mainMenuPage
                 .ClickSideMenu()
