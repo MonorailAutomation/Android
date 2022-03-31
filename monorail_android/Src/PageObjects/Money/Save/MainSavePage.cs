@@ -26,6 +26,9 @@ namespace monorail_android.PageObjects.Money.Save
         private const string EmptyScreenMessageText =
             "And automate deposits on your schedule. So you always stay… on Track. Whether you feel motivated or not.";
 
+        [FindsBy(How = How.Id, Using = "buttonAddTrack")]
+        private IWebElement _addASavingTrackButton;
+
         [FindsBy(How = How.Id, Using = "text1")]
         private IWebElement _emptyScreenFirstBulletPoint;
 
@@ -82,6 +85,13 @@ namespace monorail_android.PageObjects.Money.Save
             WaitUntilSavePageAfterOnboardingIsLoaded();
             var track = Driver.FindElementByXPath("//*[contains(@text, '" + trackName + "')]");
             track.Click();
+            return this;
+        }
+
+        public MainSavePage ClickAddASavingTrackButton()
+        {
+            Wait.Until(ElementToBeVisible(_addASavingTrackButton));
+            _addASavingTrackButton.Click();
             return this;
         }
 

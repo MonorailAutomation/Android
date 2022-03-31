@@ -50,5 +50,12 @@ namespace monorail_android.PageObjects.Wishlist
             _backButton.Click();
             return this;
         }
+
+        public WishlistItemDetailsPage ClickRemoveButton()
+        {
+            Wait.Until(ElementToBeVisible(_removeButton));
+            _removeButton.Click();
+            return this;
+        }
     }
 }
