@@ -12,7 +12,7 @@ using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
-    internal class WishlistOnboarding : FunctionalTesting
+    internal class WishlistOnboardingSuccessful : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+22.032822";
         private const string UsernameSuffix = "@gmail.com";

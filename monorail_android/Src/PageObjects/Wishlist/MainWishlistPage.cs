@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
@@ -15,7 +16,10 @@ namespace monorail_android.PageObjects.Wishlist
             "All the things you want. All in one place. Powered by you & your bank account.";
 
         [FindsBy(How = How.Id, Using = "buttonAddItem")]
-        private IWebElement _addAnItemButton;
+        private IWebElement _addAnItemButtonOnEmptyWishlistPage;
+
+        [FindsBy(How = How.Id, Using = "iconPlus")]
+        private IWebElement _addAnItemButtonOnMainWishlistPage;
 
         [FindsBy(How = How.Id, Using = "labelTextEmpty")]
         private IWebElement _emptyScreenMessage;
@@ -25,6 +29,9 @@ namespace monorail_android.PageObjects.Wishlist
 
         [FindsBy(How = How.Id, Using = "buttonHowItWorks")]
         private IWebElement _howItWorksButton;
+
+        [FindsBy(How = How.XPath, Using = "//android.widget.FrameLayout[3]//*[contains(@resource-id, 'groupNoItem')]")]
+        private IWebElement _placeholder;
 
         [FindsBy(How = How.Id, Using = "progressIndicator")]
         private IWebElement _progressIndicator;
@@ -38,7 +45,7 @@ namespace monorail_android.PageObjects.Wishlist
         {
             Wait.Until(ElementToBeNotVisible(_progressIndicator));
             Wait.Until(ElementToBeClickable(_howItWorksButton));
-            Wait.Until(ElementToBeClickable(_addAnItemButton));
+            Wait.Until(ElementToBeClickable(_addAnItemButtonOnEmptyWishlistPage));
             Wait.Until(ElementToBeVisible(_emptyScreenMessageHeader));
             Wait.Until(ElementToBeVisible(_emptyScreenMessage));
 
@@ -49,12 +56,54 @@ namespace monorail_android.PageObjects.Wishlist
 
         public MainWishlistPage ClickWishlistItem(string wishlistItemName)
         {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    var wishlistItemSelector = "//*[contains(@text, '" + wishlistItemName + "')]";
+                    var wishlistItemElement = Driver.FindElementByXPath(wishlistItemSelector);
+
+                    Wait.Until(ElementToBeNotVisible(_progressIndicator));
+                    Wait.Until(ElementToBeVisible(wishlistItemElement));
+                    wishlistItemElement.Click();
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            return this;
+        }
+
+        public MainWishlistPage CheckIfWishlistItemIsDisplayedOnMainScreen(string wishlistItemName)
+        {
             var wishlistItemSelector = "//*[contains(@text, '" + wishlistItemName + "')]";
-            var wishlistItemElement = Driver.FindElementByXPath(wishlistItemSelector);
 
             Wait.Until(ElementToBeNotVisible(_progressIndicator));
-            Wait.Until(ElementToBeVisible(wishlistItemElement));
-            wishlistItemElement.Click();
+            Wait.Until(ElementToBeVisible(Driver.FindElementByXPath(wishlistItemSelector)));
+            return this;
+        }
+
+        public MainWishlistPage ClickAddAnItemButtonOnEmptyWishlistPage()
+        {
+            Wait.Until(ElementToBeVisible(_addAnItemButtonOnEmptyWishlistPage));
+            _addAnItemButtonOnEmptyWishlistPage.Click();
+            return this;
+        }
+
+        public MainWishlistPage ClickAddAnItemButtonOnMainWishlistPage()
+        {
+            Wait.Until(ElementToBeVisible(_addAnItemButtonOnMainWishlistPage));
+            _addAnItemButtonOnMainWishlistPage.Click();
+            return this;
+        }
+
+        public MainWishlistPage ClickPlaceholderOnMainWishlistPage()
+        {
+            Wait.Until(ElementToBeVisible(_placeholder));
+            _placeholder.Click();
             return this;
         }
     }
