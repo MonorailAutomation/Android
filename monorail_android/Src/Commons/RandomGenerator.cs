@@ -8,5 +8,10 @@ namespace monorail_android.Commons
         {
             return new Random().Next(100, 999).ToString();
         }
+
+        public static string GenerateRandomString()
+        {
+            return DateTime.Now.ToString("dd/MM/yyyy") + " " + new Random().Next(10, 99);
+        }
     }
 }

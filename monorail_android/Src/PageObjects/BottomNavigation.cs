@@ -1,7 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects
 {
@@ -29,21 +30,21 @@ namespace monorail_android.PageObjects
 
         public BottomNavigation ClickWishlistNavButton()
         {
-            Waits.ElementToBeNotVisible(_progressIndicator);
+            Wait.Until(ElementToBeClickable(_moneyNavButton));
             _wishlistNavButton.Click();
             return this;
         }
 
         public BottomNavigation ClickMoneyNavButton()
         {
-            Waits.ElementToBeNotVisible(_progressIndicator);
+            Wait.Until(ElementToBeClickable(_moneyNavButton));
             _moneyNavButton.Click();
             return this;
         }
 
         public BottomNavigation ClickInvestNavButton()
         {
-            Waits.ElementToBeNotVisible(_progressIndicator);
+            Wait.Until(ElementToBeClickable(_investNavButton));
             _investNavButton.Click();
             return this;
         }
