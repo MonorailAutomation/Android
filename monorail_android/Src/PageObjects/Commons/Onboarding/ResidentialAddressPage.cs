@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -22,9 +23,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         [FindsBy(How = How.Id, Using = "buttonContinue")]
         private IWebElement _continueButton;
-
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
 
         [FindsBy(How = How.Id, Using = "fieldLabel")]
         private IWebElement _residentialAddressLabel;
@@ -52,7 +50,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         public ResidentialAddressPage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);
             _continueButton.Click();
             return this;
         }
@@ -64,14 +62,13 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_residentialAddressLabel);
-                    Waits.ElementToBeVisible(_addressLine1Input);
-                    Waits.ElementToBeVisible(_addressLine2Input);
-                    Waits.ElementToBeVisible(_cityInput);
-                    Waits.ElementToBeVisible(_stateInput);
-                    Waits.ElementToBeVisible(_zipInput);
-                    Waits.ElementToBeClickable(_continueButton);
+                    Wait.Until(ElementToBeVisible(_residentialAddressLabel));
+                    Wait.Until(ElementToBeVisible(_addressLine1Input));
+                    Wait.Until(ElementToBeVisible(_addressLine2Input));
+                    Wait.Until(ElementToBeVisible(_cityInput));
+                    Wait.Until(ElementToBeVisible(_stateInput));
+                    Wait.Until(ElementToBeVisible(_zipInput));
+                    Wait.Until(ElementToBeVisible(_continueButton));
 
                     _residentialAddressLabel.Text.Should().Contain(ResidentialAddressLabel);
                     break;

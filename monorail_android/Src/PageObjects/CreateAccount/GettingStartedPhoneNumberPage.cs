@@ -1,8 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
 using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.CreateAccount
 {
@@ -30,17 +30,17 @@ namespace monorail_android.PageObjects.CreateAccount
 
         public GettingStartedPhoneNumberPage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }
 
         private void WaitUntilPhoneNumberPageIsLoaded()
         {
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + PhoneNumberLabelText + "')]"));
-            Waits.ElementToBeVisible(_phoneNumberInput);
-            Waits.ElementToBeVisible(_continueButton);
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + PhoneNumberLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(_phoneNumberInput));
+            Wait.Until(ElementToBeVisible(_continueButton));
         }
     }
 }

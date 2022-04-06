@@ -4,6 +4,8 @@ using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -13,9 +15,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         [FindsBy(How = How.Id, Using = "buttonContinue")]
         private IWebElement _agreeAndFinishButton;
-
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
 
         [FindsBy(How = How.Id, Using = "labelPageTitle")]
         private IWebElement _termsAndConditionsHeader;
@@ -45,7 +44,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         public TermsAndConditionsPage ClickAgreeAndFinishButton()
         {
-            while (_agreeAndFinishButton.Enabled == false) Waits.ElementToBeClickable(_agreeAndFinishButton);
+            while (_agreeAndFinishButton.Enabled == false) ElementToBeClickable(_agreeAndFinishButton);
             _agreeAndFinishButton.Click();
             return this;
         }
@@ -57,9 +56,8 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeVisible(_termsAndConditionsHeader);
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeClickable(_agreeAndFinishButton);
+                    Wait.Until(ElementToBeVisible(_termsAndConditionsHeader));
+                    Wait.Until(ElementToBeVisible(_agreeAndFinishButton));
 
                     _termsAndConditionsHeader.Text.Should().Contain(TermsAndConditionsHeaderText);
                     break;

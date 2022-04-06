@@ -1,8 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
 using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.CreateAccount
 {
@@ -31,17 +31,17 @@ namespace monorail_android.PageObjects.CreateAccount
         public VerifyYourAccountVerificationCodePage ClickContinueButton()
         {
             WaitUntilVerificationCodePageIsLoaded();
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }
 
         private void WaitUntilVerificationCodePageIsLoaded()
         {
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + VerificationCodeLabelText + "')]"));
-            Waits.ElementToBeVisible(_verificationCodeInput);
-            Waits.ElementToBeVisible(_continueButton);
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + VerificationCodeLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(_verificationCodeInput));
+            Wait.Until(ElementToBeVisible(_continueButton));
         }
     }
 }

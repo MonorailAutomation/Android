@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Plaid
 {
@@ -40,9 +41,9 @@ namespace monorail_android.PageObjects.Commons.Plaid
             while (true)
                 try
                 {
-                    Waits.ElementToBeVisible(_successMessage);
-                    Waits.ElementToBeVisible(_informationMessage);
-                    Waits.ElementToBeVisible(_continueButton);
+                    Wait.Until(ElementToBeVisible(_successMessage));
+                    Wait.Until(ElementToBeVisible(_informationMessage));
+                    Wait.Until(ElementToBeVisible(_continueButton));
 
                     _successMessage.Text.Should().Contain(SuccessMessageText);
                     break;

@@ -1,9 +1,9 @@
 using System;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
 using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Plaid
 {
@@ -27,7 +27,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
         {
             var accountSelector = "//*[contains(@text, '" + account + "')]";
             var accountElement = Driver.FindElementByXPath(accountSelector);
-            Waits.ElementToBeVisible(accountElement);
+            Wait.Until(ElementToBeVisible(accountElement));
             accountElement.Click();
             return this;
         }
@@ -46,8 +46,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
             while (true)
                 try
                 {
-                    Waits.ElementToBeVisible(Driver.FindElementByXPath("//*[contains(@text, 'Checking')]"));
-                    Waits.ElementToBeVisible(_continueButton);
+                    Wait.Until(ElementToBeVisible(Driver.FindElementByXPath("//*[contains(@text, 'Checking')]")));
+                    Wait.Until(ElementToBeVisible(_continueButton));
                     break;
                 }
                 catch (Exception e)

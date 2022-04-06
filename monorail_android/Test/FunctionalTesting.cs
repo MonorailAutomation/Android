@@ -19,15 +19,15 @@ namespace monorail_android.Test
         {
             var capabilities = new AppiumOptions();
             capabilities.AddAdditionalCapability(PlatformName, "Android");
-            capabilities.AddAdditionalCapability(DeviceName, "Pixel 4 API 30");
+            capabilities.AddAdditionalCapability(DeviceName, "Pixel 4 API 29");
             capabilities.AddAdditionalCapability("appWaitDuration", 90000);
             capabilities.AddAdditionalCapability("appium:automationName", "UiAutomator2");
-            capabilities.AddAdditionalCapability("appWaitPackage", "com.vimvest.android.staging2");
-            capabilities.AddAdditionalCapability(NoReset, true);
+            capabilities.AddAdditionalCapability("appPackage", "com.vimvest.android.staging2");
+            capabilities.AddAdditionalCapability("appActivity", "com.vimvest.android.ui.start.LauncherActivity");
             capabilities.AddAdditionalCapability(App,
-                "/Users/hannakuczara/Vimvest/AndroidClient/app/build/outputs/apk/dev/debug/app-dev-debug.apk");
+                "C:/Users/MagdalenaPleban/StudioProjects/AndroidClient/app/build/outputs/apk/dev/debug/app-dev-debug.apk");
 
-            Driver = new AndroidDriver<IWebElement>(new Uri("http://localhost:4723/wd/hub"), capabilities,
+            Driver = new AndroidDriver<IWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities,
                 FromSeconds(600));
             Driver.Manage().Timeouts().ImplicitWait = FromSeconds(45);
             Wait = new WebDriverWait(Driver, FromSeconds(30));

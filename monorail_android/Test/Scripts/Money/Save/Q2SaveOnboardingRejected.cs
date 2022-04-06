@@ -6,16 +6,18 @@ using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
-using static monorail_android.Commons.RandomGenerator;
+using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_android.Test.Scripts.Login.LoginAndLogout;
+using static monorail_android.Commons.EmailGenerator;
 
 namespace monorail_android.Test.Scripts.Money.Save
 {
     internal class Q2SaveOnboardingRejected : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+25.2503221";
+        private const string UsernamePrefix = "autotests.mono+25.";
         private const string UsernameSuffix = "@gmail.com";
 
         [Test]
@@ -38,9 +40,11 @@ namespace monorail_android.Test.Scripts.Money.Save
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username, Q2RejectedDateOfBirthYmd);
+
+            GoThroughLaunchScreens();
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -91,7 +95,7 @@ namespace monorail_android.Test.Scripts.Money.Save
                 .ClickAgreeAndFinishButton();
 
             mainSavePage
-                .ClickTrack("Food")
+                .ClickTrack("Travel")
                 .ClickGetStartedButton();
 
             /* Because of BUG: 37760

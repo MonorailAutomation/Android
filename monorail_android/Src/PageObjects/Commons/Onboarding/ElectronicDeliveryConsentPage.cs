@@ -4,6 +4,8 @@ using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -19,9 +21,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         [FindsBy(How = How.Id, Using = "pdfView")]
         private IWebElement _electronicDeliveryConsentScroll;
-
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
 
         public ElectronicDeliveryConsentPage(AndroidDriver<IWebElement> driver)
         {
@@ -45,7 +44,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         public ElectronicDeliveryConsentPage ClickAgreeAndContinueButton()
         {
-            while (_agreeAndContinueButton.Enabled == false) Waits.ElementToBeClickable(_agreeAndContinueButton);
+            while (_agreeAndContinueButton.Enabled == false) ElementToBeClickable(_agreeAndContinueButton);
             _agreeAndContinueButton.Click();
             return this;
         }
@@ -57,9 +56,8 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_electronicDeliveryConsentHeader);
-                    Waits.ElementToBeClickable(_agreeAndContinueButton);
+                    Wait.Until(ElementToBeVisible(_electronicDeliveryConsentHeader));
+                    Wait.Until(ElementToBeVisible(_agreeAndContinueButton));
 
                     _electronicDeliveryConsentHeader.Text.Should().Contain(ElectronicDeliveryConsentHeaderText);
                     break;

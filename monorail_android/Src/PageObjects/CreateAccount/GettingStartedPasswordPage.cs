@@ -1,8 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
 using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.CreateAccount
 {
@@ -34,21 +34,21 @@ namespace monorail_android.PageObjects.CreateAccount
         public GettingStartedPasswordPage ClickContinueButton()
         {
             WaitUntilPasswordPageIsLoaded();
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }
 
         private static void WaitUntilPasswordPageIsLoaded()
         {
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + NumberConditionLabelText + "')]"));
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + UppercaseLetterConditionLabelText + "')]"));
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + SpecialCharacterLabelText + "')]"));
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + CharacterCountLabelText + "')]"));
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + NumberConditionLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + UppercaseLetterConditionLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + SpecialCharacterLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + CharacterCountLabelText + "')]")));
         }
     }
 }

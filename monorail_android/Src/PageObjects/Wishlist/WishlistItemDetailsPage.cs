@@ -1,3 +1,4 @@
+using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -17,9 +18,6 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "buttonFund")]
         private IWebElement _fundYourWishlistButton;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.Id, Using = "buttonRemove")]
         private IWebElement _removeButton;
 
@@ -30,10 +28,21 @@ namespace monorail_android.PageObjects.Wishlist
 
         public WishlistItemDetailsPage WaitUntilWishlistItemDetailsPageForNotReadyToBuyStateIsLoaded()
         {
-            Wait.Until(ElementToBeNotVisible(_progressIndicator));
-            Wait.Until(ElementToBeClickable(_editButton));
-            Wait.Until(ElementToBeClickable(_removeButton));
-            Wait.Until(ElementToBeClickable(_fundYourWishlistButton));
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeClickable(_editButton));
+                    Wait.Until(ElementToBeClickable(_removeButton));
+                    Wait.Until(ElementToBeClickable(_fundYourWishlistButton));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
             return this;
         }
 

@@ -5,15 +5,17 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
-using static monorail_android.Commons.RandomGenerator;
+using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Database.VerificationCode;
+using static monorail_android.Test.Scripts.Login.LoginAndLogout;
+using static monorail_android.Commons.EmailGenerator;
 
 namespace monorail_android.Test.Scripts.CreateAccount
 {
     [TestFixture]
     public class SuccessfullyCreateUserAndLogout : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+20.020522";
+        private const string UsernamePrefix = "autotests.mono+20.";
         private const string UsernameSuffix = "@gmail.com";
 
         [Test]
@@ -31,7 +33,9 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+
+            GoThroughLaunchScreens();
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -94,7 +98,9 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+
+            GoThroughLaunchScreens();
 
             loginPage
                 .ClickCreateAnAccountButton();

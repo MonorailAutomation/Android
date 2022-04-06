@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -17,9 +18,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         [FindsBy(How = How.Id, Using = "buttonContinue")]
         private IWebElement _linkYourAccountButton;
-
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
 
         public LinkAnAccountPage(AndroidDriver<IWebElement> driver)
         {
@@ -40,9 +38,8 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_informationMessage);
-                    Waits.ElementToBeClickable(_linkYourAccountButton);
+                    Wait.Until(ElementToBeVisible(_informationMessage));
+                    Wait.Until(ElementToBeClickable(_linkYourAccountButton));
 
                     _informationMessage.Text.Should().Contain(InformationMessageText);
                     break;

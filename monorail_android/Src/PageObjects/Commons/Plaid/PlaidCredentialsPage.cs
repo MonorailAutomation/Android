@@ -1,8 +1,9 @@
 using System;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 using static monorail_android.Commons.Constants;
 
 namespace monorail_android.PageObjects.Commons.Plaid
@@ -44,9 +45,9 @@ namespace monorail_android.PageObjects.Commons.Plaid
             while (true)
                 try
                 {
-                    Waits.ElementToBeVisible(_usernameInput);
-                    Waits.ElementToBeVisible(_passwordInput);
-                    Waits.ElementToBeVisible(_submitButton);
+                    Wait.Until(ElementToBeVisible(_usernameInput));
+                    Wait.Until(ElementToBeVisible(_passwordInput));
+                    Wait.Until(ElementToBeVisible(_submitButton));
                     break;
                 }
                 catch (Exception e)

@@ -16,9 +16,6 @@ namespace monorail_android.PageObjects
             Using = "//*[contains(@resource-id, 'cardNavigationContents')]/android.widget.ImageView[2]")]
         private IWebElement _moneyNavButton;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.XPath,
             Using = "//*[contains(@resource-id, 'cardNavigationContents')]/android.widget.ImageView[1]")]
         private IWebElement _wishlistNavButton;
@@ -30,21 +27,21 @@ namespace monorail_android.PageObjects
 
         public BottomNavigation ClickWishlistNavButton()
         {
-            Wait.Until(ElementToBeClickable(_moneyNavButton));
+            Wait.Until(ElementToBeVisible(_wishlistNavButton));
             _wishlistNavButton.Click();
             return this;
         }
 
         public BottomNavigation ClickMoneyNavButton()
         {
-            Wait.Until(ElementToBeClickable(_moneyNavButton));
+            Wait.Until(ElementToBeVisible(_moneyNavButton));
             _moneyNavButton.Click();
             return this;
         }
 
         public BottomNavigation ClickInvestNavButton()
         {
-            Wait.Until(ElementToBeClickable(_investNavButton));
+            Wait.Until(ElementToBeVisible(_investNavButton));
             _investNavButton.Click();
             return this;
         }

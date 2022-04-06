@@ -1,8 +1,9 @@
 using System;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Plaid
 {
@@ -30,7 +31,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             while (true)
                 try
                 {
-                    Waits.ElementToBeVisible(_continueButton);
+                    Wait.Until(ElementToBeVisible(_continueButton));
                     break;
                 }
                 catch (Exception e)

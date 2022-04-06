@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -24,9 +25,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         [FindsBy(How = How.Id, Using = "labelTitle")]
         private IWebElement _personalInformationHeader;
-
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
 
         [FindsBy(How = How.Id, Using = "labelTimeToComplete")]
         private IWebElement _timeMessage;
@@ -50,11 +48,10 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_personalInformationHeader);
-                    Waits.ElementToBeVisible(_informationMessage);
-                    Waits.ElementToBeVisible(_timeMessage);
-                    Waits.ElementToBeClickable(_getStartedButton);
+                    Wait.Until(ElementToBeVisible(_personalInformationHeader));
+                    Wait.Until(ElementToBeVisible(_informationMessage));
+                    Wait.Until(ElementToBeVisible(_timeMessage));
+                    Wait.Until(ElementToBeClickable(_getStartedButton));
 
                     _personalInformationHeader.Text.Should().Contain(PersonalInformationHeaderText);
                     _informationMessage.Text.Should().Contain(InformationMessageText);

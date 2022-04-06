@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -27,9 +28,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
         [FindsBy(How = How.Id, Using = "labelLastName")]
         private IWebElement _lastNameLabel;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         public FirstNameLastNamePage(AndroidDriver<IWebElement> driver)
         {
             PageFactory.InitElements(driver, this);
@@ -45,7 +43,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         public FirstNameLastNamePage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);
             _continueButton.Click();
             return this;
         }
@@ -57,12 +55,11 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_firstNameLabel);
-                    Waits.ElementToBeVisible(_firstNameInput);
-                    Waits.ElementToBeVisible(_lastNameLabel);
-                    Waits.ElementToBeVisible(_lastNameInput);
-                    Waits.ElementToBeClickable(_continueButton);
+                    Wait.Until(ElementToBeVisible(_firstNameLabel));
+                    Wait.Until(ElementToBeVisible(_firstNameInput));
+                    Wait.Until(ElementToBeVisible(_lastNameLabel));
+                    Wait.Until(ElementToBeVisible(_lastNameInput));
+                    Wait.Until(ElementToBeVisible(_continueButton));
 
                     _firstNameLabel.Text.Should().Contain(FirstNameLabelText);
                     _lastNameLabel.Text.Should().Contain(LastNameLabelText);

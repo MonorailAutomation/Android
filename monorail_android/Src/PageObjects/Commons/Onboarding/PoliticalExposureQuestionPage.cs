@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -27,9 +28,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
         [FindsBy(How = How.Id, Using = "labelMainQuestion")]
         private IWebElement _politicalExposureQuestion;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.XPath, Using = "//*[contains(@text, 'Yes.')]")]
         private IWebElement _yesAnswer;
 
@@ -47,7 +45,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         public PoliticalExposureQuestionPage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);
             _continueButton.Click();
             return this;
         }
@@ -59,12 +57,11 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_politicalExposureQuestion);
-                    Waits.ElementToBeVisible(_yesAnswer);
-                    Waits.ElementToBeVisible(_nopeAnswer);
-                    Waits.ElementToBeVisible(_informationMessage);
-                    Waits.ElementToBeClickable(_continueButton);
+                    Wait.Until(ElementToBeVisible(_politicalExposureQuestion));
+                    Wait.Until(ElementToBeVisible(_yesAnswer));
+                    Wait.Until(ElementToBeVisible(_nopeAnswer));
+                    Wait.Until(ElementToBeVisible(_informationMessage));
+                    Wait.Until(ElementToBeVisible(_continueButton));
 
                     _politicalExposureQuestion.Text.Should().Contain(PoliticalExposureQuestionText);
                     _informationMessage.Text.Should().Contain(InformationMessageText);

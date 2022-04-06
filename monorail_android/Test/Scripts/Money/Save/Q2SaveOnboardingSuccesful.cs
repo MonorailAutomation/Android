@@ -1,6 +1,8 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
+using monorail_android.PageObjects.Money;
+using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
@@ -11,20 +13,21 @@ using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.Commons.EmailGenerator;
 
-namespace monorail_android.Test.Scripts.Money.Spend
+namespace monorail_android.Test.Scripts.Money.Save
 {
-    internal class Q2SpendOnboarding : FunctionalTesting
+    internal class Q2SaveOnboardingSuccesful : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+23.";
+        private const string UsernamePrefix = "autotests.mono+25."; 
         private const string UsernameSuffix = "@gmail.com";
 
         [Test]
-        public void Q2SpendOnboardingSuccessfulTest()
+        public void Q2SaveOnboardingSuccesfulTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
-            var mainSpendPage = new MainSpendPage(Driver);
+            var spendSaveToggle = new SpendSaveToggle(Driver);
+            var mainSavePage = new MainSavePage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
             var firstNameLastNamePage = new FirstNameLastNamePage(Driver);
             var ssnPage = new SsnPage(Driver);
@@ -33,6 +36,7 @@ namespace monorail_android.Test.Scripts.Money.Spend
             var linkAnAccountPage = new LinkAnAccountPage(Driver);
             var electronicDeliveryConsentPage = new ElectronicDeliveryConsentPage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
+            var mainSpendPage = new MainSpendPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -52,8 +56,11 @@ namespace monorail_android.Test.Scripts.Money.Spend
             bottomMenu
                 .ClickMoneyNavButton();
 
-            mainSpendPage
-                .ClickOpenYourCheckingAccountButton();
+            spendSaveToggle
+                .ClickSaveButton();
+
+            mainSavePage
+                .ClickUnlockSavingsTracks();
 
             personalInformationPage
                 .ClickGetStartedButton();
@@ -86,6 +93,11 @@ namespace monorail_android.Test.Scripts.Money.Spend
             termsAndConditionsPage
                 .ScrollToTheBottomOfPage()
                 .ClickAgreeAndFinishButton();
+
+            mainSavePage
+                .ClickTrack("Travel")
+                .ClickGetStartedButton()
+                .WaitUntilTrackIsDisplayed();
 
             mainMenuPage
                 .ClickSideMenu()

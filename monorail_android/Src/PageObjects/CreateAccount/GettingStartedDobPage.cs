@@ -1,8 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
 using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.CreateAccount
 {
@@ -74,18 +74,18 @@ namespace monorail_android.PageObjects.CreateAccount
 
         public GettingStartedDobPage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }
 
         private void WaitUntilDateOfBirthPageIsLoaded()
         {
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + DobLabelText + "')]"));
-            Waits.ElementToBeVisible(_monthPickerWheel);
-            Waits.ElementToBeVisible(_dayPickerWheel);
-            Waits.ElementToBeVisible(_yearPickerWheel);
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + DobLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(_monthPickerWheel));
+            Wait.Until(ElementToBeVisible(_dayPickerWheel));
+            Wait.Until(ElementToBeVisible(_yearPickerWheel));
         }
     }
 }

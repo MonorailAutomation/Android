@@ -57,9 +57,6 @@ namespace monorail_android.PageObjects.Money.Spend
         [FindsBy(How = How.Id, Using = "buttonOpenCheckingAccount")]
         private IWebElement _openYourCheckingAccountButton;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         public MainSpendPage(AndroidDriver<IWebElement> driver)
         {
             PageFactory.InitElements(driver, this);
@@ -79,7 +76,6 @@ namespace monorail_android.PageObjects.Money.Spend
             while (true)
                 try
                 {
-                    Wait.Until(ElementToBeNotVisible(_progressIndicator));
                     Wait.Until(ElementToBeVisible(_openCheckingAccountSection));
                     Wait.Until(ElementToBeVisible(_emptyScreenMessageHeader));
                     Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletPoint));

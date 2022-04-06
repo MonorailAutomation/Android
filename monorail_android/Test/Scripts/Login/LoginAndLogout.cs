@@ -1,4 +1,5 @@
 using monorail_android.PageObjects;
+using monorail_android.PageObjects.Launch;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
@@ -17,6 +18,8 @@ namespace monorail_android.Test.Scripts.Login
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
+            GoThroughLaunchScreens();
+
             loginPage
                 .PassCredentials("autotests.mono+40.131021@gmail.com", ValidPassword)
                 .ClickSignInButton();
@@ -30,6 +33,17 @@ namespace monorail_android.Test.Scripts.Login
 
             logOutBottomUp
                 .ClickYesButton();
+        }
+
+        public static void GoThroughLaunchScreens()
+        {
+            var launchWishlistPage = new LaunchWishlistPage(Driver);
+            var launchPowerPage = new LaunchPowerPage(Driver);
+            var launchBuyPage = new LaunchBuyPage(Driver);
+
+            launchWishlistPage.ClickContinueButton();
+            launchPowerPage.ClickContinueButton();
+            launchBuyPage.ClickGetStartedButton();
         }
     }
 }

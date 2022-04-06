@@ -1,7 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects
 {
@@ -49,10 +50,10 @@ namespace monorail_android.PageObjects
 
         private void WaitUntilLoginPageIsLoaded()
         {
-            Waits.ElementToBeVisible(_emailInput);
-            Waits.ElementToBeVisible(_passwordInput);
-            Waits.ElementToBeClickable(_createAnAccountButton);
-            Waits.ElementToBeClickable(_signInButton);
+            Wait.Until(ElementToBeVisible(_emailInput));
+            Wait.Until(ElementToBeVisible(_passwordInput));
+            Wait.Until(ElementToBeClickable(_createAnAccountButton));
+            Wait.Until(ElementToBeVisible(_signInButton));
         }
     }
 }

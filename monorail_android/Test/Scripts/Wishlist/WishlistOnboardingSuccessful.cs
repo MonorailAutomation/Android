@@ -4,17 +4,19 @@ using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
-using static monorail_android.Commons.RandomGenerator;
+using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
+using static monorail_android.Test.Scripts.Login.LoginAndLogout;
+using static monorail_android.Commons.EmailGenerator;
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
     internal class WishlistOnboardingSuccessful : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+22.032822";
+        private const string UsernamePrefix = "autotests.mono+22.";
         private const string UsernameSuffix = "@gmail.com";
 
         [Test]
@@ -35,11 +37,13 @@ namespace monorail_android.Test.Scripts.Wishlist
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            GoThroughLaunchScreens();
 
             Thread.Sleep(20000); // wait for Wishlist Item to be correctly added
 

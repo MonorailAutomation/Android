@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.Commons.Onboarding
 {
@@ -19,9 +20,6 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         [FindsBy(How = How.Id, Using = "labelBottomHint")]
         private IWebElement _informationMessage;
-
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
 
         [FindsBy(How = How.Id, Using = "editField")]
         private IWebElement _ssnInput;
@@ -43,7 +41,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         public SsnPage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);
             _continueButton.Click();
             return this;
         }
@@ -55,10 +53,9 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             while (true)
                 try
                 {
-                    Waits.ElementToBeNotVisible(_progressIndicator);
-                    Waits.ElementToBeVisible(_yourSsnLabel);
-                    Waits.ElementToBeVisible(_ssnInput);
-                    Waits.ElementToBeClickable(_continueButton);
+                    Wait.Until(ElementToBeVisible(_yourSsnLabel));
+                    Wait.Until(ElementToBeVisible(_ssnInput));
+                    Wait.Until(ElementToBeVisible(_continueButton));
 
                     _yourSsnLabel.Text.Should().Contain(YourSsnLabelText);
                     break;

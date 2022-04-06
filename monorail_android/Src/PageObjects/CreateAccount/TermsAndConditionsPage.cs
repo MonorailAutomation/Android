@@ -1,8 +1,9 @@
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Commons.Waits;
+using static monorail_android.Test.FunctionalTesting;
 
 namespace monorail_android.PageObjects.CreateAccount
 {
@@ -26,8 +27,7 @@ namespace monorail_android.PageObjects.CreateAccount
 
         public TermsAndConditionsPage ClickAgreeAndFinishButton()
         {
-            WaitUntilTermsAndConditionsPageIsLoaded();
-            while (_agreeAndFinishButton.Enabled == false) Waits.ElementToBeClickable(_agreeAndFinishButton);
+            while (_agreeAndFinishButton.Enabled == false) Wait.Until(ElementToBeClickable(_agreeAndFinishButton));
             _agreeAndFinishButton.Click();
             return this;
         }
@@ -41,9 +41,9 @@ namespace monorail_android.PageObjects.CreateAccount
 
         private void WaitUntilTermsAndConditionsPageIsLoaded()
         {
-            Waits.ElementToBeVisible(_termsAndConditionsHeader);
-            Waits.ElementToBeVisible(_skipToBottomButton);
-            Waits.ElementToBeVisible(_agreeAndFinishButton);
+            Wait.Until(ElementToBeVisible(_termsAndConditionsHeader));
+            Wait.Until(ElementToBeVisible(_skipToBottomButton));
+            Wait.Until(ElementToBeVisible(_agreeAndFinishButton));
 
             _termsAndConditionsHeader.Text.Should().Be(TermsAndConditionsHeaderText);
         }

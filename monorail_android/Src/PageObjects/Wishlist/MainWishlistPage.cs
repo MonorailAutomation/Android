@@ -33,9 +33,6 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.XPath, Using = "//android.widget.FrameLayout[3]//*[contains(@resource-id, 'groupNoItem')]")]
         private IWebElement _placeholder;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         public MainWishlistPage(AndroidDriver<IWebElement> driver)
         {
             PageFactory.InitElements(driver, this);
@@ -43,14 +40,24 @@ namespace monorail_android.PageObjects.Wishlist
 
         public MainWishlistPage WaitUntilEmptyMainWishlistPageIsLoaded()
         {
-            Wait.Until(ElementToBeNotVisible(_progressIndicator));
-            Wait.Until(ElementToBeClickable(_howItWorksButton));
-            Wait.Until(ElementToBeClickable(_addAnItemButtonOnEmptyWishlistPage));
-            Wait.Until(ElementToBeVisible(_emptyScreenMessageHeader));
-            Wait.Until(ElementToBeVisible(_emptyScreenMessage));
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeClickable(_howItWorksButton));
+                    Wait.Until(ElementToBeClickable(_addAnItemButtonOnEmptyWishlistPage));
+                    Wait.Until(ElementToBeVisible(_emptyScreenMessageHeader));
+                    Wait.Until(ElementToBeVisible(_emptyScreenMessage));
 
-            _emptyScreenMessageHeader.Text.Should().Contain(EmptyScreenMessageHeaderText);
-            _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageText);
+                    _emptyScreenMessageHeader.Text.Should().Contain(EmptyScreenMessageHeaderText);
+                    _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageText);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
             return this;
         }
 
@@ -64,7 +71,6 @@ namespace monorail_android.PageObjects.Wishlist
                     var wishlistItemSelector = "//*[contains(@text, '" + wishlistItemName + "')]";
                     var wishlistItemElement = Driver.FindElementByXPath(wishlistItemSelector);
 
-                    Wait.Until(ElementToBeNotVisible(_progressIndicator));
                     Wait.Until(ElementToBeVisible(wishlistItemElement));
                     wishlistItemElement.Click();
                     break;
@@ -80,9 +86,23 @@ namespace monorail_android.PageObjects.Wishlist
         public MainWishlistPage CheckIfWishlistItemIsDisplayedOnMainScreen(string wishlistItemName)
         {
             var wishlistItemSelector = "//*[contains(@text, '" + wishlistItemName + "')]";
+            var wishlistItemElement = Driver.FindElementByXPath(wishlistItemSelector);
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(wishlistItemElement));
 
-            Wait.Until(ElementToBeNotVisible(_progressIndicator));
-            Wait.Until(ElementToBeVisible(Driver.FindElementByXPath(wishlistItemSelector)));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            wishlistItemElement.Click();
+
             return this;
         }
 

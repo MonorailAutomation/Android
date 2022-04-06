@@ -25,9 +25,6 @@ namespace monorail_android.PageObjects.MainMenu
         [FindsBy(How = How.Id, Using = "lbl_my_connected_account")]
         private IWebElement _myConnectedAccountNavItem;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.Id, Using = "toggleImage")]
         private IWebElement _sideMenu;
 

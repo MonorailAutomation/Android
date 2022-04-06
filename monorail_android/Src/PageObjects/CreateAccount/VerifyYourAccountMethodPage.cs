@@ -1,7 +1,7 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Commons.Waits;
 using static monorail_android.Test.FunctionalTesting;
 
 namespace monorail_android.PageObjects.CreateAccount
@@ -47,11 +47,11 @@ namespace monorail_android.PageObjects.CreateAccount
 
         private void WaitUntilMethodPageIsLoaded()
         {
-            Waits.ElementToBeVisible(
-                Driver.FindElementByXPath("//*[contains(@text, '" + FastestWayToVerifyLabelText + "')]"));
-            Waits.ElementToBeVisible(_textMessageOption);
-            Waits.ElementToBeVisible(_emailOption);
-            Waits.ElementToBeVisible(_continueButton);
+            Wait.Until(ElementToBeVisible(
+                Driver.FindElementByXPath("//*[contains(@text, '" + FastestWayToVerifyLabelText + "')]")));
+            Wait.Until(ElementToBeVisible(_textMessageOption));
+            Wait.Until(ElementToBeVisible(_emailOption));
+            Wait.Until(ElementToBeVisible(_continueButton));
         }
     }
 }

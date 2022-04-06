@@ -24,9 +24,6 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "buttonContinue")]
         private IWebElement _continueButton;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         public WishlistAddCashPage(AndroidDriver<IWebElement> driver)
         {
             PageFactory.InitElements(driver, this);
@@ -34,6 +31,7 @@ namespace monorail_android.PageObjects.Wishlist
 
         public WishlistAddCashPage ClickBackButton()
         {
+            Wait.Until(ElementToBeVisible(_backButton));
             _backButton.Click();
             return this;
         }
@@ -46,6 +44,7 @@ namespace monorail_android.PageObjects.Wishlist
                 try
                 {
                     Wait.Until(ElementToBeVisible(_addCashScreenTitle));
+                    Wait.Until(ElementToBeVisible(_backButton));
                     Wait.Until(ElementToBeVisible(_cancelButton));
                     Wait.Until(ElementToBeVisible(_continueButton));
 

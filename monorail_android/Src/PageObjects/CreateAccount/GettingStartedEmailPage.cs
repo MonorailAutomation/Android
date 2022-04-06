@@ -1,7 +1,8 @@
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Commons.Waits;
+using static monorail_android.Test.FunctionalTesting;
 
 namespace monorail_android.PageObjects.CreateAccount
 {
@@ -20,14 +21,14 @@ namespace monorail_android.PageObjects.CreateAccount
 
         public GettingStartedEmailPage PassEmail(string email)
         {
-            Waits.ElementToBeVisible(_emailInput);
+            Wait.Until(ElementToBeVisible(_emailInput));
             _emailInput.SendKeys(email);
             return this;
         }
 
         public GettingStartedEmailPage ClickContinueButton()
         {
-            while (_continueButton.Enabled == false) Waits.ElementToBeClickable(_continueButton);
+            while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }

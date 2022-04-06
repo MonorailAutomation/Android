@@ -1,9 +1,10 @@
 using System;
 using FluentAssertions;
-using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
+using static monorail_android.Test.FunctionalTesting;
+using static monorail_android.Commons.Waits;
 
 namespace monorail_android.PageObjects.MainMenu
 {
@@ -34,9 +35,6 @@ namespace monorail_android.PageObjects.MainMenu
         [FindsBy(How = How.Id, Using = "title")]
         private IWebElement _pageTitle;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.XPath, Using = "//android.view.ViewGroup[3]/android.widget.TextView[1]")]
         private IWebElement _sampleThirdTransaction;
 
@@ -57,7 +55,7 @@ namespace monorail_android.PageObjects.MainMenu
 
         public ConnectedAccountPage ClickBackButton()
         {
-            Waits.ElementToBeClickable(_backButton);
+            ElementToBeClickable(_backButton);
             _backButton.Click();
             return this;
         }
@@ -69,11 +67,11 @@ namespace monorail_android.PageObjects.MainMenu
             while (true)
                 try
                 {
-                    Waits.ElementToBeClickable(_backButton);
-                    Waits.ElementToBeVisible(_pageTitle);
-                    Waits.ElementToBeVisible(_informationMessageHeader);
-                    Waits.ElementToBeVisible(_informationMessage);
-                    Waits.ElementToBeVisible(_connectYourAccountButton);
+                    Wait.Until(ElementToBeClickable(_backButton));
+                    Wait.Until(ElementToBeVisible(_pageTitle));
+                    Wait.Until(ElementToBeVisible(_informationMessageHeader));
+                    Wait.Until(ElementToBeVisible(_informationMessage));
+                    Wait.Until(ElementToBeVisible(_connectYourAccountButton));
 
                     _pageTitle.Text.Should().Contain(PageTitleText);
                     _informationMessageHeader.Text.Should().Contain(InformationMessageHeaderText);
@@ -93,12 +91,11 @@ namespace monorail_android.PageObjects.MainMenu
             while (true)
                 try
                 {
-                    Waits.ElementToBeClickable(_backButton);
-                    Waits.ElementToBeVisible(_pageTitle);
-                    Waits.ElementToBeVisible(_unlinkButton);
-                    Waits.ElementToBeVisible(_sampleThirdTransaction);
-                    Waits.ElementToBeNotVisible(_connectYourAccountButton);
-                    Waits.ElementToBeNotVisible(_progressIndicator);
+                    Wait.Until(ElementToBeClickable(_backButton));
+                    Wait.Until(ElementToBeVisible(_pageTitle));
+                    Wait.Until(ElementToBeVisible(_unlinkButton));
+                    Wait.Until(ElementToBeVisible(_sampleThirdTransaction));
+                    Wait.Until(ElementToBeNotVisible(_connectYourAccountButton));
 
                     _pageTitle.Text.Should().Contain(PageTitleText);
                     _sampleThirdTransaction.Text.Should().ContainAny(_listOfCompaniesInTransactions);

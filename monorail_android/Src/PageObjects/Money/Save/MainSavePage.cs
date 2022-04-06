@@ -56,9 +56,6 @@ namespace monorail_android.PageObjects.Money.Save
         [FindsBy(How = How.Id, Using = "labelDescription")]
         private IWebElement _informationMessage;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.Id, Using = "labelSelect")]
         private IWebElement _selectYourTracksHeader;
 
@@ -67,6 +64,9 @@ namespace monorail_android.PageObjects.Money.Save
 
         [FindsBy(How = How.Id, Using = "buttonOpenCheckingAccount")]
         private IWebElement _unlockSavingsTracksButton;
+
+        [FindsBy(How = How.Id, Using = "labelGoalName")]
+        private IWebElement _trackName;
 
         public MainSavePage(AndroidDriver<IWebElement> driver)
         {
@@ -114,6 +114,12 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        public MainSavePage WaitUntilTrackIsDisplayed()
+        {
+            Wait.Until(ElementToBeVisible(_trackName));
+            return this;
+        }
+
         private void WaitUntilSavePageAfterOnboardingIsLoaded()
         {
             var count = 0;
@@ -121,7 +127,6 @@ namespace monorail_android.PageObjects.Money.Save
             while (true)
                 try
                 {
-                    Wait.Until(ElementToBeNotVisible(_progressIndicator));
                     Wait.Until(ElementToBeVisible(_selectYourTracksHeader));
                     Wait.Until(ElementToBeVisible(_informationMessage));
                     Wait.Until(ElementToBeClickable(_howItWorksButton));
@@ -143,7 +148,6 @@ namespace monorail_android.PageObjects.Money.Save
             while (true)
                 try
                 {
-                    Wait.Until(ElementToBeNotVisible(_progressIndicator));
                     Wait.Until(ElementToBeVisible(_emptyScreenMessageHeader));
                     Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletPoint));
                     Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletPoint));
