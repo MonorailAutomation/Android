@@ -6,6 +6,7 @@ using NUnit.Framework;
 using static monorail_android.Commons.RandomGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.TrackHelperFunctions;
+using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 
 namespace monorail_android.Test.Scripts.Money.Save
 {
@@ -30,6 +31,8 @@ namespace monorail_android.Test.Scripts.Money.Save
             const string username = "autotests.mono+2.2.310322@gmail.com";
 
             var trackName = "Test Track " + GenerateRandomString();
+
+            GoThroughLaunchScreens();
 
             loginPage
                 .PassCredentials(username, ValidPassword)
