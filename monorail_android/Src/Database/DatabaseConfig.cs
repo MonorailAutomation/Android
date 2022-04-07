@@ -1,15 +1,35 @@
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using monorail_android.Model.ConfigurationModel;
 
 namespace monorail_android.Database
 {
-    public class DatabaseConfig
+    public static class DatabaseConfig
     {
-        public SqlConnectionStringBuilder Builder { get; } = new SqlConnectionStringBuilder
+        public static SqlConnectionStringBuilder Builder(string env)
         {
-            DataSource = "vimvest-sqlserver-test.database.windows.net",
-            UserID = "DbLoginTest",
-            Password = "Heiwp&3&dji_8sIKd",
-            InitialCatalog = "Monarch-Db-Dev"
-        };
+            var sqlConnectionStringBuilder = new SqlConnectionStringBuilder
+            {
+                DataSource = GetDatabaseConfiguration().DataSource,
+                UserID = GetDatabaseConfiguration().UserId,
+                Password = GetDatabaseConfiguration().Password,
+                InitialCatalog = GetDatabaseConfiguration().InitialCatalogPrefix + CapitalizeFirstLetter(env)
+            };
+            return sqlConnectionStringBuilder;
+        }
+
+        private static DatabaseConfiguration GetDatabaseConfiguration()
+        {
+            var configuration = new ConfigurationBuilder().BuildAppSettings();
+
+            var _databaseConfiguration = configuration.GetSection("DatabaseConfiguration").Get<DatabaseConfiguration>();
+
+            return _databaseConfiguration;
+        }
+
+        private static string CapitalizeFirstLetter(string str)
+        {
+            return char.ToUpper(str[0]) + str[1..];
+        }
     }
 }
