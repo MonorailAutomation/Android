@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using static monorail_android.Test.FunctionalTesting;
 
 namespace monorail_android.Database
 {
@@ -10,7 +11,7 @@ namespace monorail_android.Database
             string verificationCode = null;
             try
             {
-                var sqlConnection = new SqlConnection(new DatabaseConfig().Builder.ConnectionString);
+                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailTestEnvironment).ConnectionString);
                 sqlConnection.Open();
 
                 var query =
