@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using monorail_android.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -33,6 +34,18 @@ namespace monorail_android.PageObjects.Wishlist
         {
             Wait.Until(ElementToBeVisible(_backButton));
             _backButton.Click();
+            return this;
+        }
+
+        public WishlistAddCashPage ClickContinueButton()
+        {
+            _continueButton.Click();
+            return this;
+        }
+
+        public WishlistAddCashPage SetAmount(string amount)
+        {
+            CustomKeyboard.SendKeys(amount);
             return this;
         }
 
