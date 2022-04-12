@@ -62,9 +62,6 @@ namespace monorail_android.PageObjects.Wishlist
                 {
                     if (++count == maxTries) throw e;
                 }
-
-            wishlistItemElement.Click();
-
             return this;
         }
 
