@@ -4,7 +4,6 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
-using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;

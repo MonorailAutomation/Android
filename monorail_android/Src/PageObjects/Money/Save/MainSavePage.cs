@@ -11,6 +11,8 @@ namespace monorail_android.PageObjects.Money.Save
 {
     public class MainSavePage
     {
+        private const string TracksLabelText = "TRACKS";
+
         private const string SelectYourTracksHeaderText = "Select Your Tracks";
 
         private const string InformationMessageText =
@@ -62,11 +64,14 @@ namespace monorail_android.PageObjects.Money.Save
         [FindsBy(How = How.Id, Using = "mainScrollLayout")]
         private IWebElement _selectYourTracksScrollView;
 
-        [FindsBy(How = How.Id, Using = "buttonOpenCheckingAccount")]
-        private IWebElement _unlockSavingsTracksButton;
-
         [FindsBy(How = How.Id, Using = "labelGoalName")]
         private IWebElement _trackName;
+
+        [FindsBy(How = How.Id, Using = "labelTracks")]
+        private IWebElement _tracksLabel;
+
+        [FindsBy(How = How.Id, Using = "buttonOpenCheckingAccount")]
+        private IWebElement _unlockSavingsTracksButton;
 
         public MainSavePage(AndroidDriver<IWebElement> driver)
         {
@@ -80,9 +85,17 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
-        public MainSavePage ClickTrack(string trackName)
+        public MainSavePage ClickTrackTile(string trackName)
         {
             WaitUntilSavePageAfterOnboardingIsLoaded();
+            var track = Driver.FindElementByXPath("//*[contains(@text, '" + trackName + "')]");
+            track.Click();
+            return this;
+        }
+
+        public MainSavePage ClickTrackDetails(string trackName)
+        {
+            WaitUntilSavePageWithAtLeastOneTrackIsLoaded();
             var track = Driver.FindElementByXPath("//*[contains(@text, '" + trackName + "')]");
             track.Click();
             return this;
@@ -118,6 +131,24 @@ namespace monorail_android.PageObjects.Money.Save
         {
             Wait.Until(ElementToBeVisible(_trackName));
             return this;
+        }
+
+        private void WaitUntilSavePageWithAtLeastOneTrackIsLoaded()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(_tracksLabel));
+
+                    _tracksLabel.Text.Should().Contain(TracksLabelText);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
         }
 
         private void WaitUntilSavePageAfterOnboardingIsLoaded()

@@ -1,7 +1,6 @@
-using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using static monorail_android.RestRequests.RestConfig;
-using Newtonsoft.Json.Linq;
 
 namespace monorail_android.RestRequests
 {
@@ -23,7 +22,7 @@ namespace monorail_android.RestRequests
             };
             request.AddJsonBody(new
             {
-                email = userEmail,
+                email = userEmail
             });
 
             var response = client.Execute(request);
