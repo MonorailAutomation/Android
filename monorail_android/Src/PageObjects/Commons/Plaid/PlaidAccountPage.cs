@@ -9,14 +9,14 @@ namespace monorail_android.PageObjects.Commons.Plaid
 {
     public class PlaidAccountPage
     {
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-continue-button')]")]
+        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-button')]")]
         private IWebElement _continueButton;
-
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'password')]")]
-        private IWebElement _passwordInput;
-
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'username')]")]
-        private IWebElement _usernameInput;
+        
+        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-selection-0')]")]
+        private IWebElement _checkingOption;
+        
+        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-selection-1')]")]
+        private IWebElement _savingOption;
 
         public PlaidAccountPage(AndroidDriver<IWebElement> driver)
         {
@@ -46,7 +46,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
             while (true)
                 try
                 {
-                    Wait.Until(ElementToBeVisible(Driver.FindElementByXPath("//*[contains(@text, 'Checking')]")));
+                    Wait.Until(ElementToBeVisible(_checkingOption));
+                    Wait.Until(ElementToBeVisible(_savingOption));
                     Wait.Until(ElementToBeVisible(_continueButton));
                     break;
                 }

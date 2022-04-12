@@ -5,7 +5,6 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
-using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Database.VerificationCode;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.Commons.EmailGenerator;
@@ -29,7 +28,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var verifyYourAccountMethodPage = new VerifyYourAccountMethodPage(Driver);
             var verifyYourAccountVerificationCodePage = new VerifyYourAccountVerificationCodePage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -72,7 +71,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             mainMenuPage
@@ -94,7 +93,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var verifyYourAccountMethodPage = new VerifyYourAccountMethodPage(Driver);
             var verifyYourAccountVerificationCodePage = new VerifyYourAccountVerificationCodePage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -137,7 +136,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             mainMenuPage

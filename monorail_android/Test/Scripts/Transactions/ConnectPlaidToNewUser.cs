@@ -5,7 +5,6 @@ using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
-using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.Commons.EmailGenerator;
 
@@ -20,7 +19,7 @@ namespace monorail_android.Test.Scripts.Transactions
         public void ConnectPlaidToNewUserTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var connectedAccountPage = new ConnectedAccountPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
@@ -35,7 +34,7 @@ namespace monorail_android.Test.Scripts.Transactions
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             mainMenuPage

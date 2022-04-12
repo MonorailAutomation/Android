@@ -23,10 +23,10 @@ namespace monorail_android.Test.Scripts.Money.Save
         public void Q2SaveOnboardingRejectedTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var spendSaveToggle = new SpendSaveToggle(Driver);
-            var mainSavePage = new MainSavePage(Driver);
+            var emptyMainSavePage = new EmptyMainSavePage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
             var firstNameLastNamePage = new FirstNameLastNamePage(Driver);
             var ssnPage = new SsnPage(Driver);
@@ -35,6 +35,7 @@ namespace monorail_android.Test.Scripts.Money.Save
             var linkAnAccountPage = new LinkAnAccountPage(Driver);
             var electronicDeliveryConsentPage = new ElectronicDeliveryConsentPage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
+            var mainSavePage = new MainSavePage(Driver);
             var mainSpendPage = new MainSpendPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
@@ -49,7 +50,7 @@ namespace monorail_android.Test.Scripts.Money.Save
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             bottomMenu
@@ -58,7 +59,7 @@ namespace monorail_android.Test.Scripts.Money.Save
             spendSaveToggle
                 .ClickSaveButton();
 
-            mainSavePage
+            emptyMainSavePage
                 .ClickUnlockSavingsTracks();
 
             personalInformationPage

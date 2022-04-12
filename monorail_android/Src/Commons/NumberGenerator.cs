@@ -8,6 +8,7 @@ namespace monorail_android.Commons
         {
             return new Random().Next(100, 999).ToString();
         }
+
         public static string GenerateRandom4Digits()
         {
             return new Random().Next(1000, 9999).ToString();

@@ -14,7 +14,7 @@ namespace monorail_android.Test.Scripts.Login
         public void LoginAndLogoutTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -24,7 +24,7 @@ namespace monorail_android.Test.Scripts.Login
                 .PassCredentials("autotests.mono+40.131021@gmail.com", ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             mainMenuPage
