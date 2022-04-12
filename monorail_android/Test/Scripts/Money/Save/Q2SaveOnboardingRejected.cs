@@ -6,7 +6,6 @@ using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
-using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
@@ -95,7 +94,7 @@ namespace monorail_android.Test.Scripts.Money.Save
                 .ClickAgreeAndFinishButton();
 
             mainSavePage
-                .ClickTrack("Travel")
+                .ClickTrackTile("Travel")
                 .ClickGetStartedButton();
 
             /* Because of BUG: 37760

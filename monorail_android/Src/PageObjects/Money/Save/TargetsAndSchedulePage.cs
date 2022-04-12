@@ -27,6 +27,9 @@ namespace monorail_android.PageObjects.Money.Save
         [FindsBy(How = How.Id, Using = "clickOverlayDepositAmount")]
         private IWebElement _depositAmountField;
 
+        [FindsBy(How = How.Id, Using = "switchEnableDepositSchedule")]
+        private IWebElement _enableScheduledDepositSwitch;
+
         [FindsBy(How = How.Id, Using = "buttonMonthly")]
         private IWebElement _monthlyFrequencyButton;
 
@@ -41,9 +44,6 @@ namespace monorail_android.PageObjects.Money.Save
 
         [FindsBy(How = How.Id, Using = "buttonWeekly")]
         private IWebElement _weeklyFrequencyButton;
-
-        [FindsBy(How = How.Id, Using = "switchEnableDepositSchedule")]
-        private IWebElement _enableScheduledDepositSwitch;
 
 
         public TargetsAndSchedulePage(AndroidDriver<IWebElement> driver)
@@ -64,12 +64,14 @@ namespace monorail_android.PageObjects.Money.Save
             _enableScheduledDepositSwitch.Click();
             return this;
         }
+
         public TargetsAndSchedulePage ClickTargetAmountField()
         {
             WaitUntilTargetsAndSchedulePageIsLoaded();
             _targetAmountField.Click();
             return this;
         }
+
         public TargetsAndSchedulePage ClickContinueButton()
         {
             _continueButton.Click();
