@@ -7,7 +7,6 @@ using static monorail_android.Commons.RandomGenerator;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.TrackHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
-using System.Threading;
 
 namespace monorail_android.Test.Scripts.Money.Save
 {

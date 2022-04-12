@@ -15,7 +15,7 @@ namespace monorail_android.Test.Scripts.Transactions
         public void WithdrawFromTrackTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var spendSaveToggle = new SpendSaveToggle(Driver);
             var trackDetailsPage = new TrackDetailsPage(Driver);
@@ -35,7 +35,7 @@ namespace monorail_android.Test.Scripts.Transactions
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             bottomMenu

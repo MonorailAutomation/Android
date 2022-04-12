@@ -21,9 +21,9 @@ namespace monorail_android.Test.Scripts.Money.Spend
         public void Q2SpendOnboardingSuccessfulTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
-            var mainSpendPage = new MainSpendPage(Driver);
+            var emptyMainSpendPage = new EmptyMainSpendPage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
             var firstNameLastNamePage = new FirstNameLastNamePage(Driver);
             var ssnPage = new SsnPage(Driver);
@@ -45,13 +45,13 @@ namespace monorail_android.Test.Scripts.Money.Spend
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();
 
-            mainSpendPage
+            emptyMainSpendPage
                 .ClickOpenYourCheckingAccountButton();
 
             personalInformationPage

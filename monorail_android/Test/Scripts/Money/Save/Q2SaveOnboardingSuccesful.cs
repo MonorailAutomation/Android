@@ -3,7 +3,6 @@ using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Money.Save;
-using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
@@ -23,10 +22,10 @@ namespace monorail_android.Test.Scripts.Money.Save
         public void Q2SaveOnboardingSuccesfulTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var spendSaveToggle = new SpendSaveToggle(Driver);
-            var mainSavePage = new MainSavePage(Driver);
+            var emptyMainSavePage = new EmptyMainSavePage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
             var firstNameLastNamePage = new FirstNameLastNamePage(Driver);
             var ssnPage = new SsnPage(Driver);
@@ -35,7 +34,7 @@ namespace monorail_android.Test.Scripts.Money.Save
             var linkAnAccountPage = new LinkAnAccountPage(Driver);
             var electronicDeliveryConsentPage = new ElectronicDeliveryConsentPage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var mainSpendPage = new MainSpendPage(Driver);
+            var mainSavePage = new MainSavePage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -49,7 +48,7 @@ namespace monorail_android.Test.Scripts.Money.Save
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
+            emptyMainWishlistPage
                 .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             bottomMenu
@@ -58,7 +57,7 @@ namespace monorail_android.Test.Scripts.Money.Save
             spendSaveToggle
                 .ClickSaveButton();
 
-            mainSavePage
+            emptyMainSavePage
                 .ClickUnlockSavingsTracks();
 
             personalInformationPage

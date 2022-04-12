@@ -1,4 +1,3 @@
-using System;
 using static monorail_android.Commons.NumberGenerator;
 using static monorail_android.RestRequests.VerifyEmailAddress;
 
@@ -14,8 +13,7 @@ namespace monorail_android.Commons
             {
                 username = usernamePrefix + GetCurrentDate() + "." + GenerateRandom4Digits() + usernameSuffix;
                 emailAlreadyExists = VerifyEmailAlreadyExists(username);
-            }
-            while (emailAlreadyExists);
+            } while (emailAlreadyExists);
 
             return username;
         }

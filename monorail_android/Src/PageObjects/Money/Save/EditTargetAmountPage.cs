@@ -12,20 +12,20 @@ namespace monorail_android.PageObjects.Money.Save
     {
         private const string TargetAmountTitleText = "Target Amount";
 
+        [FindsBy(How = How.Id, Using = "buttonCancel")]
+        private IWebElement _cancelButton;
+
         [FindsBy(How = How.Id, Using = "noTargetAmountLabel")]
         private IWebElement _noTargetAmountForThisGoalButton;
 
         [FindsBy(How = How.Id, Using = "buttonSave")]
         private IWebElement _saveButton;
 
-        [FindsBy(How = How.Id, Using = "buttonCancel")]
-        private IWebElement _cancelButton;
+        [FindsBy(How = How.Id, Using = "userEditedAmount")]
+        private IWebElement _targetAmountInput;
 
         [FindsBy(How = How.Id, Using = "titleTargetAmount")]
         private IWebElement _targetAmountTitle;
-
-        [FindsBy(How = How.Id, Using = "userEditedAmount")]
-        private IWebElement _targetAmountInput;
 
         public EditTargetAmountPage(AndroidDriver<IWebElement> driver)
         {

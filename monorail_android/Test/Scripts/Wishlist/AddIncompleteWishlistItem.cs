@@ -21,7 +21,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddIncompleteWishlistItemThroughAddAnItemButtonOnEmptyWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
             var editWishlistItemDetailsPage = new EditWishlistItemDetailsPage(Driver);
@@ -29,6 +29,7 @@ namespace monorail_android.Test.Scripts.Wishlist
             var finishAddWishlistItemScreen = new FinishAddWishlistItemScreen(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var removeFromWishlistBottomUp = new RemoveFromWishlistBottomUp(Driver);
+            var mainWishlistPage = new MainWishlistPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -40,8 +41,8 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
-                .ClickAddAnItemButtonOnEmptyWishlistPage();
+            emptyMainWishlistPage
+                .ClickAddAnItemButton();
 
             pasteALinkPage
                 .PasteUrl(WishlistItemUrl)
@@ -110,7 +111,7 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickSignInButton();
 
             mainWishlistPage
-                .ClickAddAnItemButtonOnMainWishlistPage();
+                .ClickAddAnItemButton();
 
             pasteALinkPage
                 .PasteUrl(WishlistItemUrl)
@@ -179,7 +180,7 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickSignInButton();
 
             mainWishlistPage
-                .ClickPlaceholderOnMainWishlistPage();
+                .ClickPlaceholder();
 
             pasteALinkPage
                 .PasteUrl(WishlistItemUrl)
