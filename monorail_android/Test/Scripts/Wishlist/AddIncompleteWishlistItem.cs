@@ -5,6 +5,7 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
+using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 
 namespace monorail_android.Test.Scripts.Wishlist
@@ -34,6 +35,8 @@ namespace monorail_android.Test.Scripts.Wishlist
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
             const string username = "autotests.mono+2.032822@gmail.com";
+            
+            VerifyPlaidConnection(username);
 
             GoThroughLaunchScreens();
 
@@ -103,6 +106,8 @@ namespace monorail_android.Test.Scripts.Wishlist
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
             const string username = "autotests.mono+2.032922@gmail.com";
+            
+            VerifyPlaidConnection(username);
 
             GoThroughLaunchScreens();
 
@@ -172,6 +177,8 @@ namespace monorail_android.Test.Scripts.Wishlist
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
             const string username = "autotests.mono+2.033022@gmail.com";
+            
+            VerifyPlaidConnection(username);
 
             GoThroughLaunchScreens();
 
