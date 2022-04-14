@@ -4,6 +4,7 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
+using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Login
 {
@@ -18,10 +19,14 @@ namespace monorail_android.Test.Scripts.Login
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
+            const string username = "autotests.mono+40.131021@gmail.com";
+
+            VerifyPlaidConnection(username);
+
             GoThroughLaunchScreens();
 
             loginPage
-                .PassCredentials("autotests.mono+40.131021@gmail.com", ValidPassword)
+                .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             emptyMainWishlistPage
