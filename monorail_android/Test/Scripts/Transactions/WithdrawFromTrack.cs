@@ -5,7 +5,6 @@ using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
-using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 
 namespace monorail_android.Test.Scripts.Transactions
@@ -29,8 +28,6 @@ namespace monorail_android.Test.Scripts.Transactions
             const string username = "autotests.mono+8.4.1204221@gmail.com";
             const string trackName = "Travel";
             const string withdrawAmount = "1";
-            
-            VerifyPlaidConnection(username);
 
             GoThroughLaunchScreens();
 
