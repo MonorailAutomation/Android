@@ -8,7 +8,7 @@ namespace monorail_android.Commons
         public static void SendKeys(string value)
         {
             foreach (var c in value)
-                Driver.FindElement(By.XPath("//android.widget.TextView[contains(@text, '" + c + "')]")).Click();
+                Driver.FindElement(By.XPath("//android.widget.TextView[@text='" + c + "']")).Click();
         }
 
         public static void Clear()

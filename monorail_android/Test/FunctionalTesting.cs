@@ -32,7 +32,6 @@ namespace monorail_android.Test
 
             capabilities.AddAdditionalCapability("platformName", emulatorConfiguration.PlatformName);
             capabilities.AddAdditionalCapability("noReset", appiumConfiguration.NoResetFlag);
-            capabilities.AddAdditionalCapability("appium:app", appConfiguration.Path);
             capabilities.AddAdditionalCapability("appium:deviceName", emulatorConfiguration.DeviceName);
             capabilities.AddAdditionalCapability("appium:automationName", appiumConfiguration.AutomationName);
             capabilities.AddAdditionalCapability("appWaitDuration", appiumConfiguration.WaitDuration);
