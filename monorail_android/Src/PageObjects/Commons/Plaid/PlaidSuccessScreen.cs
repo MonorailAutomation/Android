@@ -10,9 +10,9 @@ namespace monorail_android.PageObjects.Commons.Plaid
 {
     public class PlaidSuccessScreen
     {
-        private const string SuccessMessageText = "Success";
+        private const string SuccessMessageText = "Success!";
 
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-button')]")]
+        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-continue-button')]")]
         private IWebElement _continueButton;
 
         [FindsBy(How = How.XPath,
