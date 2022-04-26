@@ -17,7 +17,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
         public PlaidSelectYourBankPage ClickBank(string bank)
         {
             WaitUntilPlaidSelectYourBankPageIsLoaded();
-            var bankSelector = "//*[contains(@text, '" + bank + "')]";
+            var bankSelector = "//*[contains(@class, 'Button') and contains(@text, '" + bank + "')]";
             var bankElement = Driver.FindElementByXPath(bankSelector);
             bankElement.Click();
             return this;

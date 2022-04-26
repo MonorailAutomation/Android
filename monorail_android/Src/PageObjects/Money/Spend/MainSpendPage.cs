@@ -17,6 +17,10 @@ namespace monorail_android.PageObjects.Money.Spend
         private const string RejectedAccountStatusMessagePartThree =
             "While in this state, you will not be able manage your Monorail account.";
 
+        private const string ManualReviewAccountStatusTitle = "We need more info.";
+        private const string ManualReviewAccountStatusMessagePartOne = "In order to finish setting up your account, reach out to Customer Support.";
+        private const string ManualReviewAccountStatusMessagePartTwo = "While in this state, you will not be able manage your Monorail account.";
+
         [FindsBy(How = How.Id, Using = "cardSegmentSubtitle")]
         private IWebElement _accountStatusCardMessage;
 
@@ -46,6 +50,28 @@ namespace monorail_android.PageObjects.Money.Spend
                     _accountStatusCardMessage.Text.Should().Contain(RejectedAccountStatusMessagePartOne);
                     _accountStatusCardMessage.Text.Should().Contain(RejectedAccountStatusMessagePartTwo);
                     _accountStatusCardMessage.Text.Should().Contain(RejectedAccountStatusMessagePartThree);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+        }
+
+        public void WaitUntilManualReviewAccountStatusIsDisplayed()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(_accountStatusCardTitle));
+                    Wait.Until(ElementToBeVisible(_accountStatusCardMessage));
+                    Wait.Until(ElementToBeVisible(_chatWithTheTeamButton));
+
+                    _accountStatusCardTitle.Text.Should().Contain(ManualReviewAccountStatusTitle);
+                    _accountStatusCardMessage.Text.Should().Contain(ManualReviewAccountStatusMessagePartOne);
+                    _accountStatusCardMessage.Text.Should().Contain(ManualReviewAccountStatusMessagePartTwo);
                     break;
                 }
                 catch (Exception e)

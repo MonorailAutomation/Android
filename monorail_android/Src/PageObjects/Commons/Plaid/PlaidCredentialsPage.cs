@@ -10,13 +10,13 @@ namespace monorail_android.PageObjects.Commons.Plaid
 {
     public class PlaidCredentialsPage
     {
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'password')]")]
+        [FindsBy(How = How.XPath, Using = "//android.view.View[2]/android.widget.EditText")]
         private IWebElement _passwordInput;
 
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-submit-button')]")]
+        [FindsBy(How = How.XPath, Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Submit')]")]
         private IWebElement _submitButton;
 
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'username')]")]
+        [FindsBy(How = How.XPath, Using = "//android.view.View[1]/android.widget.EditText")]
         private IWebElement _usernameInput;
 
         public PlaidCredentialsPage(AndroidDriver<IWebElement> driver)

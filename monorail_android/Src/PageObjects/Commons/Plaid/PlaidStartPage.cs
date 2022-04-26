@@ -9,7 +9,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
 {
     public class PlaidStartPage
     {
-        [FindsBy(How = How.XPath, Using = "//*[contains(@resource-id, 'aut-continue-button')]")]
+        [FindsBy(How = How.XPath, Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Continue')]")]
         private IWebElement _continueButton;
 
         public PlaidStartPage(AndroidDriver<IWebElement> driver)
