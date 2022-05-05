@@ -3,35 +3,36 @@ using FluentAssertions;
 using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_android.RestRequests.RestConfig;
+using static monorail_android.Commons.Constants;
 
-namespace monorail_android.RestRequests
+namespace monorail_android.RestRequests.Endpoints.Monarch
 {
-    public static class MoneyAch
+    public static class RegisterVerify
     {
-        private const string MoneyAchEndpoint = "/api/Money/ACH";
+        private const string RegisterEndpoint = "/api/v2/user/Register/Verify";
 
-        public static void PostMoneyAch(string token, string generatedPlaidPublicToken, string generatedPlaidAccountId)
+        public static void PostRegisterVerify(string token)
         {
+            const string verificationMode = "phone";
+            const string verificationCode = "111111";
             var client = new RestClient
             {
-                BaseUrl = MonorailUri,
+                BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
-                Resource = MoneyAchEndpoint,
+                Resource = RegisterEndpoint,
                 Method = Method.POST,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new
             {
-                accountName = "Plaid Checking",
-                plaidPublicToken = generatedPlaidPublicToken,
-                institutionId = "ins_3",
-                institutionName = "Chase",
-                accountSubType = "checking",
-                plaidAccountId = generatedPlaidAccountId
+                otp = verificationCode,
+                verificationMode,
+                primaryInput = ValidPhoneNumber
             });
+
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);

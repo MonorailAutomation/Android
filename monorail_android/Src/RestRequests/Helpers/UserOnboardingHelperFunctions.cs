@@ -1,9 +1,9 @@
 using System;
 using static monorail_android.Commons.Constants;
-using static monorail_android.RestRequests.Register;
+using static monorail_android.RestRequests.Endpoints.Monarch.Register;
 using static monorail_android.RestRequests.Token;
-using static monorail_android.RestRequests.RegisterVerify;
-using static monorail_android.RestRequests.TermsOfUse;
+using static monorail_android.RestRequests.Endpoints.Monarch.RegisterVerify;
+using static monorail_android.RestRequests.Endpoints.Monarch.TermsOfUse;
 
 namespace monorail_android.RestRequests.Helpers
 {

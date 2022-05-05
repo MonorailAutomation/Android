@@ -2,6 +2,7 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Plaid;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.RestRequests.Helpers;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
@@ -55,6 +56,8 @@ namespace monorail_android.Test.Scripts.Transactions
 
             logOutBottomUp
                 .ClickYesButton();
+
+            UserManagementHelperFunctions.CloseUser(username);
         }
 
         public static void ConnectPlaid()

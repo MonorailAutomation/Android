@@ -1,5 +1,5 @@
 using static monorail_android.RestRequests.Token;
-using static monorail_android.RestRequests.Wishlists;
+using static monorail_android.RestRequests.Endpoints.Monarch.Wishlists;
 
 namespace monorail_android.RestRequests.Helpers
 {

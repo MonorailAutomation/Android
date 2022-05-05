@@ -4,9 +4,9 @@ using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_android.RestRequests.RestConfig;
 
-namespace monorail_android.RestRequests
+namespace monorail_android.RestRequests.Endpoints.Monarch
 {
-    public class Wishlists
+    public static class Wishlists
     {
         private const string WishlistsEndpoint = "/api/Wishlists/";
 
@@ -16,7 +16,7 @@ namespace monorail_android.RestRequests
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailUri,
+                BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest

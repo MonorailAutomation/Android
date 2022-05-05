@@ -10,6 +10,7 @@ using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.Commons.EmailGenerator;
+using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
@@ -103,6 +104,8 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             logOutBottomUp
                 .ClickYesButton();
+
+            CloseUser(username);
         }
     }
 }

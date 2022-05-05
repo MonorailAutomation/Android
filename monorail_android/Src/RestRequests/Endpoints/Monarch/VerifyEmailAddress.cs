@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using static monorail_android.RestRequests.RestConfig;
 
-namespace monorail_android.RestRequests
+namespace monorail_android.RestRequests.Endpoints.Monarch
 {
     public static class VerifyEmailAddress
     {
@@ -12,7 +12,7 @@ namespace monorail_android.RestRequests
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailUri
+                BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {

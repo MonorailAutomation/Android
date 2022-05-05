@@ -1,10 +1,10 @@
 using FluentAssertions;
 using RestSharp;
 using static System.Net.HttpStatusCode;
-using static monorail_android.RestRequests.RestConfig;
 using static monorail_android.Commons.Constants;
+using static monorail_android.RestRequests.RestConfig;
 
-namespace monorail_android.RestRequests
+namespace monorail_android.RestRequests.Endpoints.Monarch
 {
     public static class Register
     {
@@ -15,7 +15,7 @@ namespace monorail_android.RestRequests
             const string verificationMode = "phone";
             var client = new RestClient
             {
-                BaseUrl = MonorailUri
+                BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {

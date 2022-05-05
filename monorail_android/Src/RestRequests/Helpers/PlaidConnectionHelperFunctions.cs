@@ -1,8 +1,8 @@
 using System;
-using static monorail_android.RestRequests.LinkItemCreate;
-using static monorail_android.RestRequests.MoneyAch;
+using static monorail_android.RestRequests.Endpoints.Plaid.LinkItemCreate;
+using static monorail_android.RestRequests.Endpoints.Monarch.MoneyAch;
 using static monorail_android.RestRequests.Token;
-using static monorail_android.RestRequests.VerifyStatus;
+using static monorail_android.RestRequests.Endpoints.Monarch.VerifyStatus;
 
 namespace monorail_android.RestRequests.Helpers
 {

@@ -11,7 +11,7 @@ namespace monorail_android.RestRequests
 
         public static string GenerateToken(string user)
         {
-            var client = new RestClient(MonorailUri);
+            var client = new RestClient(MonarchAppUri);
             var request = new RestRequest
             {
                 Resource = TokenEndpoint,

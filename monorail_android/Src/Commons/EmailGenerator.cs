@@ -1,5 +1,5 @@
 using static monorail_android.Commons.NumberGenerator;
-using static monorail_android.RestRequests.VerifyEmailAddress;
+using static monorail_android.RestRequests.Endpoints.Monarch.VerifyEmailAddress;
 
 namespace monorail_android.Commons
 {
