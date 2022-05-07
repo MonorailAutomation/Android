@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -18,8 +19,20 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "buttonFund")]
         private IWebElement _fundYourWishlistButton;
 
+        [FindsBy(How = How.Id, Using = "buttonBuy")]
+        private IWebElement _readyToBuyButton;
+
         [FindsBy(How = How.Id, Using = "buttonRemove")]
         private IWebElement _removeButton;
+
+        [FindsBy(How = How.Id, Using = "labelTransferDate")]
+        private IWebElement _transferringStatusDate;
+
+        [FindsBy(How = How.Id, Using = "labelStatusDescription")]
+        private IWebElement _transferringStatusDescription;
+
+        [FindsBy(How = How.Id, Using = "labelItemStatus")]
+        private IWebElement _transferringStatusTitle;
 
         public WishlistItemDetailsPage(AndroidDriver<IWebElement> driver)
         {
@@ -36,6 +49,36 @@ namespace monorail_android.PageObjects.Wishlist
                     Wait.Until(ElementToBeClickable(_editButton));
                     Wait.Until(ElementToBeClickable(_removeButton));
                     Wait.Until(ElementToBeClickable(_fundYourWishlistButton));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            return this;
+        }
+
+        public WishlistItemDetailsPage CheckTransferringStatusForExternalTransfer(string amount)
+        {
+            const string transferringStatusTitle = "Your funds are on the way!";
+            const string transferringStatusDescription = " is on the way to your connected account";
+            const string transferringStatusDate = "Transfer started on ";
+
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeClickable(_transferringStatusTitle));
+                    Wait.Until(ElementToBeClickable(_transferringStatusDescription));
+                    Wait.Until(ElementToBeClickable(_transferringStatusDate));
+
+                    _transferringStatusTitle.Text.Should().Be(transferringStatusTitle);
+                    _transferringStatusDescription.Text.Should()
+                        .Contain("$" + amount).And.Contain(transferringStatusDescription);
+                    _transferringStatusDate.Text.Should()
+                        .Contain(transferringStatusDate);
                     break;
                 }
                 catch (Exception e)
@@ -64,6 +107,13 @@ namespace monorail_android.PageObjects.Wishlist
         {
             Wait.Until(ElementToBeVisible(_removeButton));
             _removeButton.Click();
+            return this;
+        }
+
+        public WishlistItemDetailsPage ClickReadyToBuyButton()
+        {
+            Wait.Until(ElementToBeVisible(_readyToBuyButton));
+            _readyToBuyButton.Click();
             return this;
         }
     }

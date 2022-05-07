@@ -1,6 +1,6 @@
 using static monorail_android.Database.Track;
 using static monorail_android.RestRequests.Endpoints.Monarch.Q2Goals;
-using static monorail_android.RestRequests.Token;
+using static monorail_android.RestRequests.Endpoints.Monarch.Token;
 
 namespace monorail_android.RestRequests.Helpers
 {
