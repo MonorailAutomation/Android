@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -62,6 +63,30 @@ namespace monorail_android.PageObjects.Wishlist
                 {
                     if (++count == maxTries) throw e;
                 }
+
+            return this;
+        }
+
+        public MainWishlistPage CheckStatusPillForWishlistItem(string wishlistItemName, string statusPillDescription)
+        {
+            var wishlistItemPillSelector = "//*[contains(@text, '" + wishlistItemName +
+                                           "')]/following-sibling::*[contains(@resource-id, 'itemReadyToBuy')]";
+            var wishlistItemPillElement = Driver.FindElementByXPath(wishlistItemPillSelector);
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(wishlistItemPillElement));
+
+                    wishlistItemPillElement.Text.Should().Be(statusPillDescription);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
             return this;
         }
 

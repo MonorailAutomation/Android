@@ -17,5 +17,16 @@ namespace monorail_android.Commons
             var ta = new TouchAction(Driver);
             ta.Press(secondPointX, secondPointY).Wait(1000).MoveTo(firstPointX, firstPointY).Release().Perform();
         }
+
+        public static void ScrollHalfOfScreen()
+        {
+            var screenWidth = Driver.Manage().Window.Size.Width / 2;
+            var screenHeight = Driver.Manage().Window.Size.Height;
+            var halfOfScreenHeight = screenHeight / 2;
+
+            var ta = new TouchAction(Driver);
+            ta.Press(screenWidth, screenHeight - 500).Wait(1000).MoveTo(screenWidth, halfOfScreenHeight).Release()
+                .Perform();
+        }
     }
 }

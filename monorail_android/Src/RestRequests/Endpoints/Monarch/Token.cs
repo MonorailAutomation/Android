@@ -3,7 +3,7 @@ using RestSharp;
 using static monorail_android.RestRequests.RestConfig;
 using static monorail_android.Commons.Constants;
 
-namespace monorail_android.RestRequests
+namespace monorail_android.RestRequests.Endpoints.Monarch
 {
     public static class Token
     {

@@ -1,5 +1,6 @@
 using System.Net;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_android.RestRequests.RestConfig;
@@ -9,10 +10,10 @@ namespace monorail_android.RestRequests.Endpoints.Monarch
     public static class Wishlists
     {
         private const string WishlistsEndpoint = "/api/Wishlists/";
+        private const string WishlistEndpoint = "/api/Wishlist/";
 
         public static void AddCustomWishlistItem(string token, string productUrl, string itemName,
-            string itemDescription,
-            string itemAmount, string itemImageUrl, string itemFavIconUrl)
+            string itemDescription, string itemAmount, string itemImageUrl, string itemFavIconUrl)
         {
             var client = new RestClient
             {
@@ -39,6 +40,31 @@ namespace monorail_android.RestRequests.Endpoints.Monarch
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        public static string[] GetWishlistItemsInProgress(string token)
+        {
+            var client = new RestClient
+            {
+                BaseUrl = MonarchAppUri,
+                Authenticator = new JwtAuthenticator(token)
+            };
+            var request = new RestRequest
+            {
+                Resource = WishlistEndpoint,
+                Method = Method.GET,
+                RequestFormat = DataFormat.Json
+            };
+
+            var response = client.Execute(request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            dynamic responseContent = JObject.Parse(response.Content);
+
+            string[] wishlistItemsInProgress = responseContent.wishlistItemsInProgress.ToObject<string[]>();
+
+            return wishlistItemsInProgress;
         }
     }
 }
