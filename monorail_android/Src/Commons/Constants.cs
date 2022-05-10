@@ -1,6 +1,6 @@
 namespace monorail_android.Commons
 {
-    public class Constants
+    public static class Constants
     {
         public const string ValidPassword = "Test123!!";
         public const string InvalidPassword = "BlahBlah321!";
@@ -18,6 +18,7 @@ namespace monorail_android.Commons
         public const string ValidPhoneNumber = "9419252121";
 
         public const string Q2RejectedDateOfBirthYmd = "1990-01-01";
+        public const string Q2ManualReviewDateOfBirthYmd = "1980-01-01";
         public const string Q2RejectedSsn = "555555555";
         public const string Q2RejectedManualReviewFirstName = "Jane";
         public const string Q2RejectedManualReviewLastName = "Doe";
