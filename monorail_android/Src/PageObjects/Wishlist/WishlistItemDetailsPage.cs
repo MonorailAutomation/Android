@@ -33,6 +33,9 @@ namespace monorail_android.PageObjects.Wishlist
 
         [FindsBy(How = How.Id, Using = "labelItemStatus")]
         private IWebElement _transferringStatusTitle;
+        
+        [FindsBy(How = How.Id, Using = "buttonPurchase")]
+        private IWebElement _purchaseItemButton;
 
         public WishlistItemDetailsPage(AndroidDriver<IWebElement> driver)
         {
@@ -49,6 +52,28 @@ namespace monorail_android.PageObjects.Wishlist
                     Wait.Until(ElementToBeClickable(_editButton));
                     Wait.Until(ElementToBeClickable(_removeButton));
                     Wait.Until(ElementToBeClickable(_fundYourWishlistButton));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            return this;
+        }
+        
+        public WishlistItemDetailsPage WaitUntilWishlistItemDetailsPageForFundsTransferringStateIsLoaded()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeClickable(_editButton));
+                    Wait.Until(ElementToBeClickable(_removeButton));
+                    Wait.Until(ElementToBeVisible(_purchaseItemButton));
+
+                    _purchaseItemButton.Enabled.Should().BeFalse();
                     break;
                 }
                 catch (Exception e)

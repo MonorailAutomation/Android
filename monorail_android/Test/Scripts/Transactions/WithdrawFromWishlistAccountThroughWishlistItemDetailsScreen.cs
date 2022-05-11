@@ -50,6 +50,9 @@ namespace monorail_android.Test.Scripts.Transactions
             transferringPage
                 .ClickConfirmButton();
 
+            wishlistItemDetailsPage
+                .WaitUntilWishlistItemDetailsPageForFundsTransferringStateIsLoaded();
+
             ScrollHalfOfScreen();
 
             wishlistItemDetailsPage
