@@ -39,6 +39,13 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        public TrackDetailsPage ClickAddFundsButton()
+        {
+            WaitUntilTrackDetailsPageIsLoaded();
+            _addFundsButton.Click();
+            return this;
+        }
+
         public TrackDetailsPage ClickBackButton()
         {
             WaitUntilTrackDetailsPageIsLoaded();
