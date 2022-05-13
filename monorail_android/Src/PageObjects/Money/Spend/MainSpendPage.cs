@@ -30,9 +30,19 @@ namespace monorail_android.PageObjects.Money.Spend
         [FindsBy(How = How.Id, Using = "chatWithTheTeam")]
         private IWebElement _chatWithTheTeamButton;
 
+        [FindsBy(How = How.Id, Using = "buttonWithdraw")]
+        private IWebElement _cashOutButton;
+
         public MainSpendPage(AndroidDriver<IWebElement> driver)
         {
             PageFactory.InitElements(driver, this);
+        }
+
+        public MainSpendPage ClickCashOutButton()
+        {
+            Wait.Until(ElementToBeVisible(_cashOutButton));
+            _cashOutButton.Click();
+            return this;
         }
 
         public void WaitUntilRejectedAccountStatusIsDisplayed()
