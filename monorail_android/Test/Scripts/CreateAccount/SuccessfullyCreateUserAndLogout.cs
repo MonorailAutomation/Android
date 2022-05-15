@@ -9,7 +9,7 @@ using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Database.VerificationCode;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
-using static monorail_android.Commons.EmailGenerator;
+using static monorail_android.DataGenerators.EmailGenerator;
 using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_android.Test.Scripts.CreateAccount

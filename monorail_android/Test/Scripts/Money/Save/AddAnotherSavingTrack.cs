@@ -5,8 +5,8 @@ using monorail_android.PageObjects.Money.Save;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_android.Commons.RandomGenerator;
 using static monorail_android.Commons.Constants;
+using static monorail_android.DataGenerators.StringGenerator;
 using static monorail_android.RestRequests.Helpers.TrackHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
@@ -37,7 +37,7 @@ namespace monorail_android.Test.Scripts.Money.Save
 
             const string username = "autotests.mono+2.2.310322@gmail.com";
 
-            var trackName = "Test Track " + GenerateRandomString();
+            var trackName = "Test Track " + GenerateStringWithNumber();
 
             VerifyPlaidConnection(username);
 
@@ -112,7 +112,7 @@ namespace monorail_android.Test.Scripts.Money.Save
 
             const string username = "autotests.mono+2.2.041122@gmail.com";
 
-            var trackName = "Test Track " + GenerateRandomString();
+            var trackName = "Test Track " + GenerateStringWithNumber();
 
             VerifyPlaidConnection(username);
 

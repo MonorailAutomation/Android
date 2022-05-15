@@ -1,7 +1,8 @@
-using static monorail_android.Commons.NumberGenerator;
+using static monorail_android.DataGenerators.NumberGenerator;
+using static monorail_android.DataGenerators.DateGenerator;
 using static monorail_android.RestRequests.Endpoints.Monarch.VerifyEmailAddress;
 
-namespace monorail_android.Commons
+namespace monorail_android.DataGenerators
 {
     public static class EmailGenerator
     {
@@ -11,7 +12,7 @@ namespace monorail_android.Commons
             bool emailAlreadyExists;
             do
             {
-                username = usernamePrefix + GetCurrentDate() + "." + GenerateRandom4Digits() + usernameSuffix;
+                username = usernamePrefix + GetCurrentDatePlain() + "." + GenerateRandomDigits(4) + usernameSuffix;
                 emailAlreadyExists = VerifyEmailAlreadyExists(username);
             } while (emailAlreadyExists);
 
