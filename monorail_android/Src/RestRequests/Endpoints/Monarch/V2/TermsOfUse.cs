@@ -5,7 +5,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_android.RestRequests.RestConfig;
 
-namespace monorail_android.RestRequests.Endpoints.Monarch
+namespace monorail_android.RestRequests.Endpoints.Monarch.V2
 {
     public static class TermsOfUse
     {

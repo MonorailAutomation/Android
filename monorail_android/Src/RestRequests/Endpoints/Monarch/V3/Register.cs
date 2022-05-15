@@ -4,7 +4,7 @@ using static System.Net.HttpStatusCode;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.RestConfig;
 
-namespace monorail_android.RestRequests.Endpoints.Monarch
+namespace monorail_android.RestRequests.Endpoints.Monarch.V3
 {
     public static class Register
     {

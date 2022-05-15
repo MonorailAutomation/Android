@@ -1,20 +1,18 @@
 using System.Net;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_android.RestRequests.RestConfig;
-using static monorail_android.Commons.Constants;
 
 namespace monorail_android.RestRequests.Endpoints.Monarch
 {
-    public static class RegisterVerify
+    public static class Wishlist
     {
-        private const string RegisterEndpoint = "/api/v2/user/Register/Verify";
+        private const string WishlistEndpoint = "/api/Wishlist/";
 
-        public static void PostRegisterVerify(string token)
+        public static string[] GetWishlistItemsInProgress(string token)
         {
-            const string verificationMode = "phone";
-            const string verificationCode = "111111";
             var client = new RestClient
             {
                 BaseUrl = MonarchAppUri,
@@ -22,20 +20,20 @@ namespace monorail_android.RestRequests.Endpoints.Monarch
             };
             var request = new RestRequest
             {
-                Resource = RegisterEndpoint,
-                Method = Method.POST,
+                Resource = WishlistEndpoint,
+                Method = Method.GET,
                 RequestFormat = DataFormat.Json
             };
-            request.AddJsonBody(new
-            {
-                otp = verificationCode,
-                verificationMode,
-                primaryInput = ValidPhoneNumber
-            });
 
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            dynamic responseContent = JObject.Parse(response.Content);
+
+            string[] wishlistItemsInProgress = responseContent.wishlistItemsInProgress.ToObject<string[]>();
+
+            return wishlistItemsInProgress;
         }
     }
 }

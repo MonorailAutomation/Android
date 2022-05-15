@@ -22,9 +22,9 @@ namespace monorail_android.Database
         {
             var configuration = new ConfigurationBuilder().BuildAppSettings();
 
-            var _databaseConfiguration = configuration.GetSection("DatabaseConfiguration").Get<DatabaseConfiguration>();
+            var databaseConfiguration = configuration.GetSection("DatabaseConfiguration").Get<DatabaseConfiguration>();
 
-            return _databaseConfiguration;
+            return databaseConfiguration;
         }
 
         private static string CapitalizeFirstLetter(string str)
