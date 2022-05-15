@@ -19,6 +19,9 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.XPath, Using = "//android.widget.FrameLayout[3]//*[contains(@resource-id, 'groupNoItem')]")]
         private IWebElement _placeholder;
 
+        [FindsBy(How = How.Id, Using = "buttonNeedsCompletion")]
+        private IWebElement _tapToCompleteItemPill;
+
         public MainWishlistPage(AndroidDriver<IWebElement> driver)
         {
             PageFactory.InitElements(driver, this);
@@ -94,6 +97,13 @@ namespace monorail_android.PageObjects.Wishlist
         {
             Wait.Until(ElementToBeVisible(_addAnItemButton));
             _addAnItemButton.Click();
+            return this;
+        }
+
+        public MainWishlistPage ClickTapToCompleteItemPill()
+        {
+            Wait.Until(ElementToBeVisible(_tapToCompleteItemPill));
+            _tapToCompleteItemPill.Click();
             return this;
         }
 

@@ -1,4 +1,5 @@
 using System.Threading;
+using static monorail_android.Database.WishlistItem;
 using static monorail_android.RestRequests.Endpoints.Monarch.Token;
 using static monorail_android.RestRequests.Endpoints.Monarch.Wishlists;
 
@@ -13,6 +14,14 @@ namespace monorail_android.RestRequests.Helpers
             AddCustomWishlistItem(token, productUrl, itemName, itemDescription, itemPrice, itemImageUrl,
                 itemFavIconUrl);
             WaitUntilItemsAreScraped(token);
+        }
+
+        public static void AddEmptyWishlistItem(string username, string productUrl)
+        {
+            var token = GenerateToken(username);
+            var wishlistItemId = AddCustomWishlistItem(token, productUrl, null, null, null, null, null);
+            WaitUntilItemsAreScraped(token);
+            ClearWishlistItem(wishlistItemId);
         }
 
         private static void WaitUntilItemsAreScraped(string token)
