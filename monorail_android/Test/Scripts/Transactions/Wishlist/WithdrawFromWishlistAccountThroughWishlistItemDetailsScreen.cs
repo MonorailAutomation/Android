@@ -12,7 +12,7 @@ using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
-namespace monorail_android.Test.Scripts.Transactions
+namespace monorail_android.Test.Scripts.Transactions.Wishlist
 {
     [TestFixture]
     [AllureNUnit]

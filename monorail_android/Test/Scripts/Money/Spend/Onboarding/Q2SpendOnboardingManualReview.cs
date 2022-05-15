@@ -8,7 +8,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
-using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_android.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.DataGenerators.EmailGenerator;
 

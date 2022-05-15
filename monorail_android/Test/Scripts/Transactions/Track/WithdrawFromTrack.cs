@@ -12,7 +12,7 @@ using static monorail_android.Commons.Constants;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
-namespace monorail_android.Test.Scripts.Transactions
+namespace monorail_android.Test.Scripts.Transactions.Track
 {
     [TestFixture]
     [AllureNUnit]
