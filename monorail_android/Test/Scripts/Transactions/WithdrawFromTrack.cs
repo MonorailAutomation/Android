@@ -2,6 +2,8 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Money.Save;
+using monorail_android.PageObjects.Money.Save.ItemPages;
+using monorail_android.PageObjects.Money.Save.TransactionPages;
 using monorail_android.PageObjects.Wishlist;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
@@ -12,7 +14,8 @@ using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunction
 
 namespace monorail_android.Test.Scripts.Transactions
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class WithdrawFromTrack : FunctionalTesting
     {
         [Test(Description = "Withdraw from Track")]

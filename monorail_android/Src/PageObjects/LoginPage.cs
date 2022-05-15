@@ -43,7 +43,7 @@ namespace monorail_android.PageObjects
             _signInButton.Click();
             return this;
         }
-        
+
         [AllureStep("Click 'Create An Account' button")]
         public LoginPage ClickCreateAnAccountButton()
         {

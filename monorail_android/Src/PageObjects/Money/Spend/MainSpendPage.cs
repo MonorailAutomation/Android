@@ -18,8 +18,12 @@ namespace monorail_android.PageObjects.Money.Spend
             "While in this state, you will not be able manage your Monorail account.";
 
         private const string ManualReviewAccountStatusTitle = "We need more info.";
-        private const string ManualReviewAccountStatusMessagePartOne = "In order to finish setting up your account, reach out to Customer Support.";
-        private const string ManualReviewAccountStatusMessagePartTwo = "While in this state, you will not be able manage your Monorail account.";
+
+        private const string ManualReviewAccountStatusMessagePartOne =
+            "In order to finish setting up your account, reach out to Customer Support.";
+
+        private const string ManualReviewAccountStatusMessagePartTwo =
+            "While in this state, you will not be able manage your Monorail account.";
 
         [FindsBy(How = How.Id, Using = "cardSegmentSubtitle")]
         private IWebElement _accountStatusCardMessage;

@@ -13,7 +13,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
     {
         private const string SuccessMessageText = "Success";
 
-        [FindsBy(How = How.XPath, Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Continue')]")]
+        [FindsBy(How = How.XPath,
+            Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Continue')]")]
         private IWebElement _continueButton;
 
         [FindsBy(How = How.XPath,

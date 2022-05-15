@@ -19,7 +19,7 @@ namespace monorail_android.RestRequests.Helpers
          Daily jobs will be run for such user.
          We will use this function ONLY for the Orbis users.
          */
-        
+
         [AllureStep("Close '{0}' user")]
         public static void CloseUser(string email)
         {

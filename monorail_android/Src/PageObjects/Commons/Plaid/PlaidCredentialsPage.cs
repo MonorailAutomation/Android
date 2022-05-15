@@ -14,7 +14,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
         [FindsBy(How = How.XPath, Using = "//android.view.View[2]/android.widget.EditText")]
         private IWebElement _passwordInput;
 
-        [FindsBy(How = How.XPath, Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Submit')]")]
+        [FindsBy(How = How.XPath,
+            Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Submit')]")]
         private IWebElement _submitButton;
 
         [FindsBy(How = How.XPath, Using = "//android.view.View[1]/android.widget.EditText")]

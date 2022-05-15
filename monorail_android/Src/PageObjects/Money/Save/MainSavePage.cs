@@ -73,7 +73,7 @@ namespace monorail_android.PageObjects.Money.Save
             _addASavingTrackButton.Click();
             return this;
         }
-        
+
         [AllureStep("Click 'Get Started' button")]
         public MainSavePage ClickGetStartedButton()
         {

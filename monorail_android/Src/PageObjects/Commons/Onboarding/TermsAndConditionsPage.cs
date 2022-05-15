@@ -27,7 +27,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
         {
             PageFactory.InitElements(driver, this);
         }
-        
+
         [AllureStep("Scroll to the bottom of 'Terms and Conditions' document")]
         public TermsAndConditionsPage ScrollToTheBottomOfPage()
         {

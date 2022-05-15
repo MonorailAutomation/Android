@@ -1,8 +1,8 @@
 using System.Threading;
+using NUnit.Allure.Attributes;
 using static monorail_android.Database.WishlistItem;
 using static monorail_android.RestRequests.Endpoints.Monarch.Token;
 using static monorail_android.RestRequests.Endpoints.Monarch.Wishlists;
-using NUnit.Allure.Attributes;
 using static monorail_android.RestRequests.Endpoints.Monarch.Wishlist;
 
 namespace monorail_android.RestRequests.Helpers

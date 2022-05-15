@@ -1,9 +1,9 @@
 using System;
+using NUnit.Allure.Attributes;
 using static monorail_android.RestRequests.Endpoints.Plaid.LinkItemCreate;
 using static monorail_android.RestRequests.Endpoints.Monarch.MoneyAch;
 using static monorail_android.RestRequests.Endpoints.Monarch.Token;
 using static monorail_android.RestRequests.Endpoints.Monarch.VerifyStatus;
-using NUnit.Allure.Attributes;
 
 namespace monorail_android.RestRequests.Helpers
 {

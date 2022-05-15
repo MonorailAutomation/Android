@@ -14,7 +14,8 @@ using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions
 
 namespace monorail_android.Test.Scripts.CreateAccount
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     public class SuccessfullyCreateUserAndLogout : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.";

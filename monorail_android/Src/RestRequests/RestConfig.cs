@@ -17,7 +17,7 @@ namespace monorail_android.RestRequests
             new Uri("https://monarch-functionsapp-" + MonorailTestEnvironment + ".azurewebsites.net");
 
         public static readonly Uri PlaidUri = new Uri("https://sandbox.plaid.com");
-        
+
         public static EndpointConfiguration GetEndpointConfiguration()
         {
             var configuration = new ConfigurationBuilder().BuildAppSettings();

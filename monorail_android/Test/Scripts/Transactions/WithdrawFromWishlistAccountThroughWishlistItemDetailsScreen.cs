@@ -1,6 +1,8 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Wishlist.ItemPages;
+using monorail_android.PageObjects.Wishlist.TransactionPages;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -12,7 +14,8 @@ using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Transactions
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class WithdrawFromWishlistAccountThroughWishlistItemDetailsScreen : FunctionalTesting
     {
         [Test(Description =

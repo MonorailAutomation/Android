@@ -10,7 +10,8 @@ using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunction
 
 namespace monorail_android.Test.Scripts.Login
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     public class LoginAndLogout : FunctionalTesting
     {
         [Test(Description = "Successful login with correct username and password")]

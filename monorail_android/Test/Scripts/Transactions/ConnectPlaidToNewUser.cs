@@ -13,7 +13,8 @@ using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions
 
 namespace monorail_android.Test.Scripts.Transactions
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class ConnectPlaidToNewUser : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.";

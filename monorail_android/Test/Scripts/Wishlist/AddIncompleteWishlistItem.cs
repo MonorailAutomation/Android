@@ -1,6 +1,7 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Wishlist.ItemPages;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -12,12 +13,13 @@ using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class AddIncompleteWishlistItem : FunctionalTesting
     {
         private const string IncompleteWishlistItemUrl =
             "https://www.monorail.com/blog/how-to-organize-your-finances";
-        
+
         [Test(Description = "Add incomplete Wishlist item when user has Wishlist Account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add complete Wishlist Item")]
@@ -81,7 +83,7 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             wishlistItemDetailsPage
                 .WaitUntilWishlistItemDetailsPageForNotReadyToBuyStateIsLoaded();
-            
+
             ScrollHalfOfScreen();
 
             removeFromWishlistBottomUp
@@ -94,7 +96,7 @@ namespace monorail_android.Test.Scripts.Wishlist
             logOutBottomUp
                 .ClickYesButton();
         }
-        
+
         [Test(Description = "Add incomplete Wishlist item when user doesn't have Wishlist Account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add complete Wishlist Item")]

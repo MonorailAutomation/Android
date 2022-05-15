@@ -2,6 +2,7 @@ using System.Threading;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Wishlist.ItemPages;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -11,7 +12,8 @@ using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunction
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class AddCompleteWishlistItem : FunctionalTesting
     {
         private const string CompleteWishlistItemUrl =

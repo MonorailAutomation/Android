@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Microsoft.Extensions.Configuration;
 using monorail_android.Model.ConfigurationModel;
 using NUnit.Framework;
@@ -8,7 +7,6 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.UI;
 using static System.TimeSpan;
-using static Allure.Commons.AllureConstants;
 using static monorail_android.Configuration;
 
 namespace monorail_android.Test
@@ -23,7 +21,7 @@ namespace monorail_android.Test
         public void BeforeAll()
         {
             BuildAllureConfig();
-            
+
             var configuration = new ConfigurationBuilder().BuildAppSettings();
 
             var appConfiguration = configuration.GetSection("AppConfiguration").Get<AppConfiguration>();

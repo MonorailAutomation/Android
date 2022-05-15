@@ -18,7 +18,7 @@ namespace monorail_android.Database
                     wishlistItemId + "\'";
 
                 var command = new SqlCommand(query, sqlConnection);
-                var reader = command.ExecuteReader();
+                command.ExecuteReader();
             }
             catch (SqlException e)
             {

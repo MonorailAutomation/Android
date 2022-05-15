@@ -2,7 +2,7 @@ using static System.DateTime;
 
 namespace monorail_android.DataGenerators
 {
-    public class DateGenerator
+    public static class DateGenerator
     {
         public static string GetCurrentDatePlain()
         {

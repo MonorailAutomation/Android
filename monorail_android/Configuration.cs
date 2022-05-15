@@ -8,7 +8,7 @@ namespace monorail_android
     public static class Configuration
     {
         private const string ConfigFolder = "Config";
-        
+
         public static IConfigurationRoot BuildAppSettings(this IConfigurationBuilder configBuilder)
         {
             const string configFolder = "Config";
@@ -23,7 +23,7 @@ namespace monorail_android
 
             return configuration;
         }
-        
+
         public static void BuildAllureConfig()
         {
             Environment.SetEnvironmentVariable(ALLURE_CONFIG_ENV_VARIABLE,

@@ -113,7 +113,7 @@ namespace monorail_android.PageObjects.Wishlist
             _tapToCompleteItemPill.Click();
             return this;
         }
-        
+
         [AllureStep("Click '+' placeholder")]
         public MainWishlistPage ClickPlaceholder()
         {
