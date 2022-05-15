@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -70,7 +71,7 @@ namespace monorail_android.PageObjects.Wishlist
 
             return this;
         }
-
+        
         public WishlistItemDetailsPage WaitUntilWishlistItemDetailsPageForFundsTransferringStateIsLoaded()
         {
             var count = 0;
@@ -93,6 +94,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Check transferring status for External transfer")]
         public WishlistItemDetailsPage CheckTransferringStatusForExternalTransfer(string amount)
         {
             const string transferringStatusTitle = "Your funds are on the way!";
@@ -135,7 +137,8 @@ namespace monorail_android.PageObjects.Wishlist
             _wishlistItemDescription.Text.Should().Contain(wishlistItemDescription);
             return this;
         }
-
+        
+        [AllureStep("Click 'Fund your Wishlist' button")]
         public WishlistItemDetailsPage ClickFundYourWishlistButton()
         {
             Wait.Until(ElementToBeVisible(_fundYourWishlistButton));
@@ -143,6 +146,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click '<' button")]
         public WishlistItemDetailsPage ClickBackButton()
         {
             Wait.Until(ElementToBeVisible(_backButton));
@@ -150,6 +154,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click 'Remove' button")]
         public WishlistItemDetailsPage ClickRemoveButton()
         {
             Wait.Until(ElementToBeVisible(_removeButton));

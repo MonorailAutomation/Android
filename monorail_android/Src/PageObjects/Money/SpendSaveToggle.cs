@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -20,6 +21,7 @@ namespace monorail_android.PageObjects.Money
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Spend' button")]
         public SpendSaveToggle ClickSpendButton()
         {
             WaitUntilSpendSaveToggleIsLoaded();
@@ -27,6 +29,7 @@ namespace monorail_android.PageObjects.Money
             return this;
         }
 
+        [AllureStep("Click 'Save' button")]
         public SpendSaveToggle ClickSaveButton()
         {
             WaitUntilSpendSaveToggleIsLoaded();
@@ -34,7 +37,7 @@ namespace monorail_android.PageObjects.Money
             return this;
         }
 
-        public void WaitUntilSpendSaveToggleIsLoaded()
+        private void WaitUntilSpendSaveToggleIsLoaded()
         {
             var count = 0;
             const int maxTries = 3;

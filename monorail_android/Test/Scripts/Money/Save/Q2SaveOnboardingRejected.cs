@@ -5,6 +5,8 @@ using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
@@ -15,12 +17,16 @@ using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions
 
 namespace monorail_android.Test.Scripts.Money.Save
 {
+    [TestFixture, AllureNUnit]
     internal class Q2SaveOnboardingRejected : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+25.";
         private const string UsernameSuffix = "@gmail.com";
 
-        [Test]
+        [Test(Description = "Q2 Save Onboarding - account rejected")]
+        [AllureEpic("Money")]
+        [AllureFeature("Save")]
+        [AllureStory("Q2 Save Onboarding - account rejected")]
         public void Q2SaveOnboardingRejectedTest()
         {
             var loginPage = new LoginPage(Driver);

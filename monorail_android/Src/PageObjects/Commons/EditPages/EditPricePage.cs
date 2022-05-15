@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -31,6 +32,7 @@ namespace monorail_android.PageObjects.Commons.EditPages
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Save' button")]
         public EditPricePage ClickSaveButton()
         {
             while (_saveButton.Enabled == false) Wait.Until(ElementToBeClickable(_saveButton));
@@ -38,6 +40,7 @@ namespace monorail_android.PageObjects.Commons.EditPages
             return this;
         }
 
+        [AllureStep("Set item's price to: {0}")]
         public EditPricePage SetPrice(string price)
         {
             CustomKeyboard.SendKeys(price);

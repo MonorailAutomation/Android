@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -34,6 +35,7 @@ namespace monorail_android.PageObjects.Launch
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Get Started' button")]
         public LaunchBuyPage ClickGetStartedButton()
         {
             WaitUntilLaunchBuyPageIsLoaded();

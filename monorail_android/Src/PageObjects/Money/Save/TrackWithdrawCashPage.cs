@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -28,6 +29,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Confirm' button")]
         public TrackWithdrawCashPage ClickConfirmButton()
         {
             while (_confirmButton.Enabled == false) ElementToBeClickable(_confirmButton);
@@ -35,6 +37,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Set amount:'${0}'")]
         public TrackWithdrawCashPage SetAmount(string amount)
         {
             WaitUntilTrackWithdrawCashPageIsLoaded();

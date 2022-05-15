@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -46,6 +47,7 @@ namespace monorail_android.PageObjects.Money.Spend
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Open your Checking Account' button")]
         public EmptyMainSpendPage ClickOpenYourCheckingAccountButton()
         {
             WaitUntilEmptySpendPageIsLoaded();
@@ -53,7 +55,7 @@ namespace monorail_android.PageObjects.Money.Spend
             return this;
         }
 
-        public void WaitUntilEmptySpendPageIsLoaded()
+        private void WaitUntilEmptySpendPageIsLoaded()
         {
             var count = 0;
             const int maxTries = 3;

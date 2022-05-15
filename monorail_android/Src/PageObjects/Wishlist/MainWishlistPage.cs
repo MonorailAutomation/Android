@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -27,6 +28,7 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click Wishlist Item: '{0}'")]
         public MainWishlistPage ClickWishlistItem(string wishlistItemName)
         {
             var count = 0;
@@ -49,6 +51,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Check if Wishlist Item '{0}' is displayed on Main Screen")]
         public MainWishlistPage CheckIfWishlistItemIsDisplayedOnMainScreen(string wishlistItemName)
         {
             var wishlistItemSelector = "//*[contains(@text, '" + wishlistItemName + "')]";
@@ -70,6 +73,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Check if Wishlist Item '{0}' has '{1}' status pill")]
         public MainWishlistPage CheckStatusPillForWishlistItem(string wishlistItemName, string statusPillDescription)
         {
             var wishlistItemPillSelector = "//*[contains(@text, '" + wishlistItemName +
@@ -93,6 +97,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click 'Add an Item' button")]
         public MainWishlistPage ClickAddAnItemButton()
         {
             Wait.Until(ElementToBeVisible(_addAnItemButton));
@@ -100,13 +105,16 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+
+        [AllureStep("Click 'Tap to Complete' pill")]
         public MainWishlistPage ClickTapToCompleteItemPill()
         {
             Wait.Until(ElementToBeVisible(_tapToCompleteItemPill));
             _tapToCompleteItemPill.Click();
             return this;
         }
-
+        
+        [AllureStep("Click '+' placeholder")]
         public MainWishlistPage ClickPlaceholder()
         {
             Wait.Until(ElementToBeVisible(_placeholder));

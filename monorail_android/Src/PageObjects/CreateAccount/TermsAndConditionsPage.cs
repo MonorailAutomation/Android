@@ -1,4 +1,5 @@
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -25,6 +26,7 @@ namespace monorail_android.PageObjects.CreateAccount
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Agree and Finish' button")]
         public TermsAndConditionsPage ClickAgreeAndFinishButton()
         {
             while (_agreeAndFinishButton.Enabled == false) Wait.Until(ElementToBeClickable(_agreeAndFinishButton));
@@ -32,6 +34,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Click 'Skip to Bottom' button")]
         public TermsAndConditionsPage ClickSkipToBottomButton()
         {
             WaitUntilTermsAndConditionsPageIsLoaded();

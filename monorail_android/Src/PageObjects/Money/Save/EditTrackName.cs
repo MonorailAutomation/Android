@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -29,6 +30,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Save' button")]
         public EditTrackName ClickSaveButton()
         {
             WaitUntilEditTrackNamePageIsLoaded();
@@ -36,6 +38,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Set Track's name: '{0}'")]
         public EditTrackName SetTrackName(string trackName)
         {
             WaitUntilEditTrackNamePageIsLoaded();

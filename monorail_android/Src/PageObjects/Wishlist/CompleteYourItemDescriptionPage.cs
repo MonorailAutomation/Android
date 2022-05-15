@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -31,13 +32,15 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Continue' button")]
         public CompleteYourItemDescriptionPage ClickContinueButton()
         {
             Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }
-
+        
+        [AllureStep("Set Wishlist Item Description: '{0}'")]
         public CompleteYourItemDescriptionPage SetWishlistItemDescription(string wishlistItemDescription)
         {
             WaitUntilCompleteYourItemDescriptionPageIsLoaded();

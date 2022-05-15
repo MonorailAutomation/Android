@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -25,6 +26,7 @@ namespace monorail_android.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Wishlist' button on navigation")]
         public BottomNavigation ClickWishlistNavButton()
         {
             Wait.Until(ElementToBeVisible(_wishlistNavButton));
@@ -32,6 +34,7 @@ namespace monorail_android.PageObjects
             return this;
         }
 
+        [AllureStep("Click 'Money' button on navigation")]
         public BottomNavigation ClickMoneyNavButton()
         {
             Wait.Until(ElementToBeVisible(_moneyNavButton));
@@ -39,6 +42,7 @@ namespace monorail_android.PageObjects
             return this;
         }
 
+        [AllureStep("Click 'Invest' button on navigation")]
         public BottomNavigation ClickInvestNavButton()
         {
             Wait.Until(ElementToBeVisible(_investNavButton));

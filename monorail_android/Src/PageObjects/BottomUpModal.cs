@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -8,8 +9,7 @@ namespace monorail_android.PageObjects
 {
     public class BottomUpModal
     {
-        [FindsBy(How = How.Id,
-            Using = "buttonDismiss")]
+        [FindsBy(How = How.Id, Using = "buttonDismiss")]
         private IWebElement _dismissButton;
 
         public BottomUpModal(AndroidDriver<IWebElement> driver)
@@ -17,6 +17,7 @@ namespace monorail_android.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Dismiss' button")]
         public BottomUpModal ClickDismissButton()
         {
             Wait.Until(ElementToBeVisible(_dismissButton));

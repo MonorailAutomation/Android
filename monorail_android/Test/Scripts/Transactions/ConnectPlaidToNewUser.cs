@@ -2,6 +2,8 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Plaid;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
@@ -11,12 +13,16 @@ using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions
 
 namespace monorail_android.Test.Scripts.Transactions
 {
+    [TestFixture, AllureNUnit]
     internal class ConnectPlaidToNewUser : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.";
         private const string UsernameSuffix = "@gmail.com";
 
-        [Test]
+        [Test(Description = "Connect Plaid to new user")]
+        [AllureEpic("Transactions")]
+        [AllureFeature("Plaid")]
+        [AllureStory("Connect Plaid to new user")]
         public void ConnectPlaidToNewUserTest()
         {
             var loginPage = new LoginPage(Driver);

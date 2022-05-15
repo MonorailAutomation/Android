@@ -2,6 +2,8 @@ using System.Threading;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
@@ -9,6 +11,7 @@ using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunction
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
+    [TestFixture, AllureNUnit]
     internal class AddCompleteWishlistItem : FunctionalTesting
     {
         private const string CompleteWishlistItemUrl =
@@ -16,7 +19,10 @@ namespace monorail_android.Test.Scripts.Wishlist
 
         private const string CompleteWishlistItemName = "Sceptre 24\" Professional";
 
-        [Test]
+        [Test(Description = "Add complete Wishlist item by clicking 'Add an Item' button on Empty Wishlist Screen")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add complete Wishlist Item")]
+        [AllureStory("Add complete Wishlist item by clicking 'Add an Item' button on Empty Wishlist Screen")]
         public void AddCompleteWishlistItemThroughAddAnItemButtonOnEmptyWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
@@ -67,7 +73,10 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickYesButton();
         }
 
-        [Test]
+        [Test(Description = "Add complete Wishlist item by clicking 'Add an Item' button on Main Wishlist Screen")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add complete Wishlist Item")]
+        [AllureStory("Add complete Wishlist item by clicking 'Add an Item' button on Main Wishlist Screen")]
         public void AddCompleteWishlistItemThroughAddAnItemButtonOnMainWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
@@ -119,7 +128,10 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickYesButton();
         }
 
-        [Test]
+        [Test(Description = "Add complete Wishlist item by clicking '+' placeholder button on Main Wishlist Screen")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add complete Wishlist Item")]
+        [AllureStory("Add complete Wishlist item by clicking '+' placeholder button on Main Wishlist Screen")]
         public void AddCompleteWishlistItemThroughPlaceholderButtonOnMainWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);

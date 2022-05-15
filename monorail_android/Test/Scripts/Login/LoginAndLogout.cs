@@ -2,16 +2,21 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.Launch;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Login
 {
-    [TestFixture]
+    [TestFixture, AllureNUnit]
     public class LoginAndLogout : FunctionalTesting
     {
-        [Test]
+        [Test(Description = "Successful login with correct username and password")]
+        [AllureEpic("Login")]
+        [AllureFeature("Successful Login")]
+        [AllureStory("Valid Login and Logout Test")]
         public void LoginAndLogoutTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -40,6 +45,7 @@ namespace monorail_android.Test.Scripts.Login
                 .ClickYesButton();
         }
 
+        [AllureStep("Go through Launch Screens")]
         public static void GoThroughLaunchScreens()
         {
             var launchWishlistPage = new LaunchWishlistPage(Driver);

@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -17,6 +18,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click primary account: '{0}'")]
         public PlaidAccountPage SelectPrimaryAccount(string account)
         {
             var accountSelector = "//*[contains(@text, '" + account + "')]";
@@ -25,7 +27,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
             accountElement.Click();
             return this;
         }
-
+        
+        [AllureStep("Click 'Continue' button")]
         public PlaidAccountPage ClickContinueButton()
         {
             WaitUntilPlaidAccountPageIsLoaded();

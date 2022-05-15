@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -23,6 +24,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Travel' track")]
         public ChooseATrackPage ClickTravelTrack()
         {
             WaitUntilChooseATrackPageIsLoaded();

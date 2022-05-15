@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -37,6 +38,7 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Continue' button")]
         public TransferYourFundsPage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));
@@ -44,6 +46,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click 'External Bank Account' option")]
         public TransferYourFundsPage ClickExternalBankAccountOption()
         {
             WaitUntilTransferYourFundsPageIsLoaded();

@@ -4,6 +4,8 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
@@ -14,13 +16,17 @@ using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions
 
 namespace monorail_android.Test.Scripts.Money.Save
 {
+    [TestFixture, AllureNUnit]
     internal class Q2SaveOnboardingSuccesful : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+25.";
         private const string UsernameSuffix = "@gmail.com";
 
-        [Test]
-        public void Q2SaveOnboardingSuccesfulTest()
+        [Test(Description = "Q2 Save Onboarding - one track selected")]
+        [AllureEpic("Money")]
+        [AllureFeature("Save")]
+        [AllureStory("Q2 Save Onboarding - one track selected")]
+        public void Q2SaveOnboardingSuccessfulTest()
         {
             var loginPage = new LoginPage(Driver);
             var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);

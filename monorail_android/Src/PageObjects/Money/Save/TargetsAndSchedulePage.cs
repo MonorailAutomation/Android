@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -51,6 +52,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Target Date' field")]
         public TargetsAndSchedulePage ClickTargetDateField()
         {
             WaitUntilTargetsAndSchedulePageIsLoaded();
@@ -58,6 +60,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Disable Scheduled Deposit")]
         public TargetsAndSchedulePage DisableScheduledDeposit()
         {
             WaitUntilTargetsAndSchedulePageIsLoaded();
@@ -65,6 +68,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click 'Target Amount' field")]
         public TargetsAndSchedulePage ClickTargetAmountField()
         {
             WaitUntilTargetsAndSchedulePageIsLoaded();
@@ -72,6 +76,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public TargetsAndSchedulePage ClickContinueButton()
         {
             _continueButton.Click();

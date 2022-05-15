@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -29,6 +30,7 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Continue' button")]
         public CompleteYourItemImagePage ClickContinueButton()
         {
             Wait.Until(ElementToBeClickable(_continueButton));
@@ -36,6 +38,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click first image on carousel")]
         public CompleteYourItemImagePage ClickFirstImage()
         {
             WaitUntilCompleteYourItemImagePageIsLoaded();

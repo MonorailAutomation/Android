@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 using monorail_android.Model.ConfigurationModel;
 using NUnit.Framework;
@@ -7,6 +8,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.UI;
 using static System.TimeSpan;
+using static Allure.Commons.AllureConstants;
 
 namespace monorail_android.Test
 {
@@ -15,6 +17,15 @@ namespace monorail_android.Test
         public static string MonorailTestEnvironment;
         public static AndroidDriver<IWebElement> Driver;
         public static WebDriverWait Wait;
+        
+        [OneTimeSetUp]
+        public void Init()
+        {
+            var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            const string configFolder = "Config";
+            Environment.SetEnvironmentVariable(
+                ALLURE_CONFIG_ENV_VARIABLE, Path.Combine(projectPath, configFolder, CONFIG_FILENAME));
+        }
 
         [SetUp]
         public void BeforeAll()

@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -24,6 +25,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Link your Account' button")]
         public LinkAnAccountPage ClickLinkYourAccountButton()
         {
             WaitUntilLinkAnAccountPageIsLoaded();

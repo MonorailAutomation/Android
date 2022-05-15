@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -32,6 +33,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Save' button")]
         public EditTargetAmountPage ClickSaveButton()
         {
             WaitUntilEditTargetAmountPageIsLoaded();
@@ -39,6 +41,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click 'No Target Amount for this Goal' button")]
         public EditTargetAmountPage ClickNoTargetAmountForThisGoalButton()
         {
             WaitUntilEditTargetAmountPageIsLoaded();

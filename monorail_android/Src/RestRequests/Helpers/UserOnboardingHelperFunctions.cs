@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Endpoints.Monarch.Register;
 using static monorail_android.RestRequests.Endpoints.Monarch.Token;
@@ -9,6 +10,7 @@ namespace monorail_android.RestRequests.Helpers
 {
     public static class UserOnboardingHelperFunctions
     {
+        [AllureStep("Register user with email: '{0}' using REST endpoint")]
         public static void RegisterUser(string username)
         {
             PostRegister(username, ValidPhoneNumber, ValidDateOfBirthYmd);
@@ -19,6 +21,7 @@ namespace monorail_android.RestRequests.Helpers
             Console.WriteLine(username + " was created successfully");
         }
 
+        [AllureStep("Register user with email: '{0}' and date of birth: '{1}' using REST endpoint")]
         public static void RegisterUser(string username, string dateOfBirth)
         {
             PostRegister(username, ValidPhoneNumber, dateOfBirth);

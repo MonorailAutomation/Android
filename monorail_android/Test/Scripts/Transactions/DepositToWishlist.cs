@@ -1,6 +1,8 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
@@ -8,9 +10,14 @@ using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunction
 
 namespace monorail_android.Test.Scripts.Transactions
 {
+    [TestFixture, AllureNUnit]
     internal class DepositToWishlist : FunctionalTesting
     {
-        [Test]
+        [Test(Description =
+            "Deposit Money to Wishlist Account from Wishlist Item Details screen using 'Fund your Wishlist' button")]
+        [AllureEpic("Transactions")]
+        [AllureFeature("Wishlist")]
+        [AllureStory("Deposit to Wishlist Account | Wishlist Item Details Screen -> Fund your Wishlist")]
         public void DepositToWishlistThroughFundYourWishlistButtonTest()
         {
             var loginPage = new LoginPage(Driver);

@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -29,6 +30,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Continue' button")]
         public EditTrackDetailsPage ClickContinueButton()
         {
             WaitUntilEditTrackDetailsPageIsLoaded();
@@ -36,6 +38,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click 'Name' section")]
         public EditTrackDetailsPage ClickEditTrackName()
         {
             WaitUntilEditTrackDetailsPageIsLoaded();

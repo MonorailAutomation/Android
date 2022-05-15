@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -30,6 +31,7 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click '<' button")]
         public WishlistAddCashPage ClickBackButton()
         {
             Wait.Until(ElementToBeVisible(_backButton));
@@ -37,12 +39,14 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public WishlistAddCashPage ClickContinueButton()
         {
             _continueButton.Click();
             return this;
         }
 
+        [AllureStep("Set amount: '${0}'")]
         public WishlistAddCashPage SetAmount(string amount)
         {
             CustomKeyboard.SendKeys(amount);

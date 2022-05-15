@@ -1,5 +1,6 @@
 using System;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -30,6 +31,31 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Price' field")]
+        public EditWishlistItemDetailsPage ClickPrice()
+        {
+            WaitUntilEditWishlistItemDetailsPageIsLoaded();
+
+            var secondPointX = _mainScrollView.Size.Width / 2;
+            var secondPointY = _mainScrollView.Size.Height - 400;
+
+            Console.WriteLine(secondPointX);
+            Console.WriteLine(secondPointY);
+
+            Scroll.ScrollFromToCoordinates(secondPointX, 10, secondPointX, secondPointY);
+
+            _priceLabel.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Finish' button")]
+        public EditWishlistItemDetailsPage ClickFinishButton()
+        {
+            Wait.Until(ElementToBeClickable(_finishButton));
+            _finishButton.Click();
+            return this;
+        }
+
         private void WaitUntilEditWishlistItemDetailsPageIsLoaded()
         {
             var count = 0;
@@ -47,29 +73,6 @@ namespace monorail_android.PageObjects.Wishlist
                 {
                     if (++count == maxTries) throw e;
                 }
-        }
-
-        public EditWishlistItemDetailsPage ClickPrice()
-        {
-            WaitUntilEditWishlistItemDetailsPageIsLoaded();
-
-            var secondPointX = _mainScrollView.Size.Width / 2;
-            var secondPointY = _mainScrollView.Size.Height - 400;
-
-            Console.WriteLine(secondPointX);
-            Console.WriteLine(secondPointY);
-
-            Scroll.ScrollFromToCoordinates(secondPointX, 10, secondPointX, secondPointY);
-
-            _priceLabel.Click();
-            return this;
-        }
-
-        public EditWishlistItemDetailsPage ClickFinishButton()
-        {
-            Wait.Until(ElementToBeClickable(_finishButton));
-            _finishButton.Click();
-            return this;
         }
     }
 }

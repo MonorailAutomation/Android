@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -20,9 +21,6 @@ namespace monorail_android.PageObjects.Money.Save
         [FindsBy(How = How.Id, Using = "labelNice")]
         private IWebElement _niceHeader;
 
-        [FindsBy(How = How.Id, Using = "progressIndicator")]
-        private IWebElement _progressIndicator;
-
         [FindsBy(How = How.Id, Using = "goalImage")]
         private IWebElement _trackImage;
 
@@ -34,6 +32,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Continue' button")]
         public FinishAddSavingTrackPage ClickContinueButton()
         {
             WaitUntilFinishAddSavingTrackPageIsLoaded();
@@ -48,7 +47,6 @@ namespace monorail_android.PageObjects.Money.Save
             while (true)
                 try
                 {
-                    //Wait.Until(ElementToBeNotVisible(_progressIndicator));
                     Wait.Until(ElementToBeVisible(_niceHeader));
                     Wait.Until(ElementToBeVisible(_trackIsBeingAddedMessage));
                     Wait.Until(ElementToBeVisible(_trackImage));

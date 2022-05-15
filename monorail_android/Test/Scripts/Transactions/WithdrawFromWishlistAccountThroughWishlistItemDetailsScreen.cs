@@ -1,6 +1,8 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Commons.Scroll;
@@ -10,9 +12,15 @@ using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Transactions
 {
+    [TestFixture, AllureNUnit]
     internal class WithdrawFromWishlistAccountThroughWishlistItemDetailsScreen : FunctionalTesting
     {
-        [Test]
+        [Test(Description =
+            "Withdraw money (external) from Wishlist Account using 'Ready to Buy' button on 'Wishlist Item Details' screen")]
+        [AllureEpic("Transactions")]
+        [AllureFeature("Wishlist")]
+        [AllureStory(
+            "Withdraw money (external) from Wishlist Account using 'Ready to Buy' button on 'Wishlist Item Details' screen")]
         public void WithdrawFromWishlistAccountThroughWishlistItemDetailsScreenExternalTest()
         {
             var loginPage = new LoginPage(Driver);

@@ -2,6 +2,8 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Money.Save;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.RandomGenerator;
 using static monorail_android.Commons.Constants;
@@ -11,9 +13,13 @@ using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunction
 
 namespace monorail_android.Test.Scripts.Money.Save
 {
+    [TestFixture, AllureNUnit]
     internal class AddAnotherSavingTrack : FunctionalTesting
     {
-        [Test]
+        [Test(Description = "Add another Saving Track with Target Amount, Target Date and Scheduled Deposit enabled")]
+        [AllureEpic("Money")]
+        [AllureFeature("Save")]
+        [AllureStory("Add another Saving Track with Target Amount, Target Date and Scheduled Deposit enabled")]
         public void AddTrackWithTargetAmountTargetDateAndScheduledDepositTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -85,7 +91,10 @@ namespace monorail_android.Test.Scripts.Money.Save
             RemoveTrack(username, trackName);
         }
 
-        [Test]
+        [Test(Description = "Add another Saving Track without Target Amount, Target Date and Scheduled Deposit disabled")]
+        [AllureEpic("Money")]
+        [AllureFeature("Save")]
+        [AllureStory("Add another Saving Track without Target Amount, Target Date and Scheduled Deposit disabled")]
         public void AddTrackWithoutTargetAmountTargetDateAndScheduledDepositTest()
         {
             var loginPage = new LoginPage(Driver);

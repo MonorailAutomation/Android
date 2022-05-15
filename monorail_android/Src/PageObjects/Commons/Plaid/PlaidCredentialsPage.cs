@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -24,6 +25,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Pass credentials - username: '{0}' and password: '{1}'")]
         public PlaidCredentialsPage PassCredentials()
         {
             WaitUntilPlaidCredentialsPageIsLoaded();
@@ -32,6 +34,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             return this;
         }
 
+        [AllureStep("Click 'Submit' button")]
         public PlaidCredentialsPage ClickSubmitButton()
         {
             _submitButton.Click();
