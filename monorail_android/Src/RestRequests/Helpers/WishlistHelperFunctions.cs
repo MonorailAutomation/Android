@@ -10,8 +10,8 @@ namespace monorail_android.RestRequests.Helpers
     public static class WishlistHelperFunctions
     {
         [AllureStep("Add Wishlist item using REST endpoint")]
-        public static void AddPersonalizedWishlistItem(string username, string productUrl,
-            string itemName, string itemDescription, string itemPrice, string itemImageUrl, string itemFavIconUrl)
+        public static void AddPersonalizedWishlistItem(string username, string productUrl, string itemName, 
+            string itemDescription, string itemPrice, string itemImageUrl, string itemFavIconUrl)
         {
             var token = GenerateToken(username);
             AddCustomWishlistItem(token, productUrl, itemName, itemDescription, itemPrice, itemImageUrl,
@@ -23,7 +23,8 @@ namespace monorail_android.RestRequests.Helpers
         public static void AddEmptyWishlistItem(string username, string productUrl)
         {
             var token = GenerateToken(username);
-            var wishlistItemId = AddCustomWishlistItem(token, productUrl, null, null, null, null, null);
+            var wishlistItemId = AddCustomWishlistItem(token, productUrl, null, null, 
+                null, null, null);
             WaitUntilItemsAreScraped(token);
             ClearWishlistItem(wishlistItemId);
         }
