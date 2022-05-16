@@ -15,7 +15,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
 
         private const string InformationMessageTextPartOne =
             "This is required to move money with Vimvest.";
-        
+
         private const string InformationMessageTextPartTwo =
             "Your information is encrypted.";
 

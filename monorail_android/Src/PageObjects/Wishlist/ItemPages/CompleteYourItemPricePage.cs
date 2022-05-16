@@ -43,7 +43,7 @@ namespace monorail_android.PageObjects.Wishlist.ItemPages
             return this;
         }
 
-        [AllureStep("Set Wishlist Item Price: '{0}'")]
+        [AllureStep("Set Wishlist Item Price: '${0}'")]
         public CompleteYourItemPricePage SetWishlistItemPrice(string wishlistItemPrice)
         {
             WaitUntilCompleteYourItemPricePageIsLoaded();

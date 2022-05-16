@@ -18,7 +18,7 @@ namespace monorail_android.Test.Scripts.Money.Save.Onboarding
 {
     [TestFixture]
     [AllureNUnit]
-    internal class Q2SaveOnboardingSuccesful : FunctionalTesting
+    internal class Q2SaveOnboardingSuccessful : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+25.";
         private const string UsernameSuffix = "@gmail.com";

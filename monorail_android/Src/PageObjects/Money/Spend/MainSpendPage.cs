@@ -31,11 +31,11 @@ namespace monorail_android.PageObjects.Money.Spend
         [FindsBy(How = How.Id, Using = "cardSegmentTitle")]
         private IWebElement _accountStatusCardTitle;
 
-        [FindsBy(How = How.Id, Using = "chatWithTheTeam")]
-        private IWebElement _chatWithTheTeamButton;
-
         [FindsBy(How = How.Id, Using = "buttonWithdraw")]
         private IWebElement _cashOutButton;
+
+        [FindsBy(How = How.Id, Using = "chatWithTheTeam")]
+        private IWebElement _chatWithTheTeamButton;
 
         public MainSpendPage(AndroidDriver<IWebElement> driver)
         {

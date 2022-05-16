@@ -22,7 +22,7 @@ namespace monorail_android.Test.Scripts.Wishlist
 
         [Test(Description = "Add incomplete Wishlist item when user has Wishlist Account")]
         [AllureEpic("Wishlist")]
-        [AllureFeature("Add complete Wishlist Item")]
+        [AllureFeature("Add incomplete Wishlist Item")]
         [AllureStory("Add incomplete Wishlist item when user has Wishlist Account")]
         public void AddIncompleteWishlistItemWithWishlistAccountTest()
         {
@@ -86,6 +86,10 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             ScrollHalfOfScreen();
 
+            wishlistItemDetailsPage
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemPrice, WishlistItemDescription)
+                .ClickRemoveButton();
+
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
@@ -99,7 +103,7 @@ namespace monorail_android.Test.Scripts.Wishlist
 
         [Test(Description = "Add incomplete Wishlist item when user doesn't have Wishlist Account")]
         [AllureEpic("Wishlist")]
-        [AllureFeature("Add complete Wishlist Item")]
+        [AllureFeature("Add incomplete Wishlist Item")]
         [AllureStory("Add incomplete Wishlist item when user doesn't have Wishlist Account")]
         public void AddIncompleteWishlistItemWithoutWishlistAccountTest()
         {
