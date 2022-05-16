@@ -17,7 +17,7 @@ namespace monorail_android.PageObjects.Wishlist
         private const string PageHeaderText = "Complete your Item info";
 
         private const string TryAgainMessageTextPartOne = "You can either try again or continue to complete";
-        private const string TryAgainMessageTextPartTwo = "You can either try again or continue to complete";
+        private const string TryAgainMessageTextPartTwo = "them manually.";
 
         [FindsBy(How = How.Id, Using = "buttonSave")]
         private IWebElement _continueButton;
