@@ -13,8 +13,11 @@ namespace monorail_android.PageObjects.Commons.Onboarding
     {
         private const string YourSsnLabelText = "Your SSN";
 
-        private const string InformationMessageText =
-            "This is required to move money with Vimvest. Your information is encrypted.";
+        private const string InformationMessageTextPartOne =
+            "This is required to move money with Vimvest.";
+        
+        private const string InformationMessageTextPartTwo =
+            "Your information is encrypted.";
 
         [FindsBy(How = How.Id, Using = "buttonContinue")]
         private IWebElement _continueButton;
@@ -61,7 +64,8 @@ namespace monorail_android.PageObjects.Commons.Onboarding
                     Wait.Until(ElementToBeVisible(_continueButton));
 
                     _yourSsnLabel.Text.Should().Contain(YourSsnLabelText);
-                    _informationMessage.Text.Should().Contain(InformationMessageText);
+                    _informationMessage.Text.Should().Contain(InformationMessageTextPartOne);
+                    _informationMessage.Text.Should().Contain(InformationMessageTextPartTwo);
                     break;
                 }
                 catch (Exception e)
