@@ -1,6 +1,9 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Wishlist.ItemPages;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Commons.Scroll;
@@ -10,12 +13,17 @@ using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
+    [TestFixture]
+    [AllureNUnit]
     internal class AddIncompleteWishlistItem : FunctionalTesting
     {
         private const string IncompleteWishlistItemUrl =
             "https://www.monorail.com/blog/how-to-organize-your-finances";
 
-        [Test]
+        [Test(Description = "Add incomplete Wishlist item when user has Wishlist Account")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add complete Wishlist Item")]
+        [AllureStory("Add incomplete Wishlist item when user has Wishlist Account")]
         public void AddIncompleteWishlistItemWithWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -78,10 +86,6 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             ScrollHalfOfScreen();
 
-            wishlistItemDetailsPage
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemPrice, WishlistItemDescription)
-                .ClickRemoveButton();
-
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
@@ -93,7 +97,10 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickYesButton();
         }
 
-        [Test]
+        [Test(Description = "Add incomplete Wishlist item when user doesn't have Wishlist Account")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add complete Wishlist Item")]
+        [AllureStory("Add incomplete Wishlist item when user doesn't have Wishlist Account")]
         public void AddIncompleteWishlistItemWithoutWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);

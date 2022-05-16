@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -13,7 +14,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
         [FindsBy(How = How.XPath, Using = "//android.view.View[2]/android.widget.EditText")]
         private IWebElement _passwordInput;
 
-        [FindsBy(How = How.XPath, Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Submit')]")]
+        [FindsBy(How = How.XPath,
+            Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Submit')]")]
         private IWebElement _submitButton;
 
         [FindsBy(How = How.XPath, Using = "//android.view.View[1]/android.widget.EditText")]
@@ -24,6 +26,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Pass credentials - username: '{0}' and password: '{1}'")]
         public PlaidCredentialsPage PassCredentials()
         {
             WaitUntilPlaidCredentialsPageIsLoaded();
@@ -32,6 +35,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             return this;
         }
 
+        [AllureStep("Click 'Submit' button")]
         public PlaidCredentialsPage ClickSubmitButton()
         {
             _submitButton.Click();

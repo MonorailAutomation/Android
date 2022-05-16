@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -36,6 +37,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Nope!' button")]
         public PoliticalExposureQuestionPage ClickNopeAnswer()
         {
             WaitUntilPoliticalExposureQuestionPageIsLoaded();
@@ -43,6 +45,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public PoliticalExposureQuestionPage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);

@@ -1,5 +1,6 @@
 using System;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -33,6 +34,7 @@ namespace monorail_android.PageObjects.MainMenu
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Log Out' nav item")]
         public MainMenuPage ClickLogOut()
         {
             WaitUntilMainMenuIsLoaded();
@@ -41,6 +43,7 @@ namespace monorail_android.PageObjects.MainMenu
             return this;
         }
 
+        [AllureStep("Click 'My Connected Account' nav item")]
         public MainMenuPage ClickMyConnectedAccount()
         {
             WaitUntilMainMenuIsLoaded();
@@ -48,6 +51,7 @@ namespace monorail_android.PageObjects.MainMenu
             return this;
         }
 
+        [AllureStep("Click side menu button")]
         public MainMenuPage ClickSideMenu()
         {
             Wait.Until(ElementToBeClickable(_sideMenu));

@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -25,6 +26,7 @@ namespace monorail_android.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Login with username: '{0}' and password: '{1}'")]
         public LoginPage PassCredentials(string email, string password)
         {
             WaitUntilLoginPageIsLoaded();
@@ -34,6 +36,7 @@ namespace monorail_android.PageObjects
             return this;
         }
 
+        [AllureStep("Click 'Sign In' button")]
         public LoginPage ClickSignInButton()
         {
             WaitUntilLoginPageIsLoaded();
@@ -41,6 +44,7 @@ namespace monorail_android.PageObjects
             return this;
         }
 
+        [AllureStep("Click 'Create An Account' button")]
         public LoginPage ClickCreateAnAccountButton()
         {
             WaitUntilLoginPageIsLoaded();

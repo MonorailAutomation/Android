@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -33,6 +34,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Pass first name: '{0}' and last name: '{1}'")]
         public FirstNameLastNamePage PassFirstAndLastName(string firstName, string lastName)
         {
             WaitUntilFirstNameLastNamePageIsLoaded();
@@ -41,6 +43,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public FirstNameLastNamePage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);

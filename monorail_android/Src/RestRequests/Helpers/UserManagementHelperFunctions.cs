@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using static monorail_android.Database.RetrieveUser;
 using static monorail_android.RestRequests.Endpoints.AzureFunctions.UserSuspensionFunction;
 using static monorail_android.RestRequests.Endpoints.Management.CloseMonorailAccount;
@@ -18,6 +19,8 @@ namespace monorail_android.RestRequests.Helpers
          Daily jobs will be run for such user.
          We will use this function ONLY for the Orbis users.
          */
+
+        [AllureStep("Close '{0}' user")]
         public static void CloseUser(string email)
         {
             var userId = GetUserId(email);
@@ -25,6 +28,7 @@ namespace monorail_android.RestRequests.Helpers
             Console.WriteLine(email + " was closed successfully");
         }
 
+        [AllureStep("Suspend '{0}' user")]
         public static void SuspendUser(string email)
         {
             var userId = GetUserId(email);

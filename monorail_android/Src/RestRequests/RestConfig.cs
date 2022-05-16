@@ -1,4 +1,6 @@
 using System;
+using Microsoft.Extensions.Configuration;
+using monorail_android.Model.ConfigurationModel;
 using static monorail_android.Test.FunctionalTesting;
 
 namespace monorail_android.RestRequests
@@ -15,5 +17,14 @@ namespace monorail_android.RestRequests
             new Uri("https://monarch-functionsapp-" + MonorailTestEnvironment + ".azurewebsites.net");
 
         public static readonly Uri PlaidUri = new Uri("https://sandbox.plaid.com");
+
+        public static EndpointConfiguration GetEndpointConfiguration()
+        {
+            var configuration = new ConfigurationBuilder().BuildAppSettings();
+
+            var endpointConfiguration = configuration.GetSection("EndpointConfiguration").Get<EndpointConfiguration>();
+
+            return endpointConfiguration;
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -38,6 +39,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Pass Residential Address with Address Line: '{0}', City: '{1}', State: '{2}', Zip: '{3}'")]
         public ResidentialAddressPage PassAddress(string addressLine1, string city, string state, string zip)
         {
             WaitUntilResidentialAddressPageIsLoaded();
@@ -48,6 +50,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public ResidentialAddressPage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);

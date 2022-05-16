@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -32,6 +33,14 @@ namespace monorail_android.PageObjects.Wishlist
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Add an Item' button")]
+        public EmptyMainWishlistPage ClickAddAnItemButton()
+        {
+            Wait.Until(ElementToBeVisible(_addAnItemButton));
+            _addAnItemButton.Click();
+            return this;
+        }
+
         public EmptyMainWishlistPage WaitUntilEmptyMainWishlistPageIsLoaded()
         {
             var count = 0;
@@ -53,13 +62,6 @@ namespace monorail_android.PageObjects.Wishlist
                     if (++count == maxTries) throw e;
                 }
 
-            return this;
-        }
-
-        public EmptyMainWishlistPage ClickAddAnItemButton()
-        {
-            Wait.Until(ElementToBeVisible(_addAnItemButton));
-            _addAnItemButton.Click();
             return this;
         }
     }

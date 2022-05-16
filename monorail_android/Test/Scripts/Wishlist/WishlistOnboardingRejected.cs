@@ -1,3 +1,4 @@
+using monorail_android.DataGenerators;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
@@ -5,13 +6,12 @@ using monorail_android.PageObjects.Wishlist;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
-using static monorail_android.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
-using static monorail_android.Commons.EmailGenerator;
 using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions;
 using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Money;
+using static monorail_android.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 
 namespace monorail_android.Test.Scripts.Wishlist
 {
@@ -39,7 +39,7 @@ namespace monorail_android.Test.Scripts.Wishlist
             var mainSpendPage = new MainSpendPage(Driver);
             var bottomNavigation = new BottomNavigation(Driver);
 
-            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = EmailGenerator.GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username, Q2RejectedDateOfBirthYmd);
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,

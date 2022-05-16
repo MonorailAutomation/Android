@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -46,6 +47,7 @@ namespace monorail_android.PageObjects.MainMenu
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Connect your Account' button")]
         public ConnectedAccountPage ClickConnectYourAccountButton()
         {
             WaitUntilConnectedAccountPageBeforeConnectingPlaidIsLoaded();
@@ -53,6 +55,7 @@ namespace monorail_android.PageObjects.MainMenu
             return this;
         }
 
+        [AllureStep("Click 'Back' button")]
         public ConnectedAccountPage ClickBackButton()
         {
             ElementToBeClickable(_backButton);

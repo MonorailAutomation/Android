@@ -3,7 +3,7 @@ using static monorail_android.Test.FunctionalTesting;
 
 namespace monorail_android.Commons
 {
-    public class CustomKeyboard
+    public static class CustomKeyboard
     {
         public static void SendKeys(string value)
         {

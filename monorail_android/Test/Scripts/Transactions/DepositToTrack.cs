@@ -3,6 +3,7 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Wishlist;
 using monorail_android.PageObjects.Money.Save;
+using monorail_android.PageObjects.Money.Save.ItemPages;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;

@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -47,6 +48,7 @@ namespace monorail_android.PageObjects.Money.Save
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click Track tile: '{0}'")]
         public MainSavePage ClickTrackTile(string trackName)
         {
             WaitUntilSavePageAfterOnboardingIsLoaded();
@@ -55,6 +57,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click Track Details of '{0} track")]
         public MainSavePage ClickTrackDetails(string trackName)
         {
             WaitUntilSavePageWithAtLeastOneTrackIsLoaded();
@@ -63,6 +66,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click 'Add a Saving Track' button")]
         public MainSavePage ClickAddASavingTrackButton()
         {
             Wait.Until(ElementToBeVisible(_addASavingTrackButton));
@@ -70,6 +74,7 @@ namespace monorail_android.PageObjects.Money.Save
             return this;
         }
 
+        [AllureStep("Click 'Get Started' button")]
         public MainSavePage ClickGetStartedButton()
         {
             Wait.Until(ElementToBeVisible(_selectYourTracksScrollView));

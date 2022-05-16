@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -32,6 +33,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Pass SSN: '{0}'")]
         public SsnPage PassSsn(string ssn)
         {
             WaitUntilSsnPageIsLoaded();
@@ -39,6 +41,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public SsnPage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) ElementToBeClickable(_continueButton);
@@ -58,6 +61,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
                     Wait.Until(ElementToBeVisible(_continueButton));
 
                     _yourSsnLabel.Text.Should().Contain(YourSsnLabelText);
+                    _informationMessage.Text.Should().Contain(InformationMessageText);
                     break;
                 }
                 catch (Exception e)

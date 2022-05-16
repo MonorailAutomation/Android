@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -27,6 +28,7 @@ namespace monorail_android.PageObjects.CreateAccount
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Set month: '{0}'")]
         public GettingStartedDobPage SetMonth(string expectedMonth)
         {
             WaitUntilDateOfBirthPageIsLoaded();
@@ -42,6 +44,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Set day: '{0}'")]
         public GettingStartedDobPage SetDay(string expectedDay)
         {
             WaitUntilDateOfBirthPageIsLoaded();
@@ -57,6 +60,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Set year: '{0}'")]
         public GettingStartedDobPage SetYear(string expectedYear)
         {
             WaitUntilDateOfBirthPageIsLoaded();
@@ -72,6 +76,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public GettingStartedDobPage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));

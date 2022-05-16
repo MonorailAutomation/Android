@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using static monorail_android.RestRequests.Endpoints.Plaid.LinkItemCreate;
 using static monorail_android.RestRequests.Endpoints.Monarch.MoneyAch;
 using static monorail_android.RestRequests.Endpoints.Monarch.Token;
@@ -8,6 +9,7 @@ namespace monorail_android.RestRequests.Helpers
 {
     public static class PlaidConnectionHelperFunctions
     {
+        [AllureStep("Verify Plaid account connection using REST endpoint")]
         public static void VerifyPlaidConnection(string username)
         {
             var token = GenerateToken(username);

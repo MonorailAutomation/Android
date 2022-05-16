@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -21,6 +22,7 @@ namespace monorail_android.PageObjects.CreateAccount
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Pass phone number: {0}")]
         public GettingStartedPhoneNumberPage PassPhoneNumber(string phoneNumber)
         {
             WaitUntilPhoneNumberPageIsLoaded();
@@ -28,6 +30,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public GettingStartedPhoneNumberPage ClickContinueButton()
         {
             while (_continueButton.Enabled == false) Wait.Until(ElementToBeClickable(_continueButton));

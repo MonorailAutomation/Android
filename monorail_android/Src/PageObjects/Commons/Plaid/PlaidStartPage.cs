@@ -1,4 +1,5 @@
 using System;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -9,7 +10,8 @@ namespace monorail_android.PageObjects.Commons.Plaid
 {
     public class PlaidStartPage
     {
-        [FindsBy(How = How.XPath, Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Continue')]")]
+        [FindsBy(How = How.XPath,
+            Using = "//*[contains(@class, 'android.widget.Button') and contains(@text, 'Continue')]")]
         private IWebElement _continueButton;
 
         public PlaidStartPage(AndroidDriver<IWebElement> driver)
@@ -17,6 +19,7 @@ namespace monorail_android.PageObjects.Commons.Plaid
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Continue' button")]
         public PlaidStartPage ClickContinueButton()
         {
             WaitUntilPlaidStartPageIsLoaded();

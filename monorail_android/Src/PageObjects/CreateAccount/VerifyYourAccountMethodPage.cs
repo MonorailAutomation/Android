@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -24,6 +25,7 @@ namespace monorail_android.PageObjects.CreateAccount
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Click 'Text Message' option")]
         public VerifyYourAccountMethodPage ClickTextMessageOption()
         {
             WaitUntilMethodPageIsLoaded();
@@ -31,6 +33,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Click 'Email' option")]
         public VerifyYourAccountMethodPage ClickEmailOption()
         {
             WaitUntilMethodPageIsLoaded();
@@ -38,6 +41,7 @@ namespace monorail_android.PageObjects.CreateAccount
             return this;
         }
 
+        [AllureStep("Click 'Continue' button")]
         public VerifyYourAccountMethodPage ClickContinue()
         {
             WaitUntilMethodPageIsLoaded();

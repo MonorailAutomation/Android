@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_android.Commons;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using SeleniumExtras.PageObjects;
@@ -27,6 +28,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             PageFactory.InitElements(driver, this);
         }
 
+        [AllureStep("Scroll to the bottom of 'Terms and Conditions' document")]
         public TermsAndConditionsPage ScrollToTheBottomOfPage()
         {
             WaitUntilElectronicDeliveryConsentPageIsLoaded();
@@ -42,6 +44,7 @@ namespace monorail_android.PageObjects.Commons.Onboarding
             return this;
         }
 
+        [AllureStep("Click 'Agree and Finish' button")]
         public TermsAndConditionsPage ClickAgreeAndFinishButton()
         {
             while (_agreeAndFinishButton.Enabled == false) ElementToBeClickable(_agreeAndFinishButton);
