@@ -19,6 +19,9 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "buttonFund")]
         private IWebElement _fundYourWishlistButton;
 
+        [FindsBy(How = How.Id, Using = "buttonPurchase")]
+        private IWebElement _purchaseItemButton;
+
         [FindsBy(How = How.Id, Using = "buttonBuy")]
         private IWebElement _readyToBuyButton;
 
@@ -33,9 +36,15 @@ namespace monorail_android.PageObjects.Wishlist
 
         [FindsBy(How = How.Id, Using = "labelItemStatus")]
         private IWebElement _transferringStatusTitle;
-        
-        [FindsBy(How = How.Id, Using = "buttonPurchase")]
-        private IWebElement _purchaseItemButton;
+
+        [FindsBy(How = How.Id, Using = "textDescription")]
+        private IWebElement _wishlistItemDescription;
+
+        [FindsBy(How = How.Id, Using = "textName")]
+        private IWebElement _wishlistItemName;
+
+        [FindsBy(How = How.Id, Using = "textPrice")]
+        private IWebElement _wishlistItemPrice;
 
         public WishlistItemDetailsPage(AndroidDriver<IWebElement> driver)
         {
@@ -61,7 +70,7 @@ namespace monorail_android.PageObjects.Wishlist
 
             return this;
         }
-        
+
         public WishlistItemDetailsPage WaitUntilWishlistItemDetailsPageForFundsTransferringStateIsLoaded()
         {
             var count = 0;
@@ -111,6 +120,19 @@ namespace monorail_android.PageObjects.Wishlist
                     if (++count == maxTries) throw e;
                 }
 
+            return this;
+        }
+
+        public WishlistItemDetailsPage VerifyWishlistItemDetails(string wishlistItemName, string wishlistItemPrice,
+            string wishlistItemDescription)
+        {
+            Wait.Until(ElementToBeVisible(_wishlistItemName));
+            Wait.Until(ElementToBeVisible(_wishlistItemPrice));
+            Wait.Until(ElementToBeVisible(_wishlistItemDescription));
+
+            _wishlistItemName.Text.Should().Contain(wishlistItemName);
+            _wishlistItemPrice.Text.Should().Contain(wishlistItemPrice);
+            _wishlistItemDescription.Text.Should().Contain(wishlistItemDescription);
             return this;
         }
 

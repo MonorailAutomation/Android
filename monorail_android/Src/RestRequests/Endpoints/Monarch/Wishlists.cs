@@ -12,7 +12,7 @@ namespace monorail_android.RestRequests.Endpoints.Monarch
         private const string WishlistsEndpoint = "/api/Wishlists/";
         private const string WishlistEndpoint = "/api/Wishlist/";
 
-        public static void AddCustomWishlistItem(string token, string productUrl, string itemName,
+        public static string AddCustomWishlistItem(string token, string productUrl, string itemName,
             string itemDescription, string itemAmount, string itemImageUrl, string itemFavIconUrl)
         {
             var client = new RestClient
@@ -40,6 +40,10 @@ namespace monorail_android.RestRequests.Endpoints.Monarch
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            dynamic responseContent = JObject.Parse(response.Content);
+
+            return responseContent.id;
         }
 
         public static string[] GetWishlistItemsInProgress(string token)

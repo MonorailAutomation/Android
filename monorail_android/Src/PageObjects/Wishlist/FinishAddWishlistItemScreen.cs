@@ -22,12 +22,29 @@ namespace monorail_android.PageObjects.Wishlist
 
         public FinishAddWishlistItemScreen ClickCloseButton()
         {
-            WaitUntilFinishAddWishlistItemScreenIsLoaded();
             _closeButton.Click();
             return this;
         }
 
-        private void WaitUntilFinishAddWishlistItemScreenIsLoaded()
+        public FinishAddWishlistItemScreen WaitUntilFinishAddWishlistItemScreenWhenUserHasAccountIsLoaded()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(_closeButton));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            return this;
+        }
+
+        public FinishAddWishlistItemScreen WaitUntilFinishAddWishlistItemScreenWhenUserDoesntHaveAccountIsLoaded()
         {
             var count = 0;
             const int maxTries = 3;
@@ -42,6 +59,8 @@ namespace monorail_android.PageObjects.Wishlist
                 {
                     if (++count == maxTries) throw e;
                 }
+
+            return this;
         }
     }
 }
