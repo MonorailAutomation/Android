@@ -37,7 +37,7 @@ namespace monorail_android.PageObjects.Money.Save.TransactionPages
             return this;
         }
 
-        [AllureStep("Set amount:'${0}'")]
+        [AllureStep("Set amount: '${0}'")]
         public TrackWithdrawCashPage SetAmount(string amount)
         {
             WaitUntilTrackWithdrawCashPageIsLoaded();

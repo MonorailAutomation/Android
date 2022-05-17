@@ -1,20 +1,27 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
-using monorail_android.PageObjects.Wishlist;
 using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Money.Save.ItemPages;
+using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
-namespace monorail_android.Test.Scripts.Transactions
+namespace monorail_android.Test.Scripts.Transactions.Track
 {
+    [TestFixture]
+    [AllureNUnit]
     internal class DepositToTrack : FunctionalTesting
     {
-        [Test]
-        public void DepositToTrackThroughtAddFundsOnTrackDetailsScreenTest()
+        [Test(Description = "Deposit to Track")]
+        [AllureEpic("Transactions")]
+        [AllureFeature("Save")]
+        [AllureStory("Deposit to Track")]
+        public void DepositToTrackThroughAddFundsOnTrackDetailsScreenTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
@@ -41,7 +48,7 @@ namespace monorail_android.Test.Scripts.Transactions
                 .ClickSignInButton();
 
             emptyMainWishlistPage
-               .WaitUntilEmptyMainWishlistPageIsLoaded();
+                .WaitUntilEmptyMainWishlistPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();
@@ -50,7 +57,7 @@ namespace monorail_android.Test.Scripts.Transactions
                 .ClickSaveButton();
 
             mainSavePage
-             .ClickTrackDetails(trackName);
+                .ClickTrackDetails(trackName);
 
             trackDetailsPage
                 .ClickAddFundsButton();

@@ -20,11 +20,11 @@ namespace monorail_android.PageObjects.Money.Save
         [FindsBy(How = How.Id, Using = "buttonConfirm")]
         private IWebElement _confirmButton;
 
-        [FindsBy(How = How.Id, Using = "labelScreenTitle")]
-        private IWebElement _withdrawFundsPageTitle;
-
         [FindsBy(How = How.Id, Using = "btn_delete")]
         private IWebElement _deleteButton;
+
+        [FindsBy(How = How.Id, Using = "labelScreenTitle")]
+        private IWebElement _withdrawFundsPageTitle;
 
         public TrackAddFundsPage(AndroidDriver<IWebElement> driver)
         {

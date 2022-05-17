@@ -1,4 +1,3 @@
-using System.Threading;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
@@ -26,11 +25,11 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
         private const string UsernameSuffix = "@gmail.com";
 
         [Test(Description =
-            "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
+            "Wishlist Onboarding - Successful - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Onboarding")]
         [AllureStory(
-            "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
+            "Wishlist Onboarding - Successful - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         public void WishlistOnboardingThroughFundYourWishlistButtonSuccessful()
         {
             var loginPage = new LoginPage(Driver);
@@ -51,18 +50,17 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
-            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
-                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription,
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             GoThroughLaunchScreens();
-
-            Thread.Sleep(20000); // wait for Wishlist Item to be correctly added
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             mainWishlistPage
+                .CheckIfWishlistItemIsDisplayedOnMainScreen(WishlistItemName)
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistItemDetailsPage

@@ -14,6 +14,9 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "iconPlus")]
         private IWebElement _addAnItemButton;
 
+        [FindsBy(How = How.Id, Using = "buttonCreateAccount")]
+        private IWebElement _createAWishlistAccountButton;
+
         [FindsBy(How = How.Id, Using = "buttonHowItWorks")]
         private IWebElement _howItWorksButton;
 
@@ -22,9 +25,6 @@ namespace monorail_android.PageObjects.Wishlist
 
         [FindsBy(How = How.Id, Using = "buttonNeedsCompletion")]
         private IWebElement _tapToCompleteItemPill;
-
-        [FindsBy(How = How.Id, Using = "buttonCreateAccount")]
-        private IWebElement _createAWishlistAccountButton;
 
         public MainWishlistPage(AndroidDriver<IWebElement> driver)
         {
@@ -88,7 +88,6 @@ namespace monorail_android.PageObjects.Wishlist
                 try
                 {
                     Wait.Until(ElementToBeVisible(wishlistItemPillElement));
-
                     wishlistItemPillElement.Text.Should().Be(statusPillDescription);
                     break;
                 }
@@ -116,7 +115,7 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
-        [AllureStep("Click 'Create a Wishlist Account' button")] 
+        [AllureStep("Click 'Create a Wishlist Account' button")]
         public MainWishlistPage ClickCreateAWishlistAccountButton()
         {
             Wait.Until(ElementToBeVisible(_createAWishlistAccountButton));

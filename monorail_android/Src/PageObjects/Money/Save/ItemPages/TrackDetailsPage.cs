@@ -40,7 +40,7 @@ namespace monorail_android.PageObjects.Money.Save.ItemPages
             _withdrawButton.Click();
             return this;
         }
-        
+
         [AllureStep("Click 'Add Funds' button")]
         public TrackDetailsPage ClickAddFundsButton()
         {
@@ -48,7 +48,7 @@ namespace monorail_android.PageObjects.Money.Save.ItemPages
             _addFundsButton.Click();
             return this;
         }
-        
+
         [AllureStep("Click '<' button")]
         public TrackDetailsPage ClickBackButton()
         {

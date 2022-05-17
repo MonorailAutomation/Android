@@ -1,26 +1,33 @@
-using monorail_android.DataGenerators;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
+using monorail_android.PageObjects.Money;
+using monorail_android.PageObjects.Money.Spend;
 using monorail_android.PageObjects.Wishlist;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions;
-using monorail_android.PageObjects.Money.Spend;
-using monorail_android.PageObjects.Money;
+using static monorail_android.DataGenerators.EmailGenerator;
 using static monorail_android.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 
-namespace monorail_android.Test.Scripts.Wishlist
+namespace monorail_android.Test.Scripts.Wishlist.Onboarding
 {
+    [TestFixture]
+    [AllureNUnit]
     internal class WishlistOnboardingRejected : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+22.";
         private const string UsernameSuffix = "@gmail.com";
 
-        [Test]
+        [Test(Description = "Wishlist Onboarding - Rejected - through Main Wishlist Screen")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Onboarding")]
+        [AllureStory("Wishlist Onboarding - Rejected - through Main Wishlist Screen")]
         public void WishlistOnboardingThroughMainWishlistScreenRejected()
         {
             var loginPage = new LoginPage(Driver);
@@ -39,11 +46,11 @@ namespace monorail_android.Test.Scripts.Wishlist
             var mainSpendPage = new MainSpendPage(Driver);
             var bottomNavigation = new BottomNavigation(Driver);
 
-            var username = EmailGenerator.GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username, Q2RejectedDateOfBirthYmd);
-            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
-                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription,
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             GoThroughLaunchScreens();
 
@@ -52,6 +59,7 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickSignInButton();
 
             mainWishlistPage
+                .CheckIfWishlistItemIsDisplayedOnMainScreen(WishlistItemName)
                 .ClickCreateAWishlistAccountButton();
 
             personalInformationPage
