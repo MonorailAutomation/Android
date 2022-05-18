@@ -14,6 +14,9 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "iconPlus")]
         private IWebElement _addAnItemButton;
 
+        [FindsBy(How = How.Id, Using = "toggleImage")]
+        private IWebElement _mainMenuButton;
+
         [FindsBy(How = How.Id, Using = "buttonCreateAccount")]
         private IWebElement _createAWishlistAccountButton;
 
@@ -25,6 +28,9 @@ namespace monorail_android.PageObjects.Wishlist
 
         [FindsBy(How = How.Id, Using = "buttonNeedsCompletion")]
         private IWebElement _tapToCompleteItemPill;
+
+        [FindsBy(How = How.Id, Using = "buttonManageCash")]
+        private IWebElement _manageButton;
 
         public MainWishlistPage(AndroidDriver<IWebElement> driver)
         {
@@ -107,6 +113,14 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click 'Manage' button")]
+        public MainWishlistPage ClickManageButton()
+        {
+            Wait.Until(ElementToBeVisible(_manageButton));
+            _manageButton.Click();
+            return this;
+        }
+
         [AllureStep("Click 'Tap to Complete' pill")]
         public MainWishlistPage ClickTapToCompleteItemPill()
         {
@@ -128,6 +142,27 @@ namespace monorail_android.PageObjects.Wishlist
         {
             Wait.Until(ElementToBeVisible(_placeholder));
             _placeholder.Click();
+            return this;
+        }
+
+        public MainWishlistPage WaitUntilMainWishlistPageIsLoaded()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeClickable(_howItWorksButton));
+                    Wait.Until(ElementToBeVisible(_addAnItemButton));
+                    Wait.Until(ElementToBeClickable(_mainMenuButton));
+
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
             return this;
         }
     }
