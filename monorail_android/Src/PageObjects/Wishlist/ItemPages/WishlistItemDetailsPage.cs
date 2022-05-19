@@ -94,6 +94,27 @@ namespace monorail_android.PageObjects.Wishlist.ItemPages
             return this;
         }
 
+        public WishlistItemDetailsPage WaitUntilWishlistItemDetailsPageForFundsTransferredStateIsLoaded()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeClickable(_editButton));
+                    Wait.Until(ElementToBeClickable(_removeButton));
+                    Wait.Until(ElementToBeClickable(_purchaseItemButton));
+
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            return this;
+        }
+
         [AllureStep("Check transferring status for External transfer")]
         public WishlistItemDetailsPage CheckTransferringStatusForExternalTransfer(string amount)
         {
@@ -109,6 +130,37 @@ namespace monorail_android.PageObjects.Wishlist.ItemPages
                     Wait.Until(ElementToBeClickable(_transferringStatusTitle));
                     Wait.Until(ElementToBeClickable(_transferringStatusDescription));
                     Wait.Until(ElementToBeClickable(_transferringStatusDate));
+
+                    _transferringStatusTitle.Text.Should().Be(transferringStatusTitle);
+                    _transferringStatusDescription.Text.Should()
+                        .Contain("$" + amount).And.Contain(transferringStatusDescription);
+                    _transferringStatusDate.Text.Should()
+                        .Contain(transferringStatusDate);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+
+            return this;
+        }
+
+        [AllureStep("Check transferred status for Internal transfer")]
+        public WishlistItemDetailsPage CheckTransferredStatusForExternalTransfer(string amount)
+        {
+            const string transferringStatusTitle = "Your funds have transferred!";
+            const string transferringStatusDescription = " has completed transferring to your connected account.";
+            const string transferringStatusDate = "Transfer completed on ";
+
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(_transferringStatusTitle));
+                    Wait.Until(ElementToBeVisible(_transferringStatusDescription));
+                    Wait.Until(ElementToBeVisible(_transferringStatusDate));
 
                     _transferringStatusTitle.Text.Should().Be(transferringStatusTitle);
                     _transferringStatusDescription.Text.Should()

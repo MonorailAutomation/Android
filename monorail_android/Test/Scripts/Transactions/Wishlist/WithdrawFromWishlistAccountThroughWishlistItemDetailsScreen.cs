@@ -87,5 +87,75 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
             logOutBottomUp
                 .ClickYesButton();
         }
+
+        [Test(Description =
+    "Withdraw money (internal) from Wishlist Account using 'Ready to Buy' button on 'Wishlist Item Details' screen")]
+        [AllureEpic("Transactions")]
+        [AllureFeature("Wishlist")]
+        [AllureStory(
+    "Withdraw money (internal) from Wishlist Account using 'Ready to Buy' button on 'Wishlist Item Details' screen")]
+        public void WithdrawFromWishlistAccountThroughWishlistItemDetailsScreenInternalTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var mainWishlistPage = new MainWishlistPage(Driver);
+            var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
+            var transferYourFundsPage = new TransferYourFundsPage(Driver);
+            var transferringPage = new TransferringPage(Driver);
+            var removeFromWishlistBottomUp = new RemoveFromWishlistBottomUp(Driver);
+            var mainMenuPage = new MainMenuPage(Driver);
+            var logOutBottomUp = new LogOutBottomUp(Driver);
+
+            const string username = "autotests.mono+7.5.051622@gmail.com";
+
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription,
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            VerifyPlaidConnection(username);
+
+            GoThroughLaunchScreens();
+
+            loginPage
+                .PassCredentials(username, ValidPassword)
+                .ClickSignInButton();
+
+            mainWishlistPage
+                .ClickWishlistItem(WishlistItemName);
+
+            wishlistItemDetailsPage
+                .ClickReadyToBuyButton();
+
+            transferYourFundsPage
+                .ClickMonorailSpendingCardOption()
+                .ClickContinueButton();
+
+            transferringPage
+                .ClickConfirmButton();
+
+            wishlistItemDetailsPage
+                .WaitUntilWishlistItemDetailsPageForFundsTransferredStateIsLoaded();
+
+            ScrollHalfOfScreen();
+
+            wishlistItemDetailsPage
+                .CheckTransferredStatusForExternalTransfer(WishlistItemPrice)
+                .ClickBackButton();
+
+            mainWishlistPage
+                .CheckStatusPillForWishlistItem(WishlistItemName, "Purchase Item")
+                .ClickWishlistItem(WishlistItemName);
+
+            wishlistItemDetailsPage
+                .ClickRemoveButton();
+
+            removeFromWishlistBottomUp
+                .ClickRemoveButton();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickLogOut();
+
+            logOutBottomUp
+                .ClickYesButton();
+        }
     }
 }

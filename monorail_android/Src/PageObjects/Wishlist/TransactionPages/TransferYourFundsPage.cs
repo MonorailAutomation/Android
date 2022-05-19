@@ -54,6 +54,14 @@ namespace monorail_android.PageObjects.Wishlist.TransactionPages
             return this;
         }
 
+        [AllureStep("Click 'Monorail Spending Card' option")]
+        public TransferYourFundsPage ClickMonorailSpendingCardOption()
+        {
+            WaitUntilTransferYourFundsPageIsLoaded();
+            _monorailSpendingCardOption.Click();
+            return this;
+        }
+
         private void WaitUntilTransferYourFundsPageIsLoaded()
         {
             var count = 0;
