@@ -19,6 +19,14 @@ namespace monorail_android.RestRequests.Helpers
             WaitUntilItemsAreScraped(token);
         }
 
+        [AllureStep("Edit Wishlist item using REST endpoint")]
+        public static void EditWishlistItem(string username, string spotId, string itemName,
+    string itemDescription, string itemPrice)
+        {
+            var token = GenerateToken(username);
+            EditWishlistItemDetails(token, spotId, itemName, itemDescription, itemPrice);
+        }
+
         [AllureStep("Add empty Wishlist item using REST endpoint")]
         public static void AddEmptyWishlistItem(string username, string productUrl)
         {

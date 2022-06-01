@@ -206,6 +206,14 @@ namespace monorail_android.PageObjects.Wishlist.ItemPages
             return this;
         }
 
+        [AllureStep("Click 'Edit' button")]
+        public WishlistItemDetailsPage ClickEditButton()
+        {
+            Wait.Until(ElementToBeVisible(_editButton));
+            _editButton.Click();
+            return this;
+        }
+
         [AllureStep("Click 'Remove' button")]
         public WishlistItemDetailsPage ClickRemoveButton()
         {

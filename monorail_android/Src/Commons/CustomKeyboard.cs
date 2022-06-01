@@ -15,5 +15,14 @@ namespace monorail_android.Commons
         {
             Driver.FindElement(By.Id("btn_delete")).Click();
         }
+
+        public static void ClearInputField(IWebElement element)
+        {
+            int textLength = element.Text.Length;
+            for (int i = 0; i < textLength; i++)
+            {
+                Driver.FindElement(By.Id("btn_delete")).Click();
+            }
+        }
     }
 }

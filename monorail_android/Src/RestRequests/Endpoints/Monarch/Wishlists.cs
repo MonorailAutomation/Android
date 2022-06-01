@@ -45,5 +45,32 @@ namespace monorail_android.RestRequests.Endpoints.Monarch
 
             return responseContent.id;
         }
+
+        public static void EditWishlistItemDetails(string token, string spotId, string itemName, string itemDescription, string itemPrice)
+        {
+            var client = new RestClient
+            {
+                BaseUrl = MonarchAppUri,
+                Authenticator = new JwtAuthenticator(token)
+            };
+            var request = new RestRequest
+            {
+                Resource = WishlistsEndpoint,
+                Method = Method.PATCH,
+                RequestFormat = DataFormat.Json
+            };
+
+            request.AddJsonBody(new
+            {
+                id = spotId,
+                name = itemName,
+                description = itemDescription,
+                amount = itemPrice,
+            });
+
+            var response = client.Execute(request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
     }
 }
