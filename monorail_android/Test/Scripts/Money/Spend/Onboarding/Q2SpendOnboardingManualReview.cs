@@ -2,7 +2,7 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money.Spend;
-using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -28,7 +28,7 @@ namespace monorail_android.Test.Scripts.Money.Spend.Onboarding
         public void Q2SpendOnboardingManualReviewTest()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var emptyMainSpendPage = new EmptyMainSpendPage(Driver);
             var mainSpendPage = new MainSpendPage(Driver);
@@ -48,14 +48,12 @@ namespace monorail_android.Test.Scripts.Money.Spend.Onboarding
 
             RegisterUser(username, Q2RejectedDateOfBirthYmd);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();
@@ -113,8 +111,8 @@ namespace monorail_android.Test.Scripts.Money.Spend.Onboarding
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();

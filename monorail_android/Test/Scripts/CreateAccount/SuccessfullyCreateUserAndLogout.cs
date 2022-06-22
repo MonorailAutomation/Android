@@ -2,7 +2,7 @@ using System.Threading;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.CreateAccount;
 using monorail_android.PageObjects.MainMenu;
-using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -35,13 +35,11 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var verifyYourAccountMethodPage = new VerifyYourAccountMethodPage(Driver);
             var verifyYourAccountVerificationCodePage = new VerifyYourAccountVerificationCodePage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
-
-            GoThroughLaunchScreens();
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -78,8 +76,8 @@ namespace monorail_android.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
@@ -105,13 +103,11 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var verifyYourAccountMethodPage = new VerifyYourAccountMethodPage(Driver);
             var verifyYourAccountVerificationCodePage = new VerifyYourAccountVerificationCodePage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
-
-            GoThroughLaunchScreens();
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -148,8 +144,8 @@ namespace monorail_android.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

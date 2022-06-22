@@ -3,12 +3,11 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
-using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using monorail_android.PageObjects.Wishlist.ItemPages;
 using static monorail_android.Commons.Scroll;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using static monorail_android.RestRequests.Helpers.PlaidConnectionHelperFunctions;
-using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
 using System.Threading;
@@ -27,6 +26,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void EditWishlistItemTest()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var editWishlistItemDetailsPage = new EditWishlistItemDetailsPage(Driver);
@@ -47,11 +47,18 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
+            EditWishlistItem(username, spotId, oldWishlistItemName, oldWishlistItemDescription, oldWishlistItemPrice);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+ 
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .CheckIfWishlistItemIsDisplayedOnMainScreen(oldWishlistItemName)
@@ -87,6 +94,7 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .ClickSaveButton();
 
             editWishlistItemDetailsPage
+                .WaitUntilEditWishlistItemDetailsPageIsLoaded()
                 .ClickBackButton();
 
             ScrollHalfOfScreen();
@@ -97,10 +105,10 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             mainWishlistPage
                 .WaitUntilMainWishlistPageIsLoaded()
-                .CheckIfWishlistItemIsDisplayedOnMainScreen(newWishlistItemName);
+                .CheckIfWishlistItemIsDisplayedOnMainScreen(newWishlistItemName)
+                .ClickBackButton();
 
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp

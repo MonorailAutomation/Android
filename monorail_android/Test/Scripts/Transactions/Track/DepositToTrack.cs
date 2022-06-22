@@ -3,7 +3,7 @@ using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money;
 using monorail_android.PageObjects.Money.Save;
 using monorail_android.PageObjects.Money.Save.ItemPages;
-using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -24,10 +24,9 @@ namespace monorail_android.Test.Scripts.Transactions.Track
         public void DepositToTrackThroughAddFundsOnTrackDetailsScreenTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainWishlistPage = new MainWishlistPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
-            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var spendSaveToggle = new SpendSaveToggle(Driver);
             var mainSavePage = new MainSavePage(Driver);
@@ -41,14 +40,12 @@ namespace monorail_android.Test.Scripts.Transactions.Track
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();

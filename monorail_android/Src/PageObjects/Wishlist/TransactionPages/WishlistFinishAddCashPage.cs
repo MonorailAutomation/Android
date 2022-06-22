@@ -13,10 +13,10 @@ namespace monorail_android.PageObjects.Wishlist.TransactionPages
     {
         private const string SuccessHeaderText = "Success!";
         private const string FundsOnTheWayMessageTextPartOne = "Funds are on their way to your";
-        private const string FundsOnTheWayMessageTextPartTwo = "connected account!";
-        private const string TransferringInformationTextPartOne = "Once completed, this amount will be added to";
-        private const string TransferringInformationTextPartTwo = "your Wishlist Account total and will be able to";
-        private const string TransferringInformationTextPartThree = "be used for power your purchases.";
+        private const string FundsOnTheWayMessageTextPartTwo = "Wishlist";
+        private const string TransferringInformationTextPartOne = "This transfer will take between 1-3 business days to complete.";
+        private const string TransferringInformationTextPartTwo = "Once complete, and for your protection, the funds will be available";
+        private const string TransferringInformationTextPartThree = "to spend or withdraw in five business days.";
 
         [FindsBy(How = How.Id, Using = "buttonReturn")]
         private IWebElement _finishButton;

@@ -1,6 +1,7 @@
 using System.Threading;
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
+using monorail_android.PageObjects.Invest;
 using monorail_android.PageObjects.Wishlist;
 using monorail_android.PageObjects.Wishlist.ItemPages;
 using NUnit.Allure.Attributes;
@@ -28,6 +29,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddCompleteWishlistItemThroughAddAnItemButtonOnEmptyWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
@@ -39,11 +41,16 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             const string username = "autotests.mono+2.040522@gmail.com";
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+               .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             emptyMainWishlistPage
                 .ClickAddAnItemButton();
@@ -67,8 +74,11 @@ namespace monorail_android.Test.Scripts.Wishlist
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp
@@ -82,6 +92,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddCompleteWishlistItemThroughAddAnItemButtonOnMainWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
@@ -94,11 +105,16 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+               .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .ClickAddAnItemButton();
@@ -122,8 +138,11 @@ namespace monorail_android.Test.Scripts.Wishlist
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp
@@ -137,6 +156,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddCompleteWishlistItemThroughPlaceholderButtonOnMainWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
@@ -149,11 +169,16 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .ClickPlaceholder();
@@ -177,8 +202,11 @@ namespace monorail_android.Test.Scripts.Wishlist
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp

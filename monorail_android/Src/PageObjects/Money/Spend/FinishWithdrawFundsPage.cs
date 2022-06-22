@@ -12,7 +12,7 @@ namespace monorail_android.PageObjects.Money.Spend
     {
         private const string TransferringMessageText = "Transferring";
         private const string FundsOnTheWayMessageTextPartOne = "Funds are on their way to your";
-        private const string FundsOnTheWayMessageTextPartTwo = "connected account!";
+        private const string FundsOnTheWayMessageTextPartTwo = "connected account";
 
         [FindsBy(How = How.Id, Using = "labelTransferringOnTheWay")]
         private IWebElement _fundsOnTheWayMessage;

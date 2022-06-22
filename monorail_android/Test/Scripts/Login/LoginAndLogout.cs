@@ -1,7 +1,7 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.Launch;
 using monorail_android.PageObjects.MainMenu;
-using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -21,7 +21,7 @@ namespace monorail_android.Test.Scripts.Login
         public void LoginAndLogoutTest()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -29,14 +29,12 @@ namespace monorail_android.Test.Scripts.Login
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

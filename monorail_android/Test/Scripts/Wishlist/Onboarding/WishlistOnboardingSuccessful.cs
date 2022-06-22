@@ -2,6 +2,7 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.Commons.Onboarding;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using monorail_android.PageObjects.Wishlist.ItemPages;
 using monorail_android.PageObjects.Wishlist.TransactionPages;
 using NUnit.Allure.Attributes;
@@ -11,6 +12,7 @@ using static monorail_android.Commons.Constants;
 using static monorail_android.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_android.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_android.RestRequests.Helpers.WishlistHelperFunctions;
+using static monorail_android.RestRequests.Endpoints.Management.PilotFeatures;
 using static monorail_android.Test.Scripts.Login.LoginAndLogout;
 using static monorail_android.DataGenerators.EmailGenerator;
 using static monorail_android.RestRequests.Helpers.UserManagementHelperFunctions;
@@ -33,6 +35,7 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
         public void WishlistOnboardingThroughFundYourWishlistButtonSuccessful()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
@@ -50,14 +53,20 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
+            AddUserToPilot(username, "useWishlist");
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription,
                 WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
-
-            GoThroughLaunchScreens();
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .CheckIfWishlistItemIsDisplayedOnMainScreen(WishlistItemName)
@@ -107,8 +116,11 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
                 .WaitUntilWishlistItemDetailsPageForNotReadyToBuyStateIsLoaded()
                 .ClickBackButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp
