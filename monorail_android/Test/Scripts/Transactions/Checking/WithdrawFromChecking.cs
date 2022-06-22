@@ -1,7 +1,7 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Money.Spend;
-using monorail_android.PageObjects.Wishlist;
+using monorail_android.PageObjects.Invest;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -22,7 +22,7 @@ namespace monorail_android.Test.Scripts.Transactions.Checking
         public void WithdrawFromCheckingTest()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var mainSpendPage = new MainSpendPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
@@ -35,14 +35,12 @@ namespace monorail_android.Test.Scripts.Transactions.Checking
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyMainWishlistPage
-                .WaitUntilEmptyMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();

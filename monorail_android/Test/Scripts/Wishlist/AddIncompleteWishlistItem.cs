@@ -2,6 +2,7 @@ using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
 using monorail_android.PageObjects.Wishlist;
 using monorail_android.PageObjects.Wishlist.ItemPages;
+using monorail_android.PageObjects.Invest;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -27,6 +28,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddIncompleteWishlistItemWithWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var completeYourItemEntryPage = new CompleteYourItemEntryPage(Driver);
             var completeYourItemNamePage = new CompleteYourItemNamePage(Driver);
@@ -45,11 +47,16 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .ClickTapToCompleteItemPill();
@@ -93,8 +100,11 @@ namespace monorail_android.Test.Scripts.Wishlist
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp
@@ -108,6 +118,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddIncompleteWishlistItemWithoutWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var completeYourItemEntryPage = new CompleteYourItemEntryPage(Driver);
             var completeYourItemNamePage = new CompleteYourItemNamePage(Driver);
@@ -126,11 +137,16 @@ namespace monorail_android.Test.Scripts.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .ClickTapToCompleteItemPill();
@@ -174,8 +190,11 @@ namespace monorail_android.Test.Scripts.Wishlist
             removeFromWishlistBottomUp
                 .ClickRemoveButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp

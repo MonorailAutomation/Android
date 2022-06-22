@@ -17,17 +17,29 @@ namespace monorail_android.PageObjects.MainMenu
         [FindsBy(How = How.Id, Using = "buttonGiving")]
         private IWebElement _givingNavItem;
 
+        [FindsBy(How = How.Id, Using = "buttonWishlist")]
+        private IWebElement _wishlistNavItem;
+
         [FindsBy(How = How.Id, Using = "lbl_logout")]
         private IWebElement _logOutNavItem;
 
+        [FindsBy(How = How.Id, Using = "labelPrivacyPolicy")]
+        private IWebElement _privacyPolicyNavItem;
+
         [FindsBy(How = How.Id, Using = "lbl_more_info")]
         private IWebElement _moreInfoNavItem;
+
+        [FindsBy(How = How.Id, Using = "lbl_ask_question")]
+        private IWebElement _askAQuestionNavItem;
 
         [FindsBy(How = How.Id, Using = "lbl_my_connected_account")]
         private IWebElement _myConnectedAccountNavItem;
 
         [FindsBy(How = How.Id, Using = "toggleImage")]
         private IWebElement _sideMenu;
+
+        [FindsBy(How = How.Id, Using = "buttonCloseClickOverlay")]
+        private IWebElement _closeButton;
 
         public MainMenuPage(AndroidDriver<IWebElement> driver)
         {
@@ -38,8 +50,26 @@ namespace monorail_android.PageObjects.MainMenu
         public MainMenuPage ClickLogOut()
         {
             WaitUntilMainMenuIsLoaded();
-            Scroll.ScrollFromToElement(_givingNavItem, _moreInfoNavItem);
+            Scroll.ScrollFromToElement(_givingNavItem, _askAQuestionNavItem);
+            Scroll.ScrollFromToElement(_askAQuestionNavItem, _privacyPolicyNavItem);
             _logOutNavItem.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Wishlist' nav item")]
+        public MainMenuPage ClickWishlist()
+        {
+            WaitUntilWishlistButtonIsDisplayed();
+            _wishlistNavItem.Click();
+            return this;
+        }
+
+
+        [AllureStep("Click 'Close' button")]
+        public MainMenuPage ClickCloseButton()
+        {
+            WaitUntilMainMenuIsLoaded();
+            _closeButton.Click();
             return this;
         }
 
@@ -67,7 +97,23 @@ namespace monorail_android.PageObjects.MainMenu
                 try
                 {
                     Wait.Until(ElementToBeVisible(_givingNavItem));
-                    Wait.Until(ElementToBeVisible(_moreInfoNavItem));
+                    Wait.Until(ElementToBeVisible(_askAQuestionNavItem));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
+        }
+
+        private void WaitUntilWishlistButtonIsDisplayed()
+        {
+            var count = 0;
+            const int maxTries = 3;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(_wishlistNavItem));
                     break;
                 }
                 catch (Exception e)

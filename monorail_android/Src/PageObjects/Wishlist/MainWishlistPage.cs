@@ -14,6 +14,9 @@ namespace monorail_android.PageObjects.Wishlist
         [FindsBy(How = How.Id, Using = "iconPlus")]
         private IWebElement _addAnItemButton;
 
+        [FindsBy(How = How.Id, Using = "buttonBack")]
+        private IWebElement _backButton;
+
         [FindsBy(How = How.Id, Using = "toggleImage")]
         private IWebElement _mainMenuButton;
 
@@ -113,6 +116,14 @@ namespace monorail_android.PageObjects.Wishlist
             return this;
         }
 
+        [AllureStep("Click 'Back' button")]
+        public MainWishlistPage ClickBackButton()
+        {
+            Wait.Until(ElementToBeVisible(_backButton));
+            _backButton.Click();
+            return this;
+        }
+
         [AllureStep("Click 'Manage' button")]
         public MainWishlistPage ClickManageButton()
         {
@@ -154,7 +165,6 @@ namespace monorail_android.PageObjects.Wishlist
                 {
                     Wait.Until(ElementToBeClickable(_howItWorksButton));
                     Wait.Until(ElementToBeVisible(_addAnItemButton));
-                    Wait.Until(ElementToBeClickable(_mainMenuButton));
 
                     break;
                 }

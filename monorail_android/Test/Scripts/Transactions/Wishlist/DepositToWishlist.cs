@@ -1,5 +1,6 @@
 using monorail_android.PageObjects;
 using monorail_android.PageObjects.MainMenu;
+using monorail_android.PageObjects.Invest;
 using monorail_android.PageObjects.Wishlist;
 using monorail_android.PageObjects.Wishlist.ItemPages;
 using monorail_android.PageObjects.Wishlist.TransactionPages;
@@ -26,6 +27,7 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var wishlistAddCashPage = new WishlistAddCashPage(Driver);
             var wishlistFinishAddCashPage = new WishlistFinishAddCashPage(Driver);
@@ -37,11 +39,16 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
+
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .ClickWishlistItem(wishlistItemName);
@@ -62,8 +69,11 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
                 .WaitUntilWishlistItemDetailsPageForNotReadyToBuyStateIsLoaded()
                 .ClickBackButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp
@@ -78,6 +88,7 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
         public void DepositToWishlistThroughAddCashButtonTest()
         {
             var loginPage = new LoginPage(Driver);
+            var emptyTradingPage = new EmptyTradingPage(Driver);
             var wishlistAddCashPage = new WishlistAddCashPage(Driver);
             var wishlistFinishAddCashPage = new WishlistFinishAddCashPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
@@ -89,16 +100,16 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainWishlistPage
-                .WaitUntilMainWishlistPageIsLoaded();
+            emptyTradingPage
+                .WaitUntilEmptyTradingPageIsLoaded();
 
-            ScrollHalfOfScreen();
+            mainMenuPage
+                .ClickSideMenu()
+                .ClickWishlist();
 
             mainWishlistPage
                 .ClickManageButton();
@@ -120,8 +131,11 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
                 .WaitUntilWishlistManagePageIsLoaded()
                 .ClickBackButton();
 
+            mainWishlistPage
+                .WaitUntilMainWishlistPageIsLoaded()
+                .ClickBackButton();
+
             mainMenuPage
-                .ClickSideMenu()
                 .ClickLogOut();
 
             logOutBottomUp

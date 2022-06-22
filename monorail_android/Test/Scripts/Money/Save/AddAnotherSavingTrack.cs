@@ -44,8 +44,6 @@ namespace monorail_android.Test.Scripts.Money.Save
 
             VerifyPlaidConnection(username);
 
-            GoThroughLaunchScreens();
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -119,8 +117,6 @@ namespace monorail_android.Test.Scripts.Money.Save
             var trackName = "Test Track " + GenerateStringWithNumber();
 
             VerifyPlaidConnection(username);
-
-            GoThroughLaunchScreens();
 
             loginPage
                 .PassCredentials(username, ValidPassword)
