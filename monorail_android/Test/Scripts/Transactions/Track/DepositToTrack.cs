@@ -26,7 +26,7 @@ namespace monorail_android.Test.Scripts.Transactions.Track
             var loginPage = new LoginPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var bottomMenu = new BottomNavigation(Driver);
             var spendSaveToggle = new SpendSaveToggle(Driver);
             var mainSavePage = new MainSavePage(Driver);
@@ -44,8 +44,8 @@ namespace monorail_android.Test.Scripts.Transactions.Track
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             bottomMenu
                 .ClickMoneyNavButton();

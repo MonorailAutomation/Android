@@ -21,7 +21,7 @@ namespace monorail_android.Test.Scripts.Login
         public void LoginAndLogoutTest()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -33,8 +33,8 @@ namespace monorail_android.Test.Scripts.Login
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

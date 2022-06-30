@@ -29,7 +29,7 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var transferYourFundsPage = new TransferYourFundsPage(Driver);
             var transferringPage = new TransferringPage(Driver);
@@ -48,8 +48,8 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-               .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
@@ -107,7 +107,7 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
         public void WithdrawFromWishlistAccountThroughWishlistItemDetailsScreenInternalTest()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var transferYourFundsPage = new TransferYourFundsPage(Driver);
@@ -127,8 +127,8 @@ namespace monorail_android.Test.Scripts.Transactions.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-               .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
