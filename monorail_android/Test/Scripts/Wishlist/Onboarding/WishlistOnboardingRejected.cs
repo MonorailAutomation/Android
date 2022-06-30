@@ -33,7 +33,7 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
         {
             var loginPage = new LoginPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
             var firstNameLastNamePage = new FirstNameLastNamePage(Driver);
             var ssnPage = new SsnPage(Driver);
@@ -59,8 +59,8 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

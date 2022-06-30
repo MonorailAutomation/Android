@@ -35,7 +35,7 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
         public void WishlistOnboardingThroughFundYourWishlistButtonSuccessful()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var wishlistItemDetailsPage = new WishlistItemDetailsPage(Driver);
             var personalInformationPage = new PersonalInformationPage(Driver);
@@ -61,8 +61,8 @@ namespace monorail_android.Test.Scripts.Wishlist.Onboarding
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

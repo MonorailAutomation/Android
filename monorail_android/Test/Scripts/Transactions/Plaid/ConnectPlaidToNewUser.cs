@@ -27,7 +27,7 @@ namespace monorail_android.Test.Scripts.Transactions.Plaid
         public void ConnectPlaidToNewUserTest()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var connectedAccountPage = new ConnectedAccountPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
@@ -40,8 +40,8 @@ namespace monorail_android.Test.Scripts.Transactions.Plaid
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

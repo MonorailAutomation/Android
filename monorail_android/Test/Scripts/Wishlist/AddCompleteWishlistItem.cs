@@ -29,7 +29,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddCompleteWishlistItemThroughAddAnItemButtonOnEmptyWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var emptyMainWishlistPage = new EmptyMainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
@@ -45,8 +45,8 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-               .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
@@ -92,7 +92,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddCompleteWishlistItemThroughAddAnItemButtonOnMainWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
@@ -109,8 +109,8 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-               .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
@@ -156,7 +156,7 @@ namespace monorail_android.Test.Scripts.Wishlist
         public void AddCompleteWishlistItemThroughPlaceholderButtonOnMainWishlistScreen()
         {
             var loginPage = new LoginPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainWishlistPage = new MainWishlistPage(Driver);
             var pasteALinkPage = new PasteALinkPage(Driver);
             var itemIsBeingAddedPage = new ItemIsBeingAddedPage(Driver);
@@ -173,8 +173,8 @@ namespace monorail_android.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()

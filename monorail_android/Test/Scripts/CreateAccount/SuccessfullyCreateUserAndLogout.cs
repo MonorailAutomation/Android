@@ -35,7 +35,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var verifyYourAccountMethodPage = new VerifyYourAccountMethodPage(Driver);
             var verifyYourAccountVerificationCodePage = new VerifyYourAccountVerificationCodePage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -76,8 +76,8 @@ namespace monorail_android.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
@@ -103,7 +103,7 @@ namespace monorail_android.Test.Scripts.CreateAccount
             var verifyYourAccountMethodPage = new VerifyYourAccountMethodPage(Driver);
             var verifyYourAccountVerificationCodePage = new VerifyYourAccountVerificationCodePage(Driver);
             var termsAndConditionsPage = new TermsAndConditionsPage(Driver);
-            var emptyTradingPage = new EmptyTradingPage(Driver);
+            var emptyMilestonesPage = new EmptyMilestonesPage(Driver);
             var mainMenuPage = new MainMenuPage(Driver);
             var logOutBottomUp = new LogOutBottomUp(Driver);
 
@@ -144,8 +144,8 @@ namespace monorail_android.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            emptyTradingPage
-                .WaitUntilEmptyTradingPageIsLoaded();
+            emptyMilestonesPage
+                .WaitUntilEmptyMilestonesPageIsLoaded();
 
             mainMenuPage
                 .ClickSideMenu()
